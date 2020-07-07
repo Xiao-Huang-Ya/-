@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <typeAliases>
+        <!--        定义单个别名时，使用时别名可以不管大小写-->
+        <typeAlias alias="Guide" type="main.tour.entity.Guide"/>
+
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+
+    </plugins>
+
+    <mappers>
+
+
+        <mapper resource="main/tour/mapper/GuideMapper.xml"/>
+    </mappers>
+</configuration>

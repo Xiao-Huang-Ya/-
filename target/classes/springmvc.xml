@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <!--    springMVC 标配,加载@Controller-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+    <!--扫描器：发现改包下的注解-->
+    <context:component-scan base-package="main.tour"></context:component-scan>
+    <!--    处理静态资源-->
+    <mvc:default-servlet-handler/>
+    <!--配置视图解析器：InternalResourceViewResolver    -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+    <!--    Springmvc配置文件上传所需要的bean-->
+    <!--    注意id值:固定写法，IOC容器在初始化时自动寻找一个id="multipartResolver"的bean-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+<!--        上传单一文件最大值 100MB,单位：byte-->
+        <property name="maxUploadSize" value="104857600"></property>
+    </bean>
+
+</beans>
