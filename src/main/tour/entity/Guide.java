@@ -19,6 +19,13 @@ public class Guide {
         this.salary = salary;
     }
 
+    public Guide(long id, String name, int hours, double salary) {
+        this.id = id;
+        this.name = name;
+        this.hours = hours;
+        this.salary = salary;
+    }
+
     public long getId() {
         return id;
     }

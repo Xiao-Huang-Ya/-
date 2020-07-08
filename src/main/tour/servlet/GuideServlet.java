@@ -97,13 +97,19 @@ public class GuideServlet extends HttpServlet {
         return "queryGuide";
     }
 
-    @RequestMapping(value = "/addGuideServlet")
-    public String addGuideServlet(@RequestParam("id2") Long id, @RequestParam("name") String name,
-                                  @RequestParam("gender") String gender, @RequestParam("hours") int hours,
-                                  @RequestParam("salary") double salary, Map<String, Object> map) throws IOException {
+    @RequestMapping(value = "/addGuideServlet" )
+    public String addGuideServlet(@RequestParam(value = "id" ,required = false) Long id, @RequestParam(value = "name",required = false) String name,
+                                  @RequestParam(value="gender",required = false) String gender, @RequestParam(value ="hours",required = false) Integer hours,
+                                  @RequestParam(value ="salary",required = false) Double salary, Map<String, Object> map)  {
         boolean flag = false;
-        Guide Guide = new Guide(id, name, gender, hours, salary);
-        flag = guideService.insertGuide(Guide);
+        try {
+            Guide guide = new Guide(id, name, gender, hours, salary);
+
+            flag = guideService.insertGuide(guide);
+        }catch (Exception e){
+            map.put("flag",flag);
+            return "addGuide";
+        }
         map.put("flag", flag);
         return "addGuide";
     }

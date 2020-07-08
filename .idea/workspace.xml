@@ -6,22 +6,65 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ce00fab-4658-4851-ae41-fc5da192b9db" name="Default Changelist" comment="" />
+    <list default="true" id="9ce00fab-4658-4851-ae41-fc5da192b9db" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/tour/dao/RouteDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/tour/entity/Sight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/tour/mapper/SightMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/tour/entity/Guide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/entity/Guide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/tour/servlet/GuideServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/servlet/GuideServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/crud.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/crud.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/addGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/addGuide.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/queryGuide.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/test.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/operation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/operation.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Guide.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Guide.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/GuideServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/GuideServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/addGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/addGuide.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryGuide.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/test.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/addGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/addGuide.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryGuide.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/test.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/entity/Guide.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/entity/Guide.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/servlet/GuideServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/servlet/GuideServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/addGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/addGuide.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/queryGuide.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/test.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="TourismManagement" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
         <option value="Jsp File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="IntelliJConfiguration">
     <option name="PROPERTY_FILES">
@@ -35,6 +78,12 @@
     <option name="PROMPT_FOR_KEY_PREFIX" value="false" />
     <option name="LABEL_PART_1" value="&lt;bean:message key=&quot;" />
     <option name="LABEL_PART_2" value="&quot;/&gt;" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -51,11 +100,12 @@
     </option>
   </component>
   <component name="ProjectId" id="1eDW2DjYntoC48lXGPx5Z296v9z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="D:/jdk-8u211-windows-x64/lib/hamcrest-core-1.3.jar!/" />
+    <property name="last_opened_file_path" value="D:/Tool/Git/Git/bin/git.exe" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -66,7 +116,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -268,11 +318,43 @@
       <workItem from="1593856436939" duration="14547000" />
       <workItem from="1593909517149" duration="27329000" />
       <workItem from="1593997709166" duration="10005000" />
-      <workItem from="1594084006081" duration="1249000" />
+      <workItem from="1594084006081" duration="5724000" />
+      <workItem from="1594096411257" duration="22109000" />
+      <workItem from="1594168962036" duration="13220000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/tour/servlet/RouteServlet.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="asyncManager" language="JAVA" />
+        <watch expression="route.number" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

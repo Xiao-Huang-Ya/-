@@ -45,8 +45,8 @@
 <div class="sidebar-nav">
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>景点管理</a>
     <ul id="dashboard-menu" class="nav nav-list collapse in">
-        <li><a href="index.jsp">旅游路线管理</a></li>
-        <li><a href="index.jsp">旅游景区管理</a></li>
+        <li><a href="/hello/queryRouteByPageServlet/1">旅游路线管理</a></li>
+        <li><a href="/hello/querySightByPageServlet/1">旅游景区管理</a></li>
 
     </ul>
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>

@@ -45,9 +45,9 @@
 <div class="sidebar-nav">
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>景点管理</a>
     <ul id="dashboard-menu" class="nav nav-list collapse in">
-        <li><a href="index.jsp">新增景点</a></li>
+        <li><a href="/hello/queryRouteByPageServlet/1">旅游路线管理</a></li>
 
-        <li><a href="index.jsp">新增路线</a></li>
+        <li><a href="/hello/querySightByPageServlet/1">旅游景点管理</a></li>
 
 
     </ul>
@@ -105,8 +105,8 @@
         .wait()
         // .script("js/highcharts.js")//for highchar
         // .script("js/exporting.js")//for highchar
-        .wait()
-        .script("js/draw.js")
+        // .wait()
+        // .script("/js/draw.js")
 </script>
 
 

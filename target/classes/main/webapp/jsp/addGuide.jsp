@@ -43,8 +43,8 @@
 <div class="sidebar-nav">
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>景点管理</a>
     <ul id="dashboard-menu" class="nav nav-list collapse in">
-        <li><a href="index.jsp">旅游路线管理</a></li>
-        <li><a href="index.jsp">旅游景区管理</a></li>
+        <li><a href="/hello/queryRouteByPageServlet/1">旅游路线管理</a></li>
+        <li><a href="/hello/querySightByPageServlet/1">旅游景区管理</a></li>
 
     </ul>
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
@@ -84,7 +84,7 @@
         <!-- edit form -->
         <form id="tab" action="/hello/addGuideServlet" method="post">
             <label>导游编号：</label>
-            <input type="text" id="id2" name="id2" placeholder="请输入导游编号" class="input-xlarge">
+            <input type="text" id="id" name="id" placeholder="请输入导游编号" class="input-xlarge">
             <label>姓名：</label>
             <input type="text" name="name" id="name" placeholder="请输入姓名" class="input-xlarge">
             <label>性别：</label>
@@ -115,10 +115,10 @@
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="js/jquery-1.8.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- 日期控件 -->
-<script src="js/calendar/WdatePicker.js"></script>
+<script src="/js/jquery-1.8.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
 <script>
     <c:if test="${flag == 'true'}">
     alert("操作成功");
@@ -129,4 +129,5 @@
     </c:if>
 
 </script>
+
 </html>

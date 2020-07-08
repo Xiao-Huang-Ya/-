@@ -43,8 +43,8 @@
 <div class="sidebar-nav">
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>景点管理</a>
     <ul id="dashboard-menu" class="nav nav-list collapse in">
-        <li><a href="index.jsp">旅游路线管理</a></li>
-        <li><a href="index.jsp">旅游景区管理</a></li>
+        <li><a href="/hello/queryRouteByPageServlet/1">旅游路线管理</a></li>
+        <li><a href="/hello/querySightByPageServlet/1">旅游景区管理</a></li>
 
     </ul>
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
@@ -171,7 +171,6 @@
             </thead>
             <tbody>
             <c:forEach var="list" items="${tourPage.list}">
-                ${pages}
             <tr>
                 <td>${list.id}</td>
                 <td>${list.name}</td>
@@ -185,47 +184,7 @@
                 </td>
             </tr>
             </c:forEach>
-            <%--            <tr class="success">--%>
-            <%--                <td>1</td>--%>
-            <%--                <td>TB - Monthly</td>--%>
-            <%--                <td>01/04/2012</td>--%>
-            <%--                <td>Approved</td>--%>
-            <%--                <td>--%>
-            <%--                    <a href="operation.html"><i class="icon-pencil"></i></a>--%>
-            <%--                    <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
-            <%--                </td>--%>
-            <%--            </tr>--%>
-            <%--            <tr class="error">--%>
-            <%--                <td>2</td>--%>
-            <%--                <td>TB - Monthly</td>--%>
-            <%--                <td>02/04/2012</td>--%>
-            <%--                <td>Declined</td>--%>
-            <%--                <td>--%>
-            <%--                    <a href="operation.html"><i class="icon-pencil"></i></a>--%>
-            <%--                    <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
-            <%--                </td>--%>
-            <%--            </tr>--%>
-            <%--            <tr class="warning">--%>
-            <%--                <td>3</td>--%>
-            <%--                <td>TB - Monthly</td>--%>
-            <%--                <td>03/04/2012</td>--%>
-            <%--                <td>Pending</td>--%>
-            <%--                <td>--%>
-            <%--                    <a href="operation.html"><i class="icon-pencil"></i></a>--%>
-            <%--                    <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
-            <%--                </td>--%>
-            <%--            </tr>--%>
-            <%--            <tr class="info">--%>
-            <%--                <td>4</td>--%>
-            <%--                <td>TB - Monthly</td>--%>
-            <%--                <td>04/04/2012</td>--%>
-            <%--                <td>Call in to confirm</td>--%>
-            <%--                <td>--%>
-            <%--                    <a href="operation.html"><i class="icon-pencil"></i></a>--%>
-            <%--                    <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
-            <%--                </td>--%>
-            <%--            </tr>--%>
-            <%--            </tbody>--%>
+
         </table>
         <!-- 分页显示模块 -->
         <div class="pagination">
@@ -251,7 +210,7 @@
                     </c:when>
                     <c:otherwise >
                         <li><a href="/hello/queryGuideByPageServlet/1">首页</a></li>
-                        <li><a href="/hello/queryGuideByPageServlet/{tourPage.currentPage-1}">上页</a></li>
+                        <li><a href="/hello/queryGuideByPageServlet/${tourPage.currentPage-1}">上页</a></li>
                         <li><a href="/hello/queryGuideByPageServlet/${tourPage.currentPage+1}">下页</a></li>
                         <li><a href="/hello/queryGuideByPageServlet/${tourPage.totalPage}">尾页</a></li>
 
@@ -289,10 +248,9 @@
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="js/jquery-1.8.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- 日期控件 -->
-<script src="js/calendar/WdatePicker.js"></script>
+<script src="/js/jquery-1.8.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
 
 <script>
 
