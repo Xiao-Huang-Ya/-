@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.tour.mapper.SightMapper">
+
+    <select id="querySightBySname" resultType="Sight">
+   SELECT sname, location FROM public.sight where sname =#{sname}
+    </select>
+
+    <select id="querySights" resultType="Sight">
+   SELECT sname, location FROM public.sight
+    </select>
+
+    <insert id="insertSight" parameterType="Sight">
+INSERT INTO public.sight(sname, location) VALUES (#{sname}, #{location})
+    </insert>
+
+
+    <delete id="deleteSightBySname" parameterType="string">
+        DELETE FROM public.sight WHERE sname = #{sname}
+    </delete>
+
+    <update id="updateSightBySname" parameterType="string" >
+        UPDATE public.sight
+        SET sname=#{sname}, location=#{location}
+        WHERE sname = #{sname}
+    </update>
+</mapper>

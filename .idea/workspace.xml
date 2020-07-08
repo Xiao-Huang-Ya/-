@@ -7,40 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ce00fab-4658-4851-ae41-fc5da192b9db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/tour/dao/RouteDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/tour/entity/Sight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/tour/mapper/SightMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/entity/Guide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/entity/Guide.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/servlet/GuideServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/servlet/GuideServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/crud.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/crud.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/addGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/addGuide.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/queryGuide.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/test.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/operation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/operation.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Guide.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Guide.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/GuideServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/GuideServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/addGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/addGuide.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryGuide.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/test.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/addGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/addGuide.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryGuide.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/test.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/entity/Guide.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/entity/Guide.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/servlet/GuideServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/servlet/GuideServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/addGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/addGuide.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/queryGuide.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/test.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -320,8 +287,16 @@
       <workItem from="1593997709166" duration="10005000" />
       <workItem from="1594084006081" duration="5724000" />
       <workItem from="1594096411257" duration="22109000" />
-      <workItem from="1594168962036" duration="13220000" />
+      <workItem from="1594168962036" duration="14104000" />
     </task>
+    <task id="LOCAL-00001" summary="正在更新。。。。。">
+      <created>1594183180611</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594183180611</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,6 +314,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="正在更新。。。。。" />
+    <option name="LAST_COMMIT_MESSAGE" value="正在更新。。。。。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

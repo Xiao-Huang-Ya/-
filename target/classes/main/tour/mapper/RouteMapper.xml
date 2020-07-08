@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.tour.mapper.RouteMapper">
+
+    <select id="fuzzyQueries" resultType="Route" parameterType="Route">
+  SELECT rid, name, endpoint, sight, "number" FROM public.route
+        <where>
+            <if test="rid != null and rid !='' ">
+                or rid =#{rid}
+            </if>
+            <if test="name !=null and name !='' ">
+               or name like "%"#{name}"%"
+            </if>
+            <if test="endPoint != null and endPoint !='' ">
+                or endPoint like "%"#{endPoint}"%"
+            </if>
+            <if test="sight !=null and sight != '' " >
+                like sight = "%"#{sight}"%"
+            </if>
+            <if test="number != null and number != '' ">
+                or number  = #{number}
+            </if>
+        </where>
+    </select>
+    <select id="queryRouteByRid" resultType="Route" parameterType="string">
+        SELECT rid, name, endpoint, sight, "number" FROM public.route
+        where rid = #{rid}
+
+    </select>
+    <select id="queryRoutes" resultType="Route">
+SELECT rid, name, endpoint, sight, "number" FROM public.route  order by rid
+    </select>
+
+    <insert id="insertRoute" parameterType="Route">
+INSERT INTO public.route(
+	rid, name, endpoint, sight, "number")
+	VALUES (#{rid}, #{name}, #{endPoint}, #{sight},#{number})
+    </insert>
+
+
+    <delete id="deleteRouteByRid" parameterType="string">
+        DELETE FROM public.route
+        WHERE  rid=#{rid}
+    </delete>
+
+    <update id="updateRouteByRid" parameterType="Route">
+        UPDATE public.route
+        SET rid=#{rid}, name=#{name}, endpoint=#{endPoint}, sight=#{sight}, "number"=#{number}
+        WHERE rid = #{rid}
+    </update>
+</mapper>
