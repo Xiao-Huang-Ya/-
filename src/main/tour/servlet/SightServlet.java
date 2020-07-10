@@ -86,19 +86,19 @@ public class SightServlet {
     }
 
     @RequestMapping(value = "/addSightServlet")
-    public String addSightServlet(@RequestParam(value = "sname", required = false) String sname, @RequestParam(value = "location", required = false) String location, Map<String, Object> map,@ModelAttribute("tourPage")TourPage tourPage) throws IOException {
+    public String addSightServlet(@RequestParam(value = "sname", required = false) String sname, @RequestParam(value = "location", required = false) String location, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         boolean flag = false;
         try {
             Sight sight = new Sight(sname, location);
             flag = sightService.insertSight(sight);
             map.put("flag", flag);
-            tourPage = testModelAttribute("1",map);
-            map.put("tourPage",tourPage);
+            tourPage = testModelAttribute("1", map);
+            map.put("tourPage", tourPage);
             return "querySight";
         } catch (Exception e) {
             map.put("flag", flag);
-            tourPage = testModelAttribute("1",map);
-            map.put("tourPage",tourPage);
+            tourPage = testModelAttribute("1", map);
+            map.put("tourPage", tourPage);
             return "querySight";
         }
 
@@ -112,13 +112,30 @@ public class SightServlet {
         map.put("tourPage", tourPage);
         return "querySight";
     }
-//
-//    @RequestMapping(value = "/querySightBySnameServlet/{sname}")
-//    public String querySightByFidServlet(@PathVariable("sname") String sname, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
-//        Sight sight = sightService.querySightBySname(sname);
-//        map.put("sight", sight);
-//        tourPage = testModelAttribute("1", map);
-//        map.put("tourPage", tourPage);
-//        return "test";
-//    }
+
+    //用户界面
+//测试分页学生
+    @RequestMapping(value = "/querySightByPageServlet2/{currentPage}")
+    public String querySightByPageServlet2(@PathVariable("currentPage") int currentPage, Map<String, Object> map) throws IOException {
+        TourPage tourPage = new TourPage();
+        int pageSize = 5;
+        tourPage.setPageSize(pageSize);
+        currentPage = currentPage == 0 ? 1 : currentPage;
+        tourPage.setCurrentPage(currentPage);
+        //        总数居数量,注意数据
+        Page page = sightService.querySightsByPage(currentPage, pageSize);
+
+        int totalCount = (int) page.getTotal();
+        tourPage.setTotalCount(totalCount); //数据总数
+        //        总页数
+        int totalPage = page.getPages(); //总页数
+        tourPage.setTotalPage(totalPage);
+        //当前页的数据集合
+        List<Sight> Sights = page.getResult(); //数据
+        tourPage.setList(Sights);
+        map.put("tourPage", tourPage);
+        System.out.println(tourPage.getTotalCount());
+        return "consumer";
+    }
+
 }

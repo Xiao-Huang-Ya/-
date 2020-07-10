@@ -10,7 +10,7 @@ public interface RouteMapper {
     Route queryRouteByRid(Object obj);
 
     //通过主键查询
-    List<Route> fuzzyQueries(Object obj);
+    List<Route> fuzzyQueries(Route route);
 
     //查询全部
     List<Route> queryRoutes();

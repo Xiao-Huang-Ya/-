@@ -25,6 +25,11 @@ public class RouteService {
 
     }
 
+    public Page queryRoutesByPage2(int currentPage, int pageSize) throws IOException {
+        return routeDao.queryRoutesByPage(currentPage, pageSize);
+
+    }
+
     //添加花
     public boolean insertRoute(Route route) {
         if (!routeDao.isExit(route.getRid())) {
@@ -49,9 +54,10 @@ public class RouteService {
 
 
     //    根据fid查询花
-    public List<Route> fuzzyQueries(Object route) throws IOException {
+    public List<Route> fuzzyQueries(Route route) throws IOException {
         return routeDao.fuzzyQueries(route);
     }
+
     //    根据fid查询花
     public Route queryRouteByRid(Object route) throws IOException {
         return routeDao.queryRouteByRid(route);

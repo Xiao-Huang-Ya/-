@@ -4,21 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main.tour.mapper.GuideMapper">
 
-    <select id="queryGuideById" resultType="Guide">
-   SELECT id, name, gender, hours, salary FROM public.guide  where id=#{id}
+    <select id="queryGuideById" resultType="Guide" parameterType="string">
+   SELECT id, name, gender, hours, salary FROM guide  where id=#{id}
     </select>
 
     <select id="queryGuides" resultType="Guide">
-SELECT id, name, gender, hours, salary FROM public.guide order by id
+SELECT id, name, gender, hours, salary FROM guide order by id
     </select>
 
     <insert id="insertGuide" parameterType="Guide">
-INSERT INTO public.guide(id, name, gender, hours, salary) VALUES (#{id}, #{name}, #{gender}, #{hours}, #{salary})
+INSERT INTO guide(id, name, gender, hours, salary) VALUES (#{id}, #{name}, #{gender}, #{hours}, #{salary})
     </insert>
 
 
-    <delete id="deleteGuideById" parameterType="long">
-        DELETE FROM public.guide WHERE id=#{id}
+    <delete id="deleteGuideById" parameterType="string">
+        DELETE FROM guide WHERE id=#{id}
     </delete>
 
 </mapper>

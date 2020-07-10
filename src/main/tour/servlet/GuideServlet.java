@@ -64,18 +64,7 @@ public class GuideServlet extends HttpServlet {
     //测试分页学生
     @RequestMapping(value = "/queryGuideByPageServlet/{currentPage}")
     public String queryGuideByPageServlet(@PathVariable("currentPage") int currentPage, Map<String, Object> map) throws IOException {
-        System.out.println(currentPage);
-//        if (currentPage == null) {//首先加载PageServlet，第一次查询为空（第一次指定第几页）
-//            currentPage = "1";
-//        }
-//        tourPage = testModelAttribute(currentPage, map);
-//        //当前页
-//        int currentPage2 = Integer.parseInt(currentPage);
-//        tourPage.setCurrentPage(currentPage2);
-//
-//        String display = "5";
-//        int pageSize = Integer.parseInt(display);
-//        tourPage.setPageSize(pageSize);
+
         TourPage tourPage = new TourPage();
         int pageSize = 5;
         tourPage.setPageSize(pageSize);
@@ -93,35 +82,46 @@ public class GuideServlet extends HttpServlet {
         List<Guide> guides = page.getResult(); //数据
         tourPage.setList(guides);
         map.put("tourPage", tourPage);
-        System.out.println(tourPage);
+//        System.out.println(tourPage);
         return "queryGuide";
     }
 
-    @RequestMapping(value = "/addGuideServlet" )
-    public String addGuideServlet(@RequestParam(value = "id" ,required = false) Long id, @RequestParam(value = "name",required = false) String name,
-                                  @RequestParam(value="gender",required = false) String gender, @RequestParam(value ="hours",required = false) Integer hours,
-                                  @RequestParam(value ="salary",required = false) Double salary, Map<String, Object> map)  {
+    @RequestMapping(value = "/addGuideServlet")
+    public String addGuideServlet(@RequestParam(value = "id", required = false) String id, @RequestParam(value = "name", required = false) String name,
+                                  @RequestParam(value = "gender", required = false) String gender, @RequestParam(value = "hours", required = false) Integer hours,
+                                  @RequestParam(value = "salary", required = false) Double salary, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         boolean flag = false;
         try {
             Guide guide = new Guide(id, name, gender, hours, salary);
 
             flag = guideService.insertGuide(guide);
-        }catch (Exception e){
-            map.put("flag",flag);
+            tourPage = testModelAttribute("1", map);
+            map.put("flag", flag);
+            return "queryGuide";
+        } catch (Exception e) {
+            map.put("flag", flag);
+            tourPage = testModelAttribute("1", map);
             return "addGuide";
         }
-        map.put("flag", flag);
-        return "addGuide";
+
     }
 
     @RequestMapping(value = "/deleteGuideServlet/{id}")
-    public String deleteGuideServlet(@PathVariable("id") Long id, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
-        boolean flag = guideService.deleteGuideById(id);
-        map.put("flag", flag);
+    public String deleteGuideServlet(@PathVariable("id") String id, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
+        try {
+            boolean flag = guideService.deleteGuideById(id);
+            map.put("flag", flag);
 
-        tourPage = testModelAttribute("1", map);
-        map.put("tourPage", tourPage);
-        return "queryGuide";
+            tourPage = testModelAttribute("1", map);
+            map.put("tourPage", tourPage);
+            return "queryGuide";
+        } catch (Exception e) {
+            map.put("flag", false);
+            tourPage = testModelAttribute("1", map);
+            map.put("tourPage", tourPage);
+            return "queryGuide";
+        }
+
     }
 
     @RequestMapping(value = "/queryGuideByIdServlet/{id}")

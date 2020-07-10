@@ -44,7 +44,7 @@
 <!-- 左 -->
 <div class="sidebar-nav">
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>景点管理</a>
-    <ul id="dashboard-menu" class="nav nav-list collapse in">
+    <ul id="dashboard-menu" class="nav nav-list collapse ">
         <li><a href="/hello/queryRouteByPageServlet/1">旅游路线管理</a></li>
 
         <li><a href="/hello/querySightByPageServlet/1">旅游景点管理</a></li>
@@ -53,9 +53,9 @@
     </ul>
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse">
-        <li><a href="crud.jsp">车辆信息查询</a></li>
-        <li><a href="crud.jsp">车辆添加</a></li>
-        <li><a href="crud.jsp">车辆删除</a></li>
+        <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
+        <li><a href="#">车辆调度</a></li>
+
     </ul>
     <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="error-menu" class="nav nav-list collapse">
@@ -66,8 +66,7 @@
 
     <a href="#tourist-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
     <ul id="tourist-menu" class="nav nav-list collapse">
-        <li><a href="index.jsp">游客信息管理</a></li>
-        <li><a href="index.jsp">游客登陆管理</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet/1">游客信息</a></li>
 
     </ul>
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>

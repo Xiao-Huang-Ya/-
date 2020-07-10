@@ -9,6 +9,10 @@
         <typeAlias alias="Guide" type="main.tour.entity.Guide"/>
         <typeAlias alias="Sight" type="main.tour.entity.Sight"/>
         <typeAlias alias="Route" type="main.tour.entity.Route"/>
+        <typeAlias alias="Vehicle" type="main.tour.entity.Vehicle"/>
+        <typeAlias alias="Passenger" type="main.tour.entity.Passenger"/>
+        <typeAlias alias="Manager" type="main.tour.entity.Manager"/>
+        <typeAlias alias="Consumer" type="main.tour.entity.Consumer"/>
 
     </typeAliases>
 

@@ -85,7 +85,7 @@ public class GuideDao {
 
 
     //删除花
-    public boolean deleteGuideById(Long id){
+    public boolean deleteGuideById(String id){
         boolean result = false;
         try {
             SqlSession session = genenalMapper.useSqlSession();

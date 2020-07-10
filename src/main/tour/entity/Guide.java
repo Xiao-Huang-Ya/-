@@ -2,7 +2,7 @@ package main.tour.entity;
 
 //导游
 public class Guide {
-    private long id;//导游编号
+    private String id;//导游编号
     private String name;//导游姓名
     private String gender;//导游性别
     private int hours;//日工作量
@@ -11,7 +11,7 @@ public class Guide {
     public Guide() {
     }
 
-    public Guide(long id, String name, String gender, int hours, double salary) {
+    public Guide(String id, String name, String gender, int hours, double salary) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -19,18 +19,18 @@ public class Guide {
         this.salary = salary;
     }
 
-    public Guide(long id, String name, int hours, double salary) {
+    public Guide(String id, String name, int hours, double salary) {
         this.id = id;
         this.name = name;
         this.hours = hours;
         this.salary = salary;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

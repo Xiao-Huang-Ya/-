@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">
+<%--    <script src="/js/jquery-1.8.1.min.js"></script>--%>
+<%--    <script src="/js/bootstrap.min.js"></script>--%>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
@@ -26,7 +28,7 @@
                         <i class="icon-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
+                        <li><a tabindex="-1" href="updatepassword.html">修改密码</a></li>
                         <li class="divider"></li>
                         <li><a tabindex="-1" href="login.html">安全退出</a></li>
                     </ul>
@@ -44,19 +46,19 @@
 <!-- 左 -->
 <div class="sidebar-nav">
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>景点管理</a>
-    <ul id="dashboard-menu" class="nav nav-list collapse in">
+    <ul id="dashboard-menu" class="nav nav-list collapse">
         <li><a href="/hello/queryRouteByPageServlet/1">旅游路线管理</a></li>
         <li><a href="/hello/querySightByPageServlet/1">旅游景区管理</a></li>
 
     </ul>
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse">
-        <li><a href="crud.jsp">车辆信息查询</a></li>
-        <li><a href="crud.jsp">车辆添加</a></li>
-        <li><a href="crud.jsp">车辆删除</a></li>
+        <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
+        <li><a href="#">车辆调度</a></li>
+<%--        <li><a href="crud.jsp">车辆删除</a></li>--%>
     </ul>
-    <a href="/index.jsp" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>导游管理</a>
-    <ul id="/index.jsp" class="nav nav-list collapse in">
+    <a href="#A" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>导游管理</a>
+    <ul id="#A" class="nav nav-list collapse in">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
         <li><a href="/jsp/addGuide.jsp">导游添加管理</a></li>
         <li><a href="/hello/returnMainPage">导游信息管理</a></li>
@@ -64,8 +66,8 @@
 
     <a href="#tourist-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
     <ul id="tourist-menu" class="nav nav-list collapse">
-        <li><a href="index.jsp">游客信息管理</a></li>
-        <li><a href="index.jsp">游客登陆管理</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet/1">游客信息管理</a></li>
+        <li><a href="/index.jsp">游客登陆管理</a></li>
 
     </ul>
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
@@ -174,15 +176,19 @@
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="js/LAB.min.js"></script>
+<%--<script src="js/LAB.min.js"></script>--%>
+<%--<script src="/js/jquery-1.8.1.min.js"></script>--%>
+<%--<script src="/js/bootstrap.min.js"></script>--%>
+
+<script src="/js/LAB.min.js"></script>
 <script>
     $LAB.script("/js/jquery-1.8.1.min.js")
-        .script("/js/bootstrap.min.js")
+      .script("/js/bootstrap.min.js")
         .wait()
-        // .script("js/highcharts.js")//for highchar
+        // .script("/js/highcharts.js")//for highchar
         // .script("js/exporting.js")//for highchar
-        .wait()
-        .script("/js/draw.js")
+        // .wait()
+        // .script("/js/draw.js")
 </script>
 
 </html>

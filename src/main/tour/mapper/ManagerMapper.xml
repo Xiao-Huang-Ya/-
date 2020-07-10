@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.tour.mapper.ManagerMapper">
+
+    <select id="queryManagerByAccount" resultType="Manager" parameterType="Manager">
+   SELECT account, password
+	FROM public.manager where account = #{account} and password=#{password}
+    </select>
+
+    <insert id="insertManager" parameterType="Manager">
+INSERT INTO public.manager(
+	account, password)
+	VALUES (#{account}, #{password})
+    </insert>
+
+    <update id="updateManagerByAccount" parameterType="string">
+        UPDATE public.manager
+        SET account=#{account}, password=#{password}
+        WHERE account = #{account}
+    </update>
+</mapper>

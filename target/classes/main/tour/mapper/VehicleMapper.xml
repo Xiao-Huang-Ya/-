@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.tour.mapper.VehicleMapper">
+
+    <select id="queryVehicleByVid" resultType="Vehicle">
+    SELECT vid, rid, state, id, pid
+	FROM vehicle where vid = #{vid}
+    </select>
+
+    <select id="queryVehicles" resultType="Vehicle">
+     SELECT vid, rid, state, id, pid
+	FROM vehicle order  by vid
+    </select>
+
+    <insert id="insertVehicle" parameterType="Vehicle">
+    INSERT INTO vehicle(
+	vid, rid, state, id, pid)
+	VALUES (#{vid}, #{rid}, #{state}, #{id}, #{pid})
+    </insert>
+
+    <delete id="deleteVehicleByVid" parameterType="string">
+        DELETE FROM vehicle
+        WHERE vid = #{vid}
+    </delete>
+
+    <update id="updateVehicleByVid" parameterType="Vehicle">
+        UPDATE vehicle
+        SET vid=#{vid}, rid=#{rid}, state=#{state}, id=#{id}, pid=#{pid}
+        WHERE vid = #{vid}
+    </update>
+    <!--    根据旅客查所在车辆id-->
+    <!--    <select id="queryVidByPassenger" parameterType="string" resultType="string">-->
+    <!--        select  p.vid from passenger p, vehicle v where v.pid = #{pid}-->
+    <!--    </select>-->
+    <!--    <resultMap id="pid_vid" type="Passenger">-->
+    <!--        &lt;!&ndash;        作者的信息&ndash;&gt;-->
+    <!--        <id property="pid" column="pid"/>-->
+    <!--        <result property="pname" column="pname"/>-->
+    <!--&lt;!&ndash;        <result property="pgender" column="pgender"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <result property="iphone" column="iphone"/>&ndash;&gt;-->
+    <!--        <result property="rid" column="rid"/>-->
+    <!--        <result property="vid" column="vid"/>-->
+    <!--        <result property="id" column="id"/>-->
+    <!--        &lt;!&ndash;        association标签:一对一映射；-->
+    <!--        collections:一对多映射-->
+    <!--        javaType：组成另一个类的类型（另一张表）-->
+    <!--        blog：级联属性-->
+    <!--        &ndash;&gt;-->
+    <!--        <association property="vehicle" javaType="Vehicle">-->
+    <!--            <id property="vid" column="vid"/>-->
+    <!--            <result property="bname" column="bname"/>-->
+    <!--        </association>-->
+    <!--    </resultMap>-->
+    <!--    &lt;!&ndash;          select * from writer w inner join blog b-->
+    <!--         on w.bid =b.bid-->
+    <!--         where w.wid =#{wid}&ndash;&gt;-->
+    <!--    <select id="queryVidByPassenger" parameterType="string" resultMap="pid_vid">-->
+    <!--        select  p.vid from passenger p, vehicle v where v.pid = #{pid}-->
+    <!--    </select>-->
+</mapper>

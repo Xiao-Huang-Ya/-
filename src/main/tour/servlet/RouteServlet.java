@@ -1,8 +1,12 @@
 package main.tour.servlet;
 
 import com.github.pagehelper.Page;
+import com.sun.org.apache.xpath.internal.objects.XNull;
+import main.tour.entity.Consumer;
+import main.tour.entity.Passenger;
 import main.tour.entity.Route;
 import main.tour.entity.TourPage;
+import main.tour.service.ConsumerService;
 import main.tour.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +29,12 @@ public class RouteServlet {
     public void setRouteService(RouteService routeService) {
         this.routeService = routeService;
     }
+//    @Autowired
+//    ConsumerService consumerService;
+//
+//    public void setConsumerService(ConsumerService consumerService) {
+//        this.consumerService = consumerService;
+//    }
 
     @ModelAttribute
     public TourPage testModelAttribute(String currentPage, Map<String, Object> map) throws IOException {
@@ -50,16 +60,16 @@ public class RouteServlet {
         return tourPage;
     }
 
-    @RequestMapping("/returnMainPage2")
-    public String returnMainPage2(Map<String, Object> map) throws IOException {
-
-        TourPage tourPage = new TourPage();
-
-        tourPage.setList(routeService.queryRoutes());
-        map.put("tourPage", tourPage);
-
-        return "test";
-    }
+//    @RequestMapping("/returnMainPage2")
+//    public String returnMainPage2(Map<String, Object> map) throws IOException {
+//
+//        TourPage tourPage = new TourPage();
+//
+//        tourPage.setList(routeService.queryRoutes());
+//        map.put("tourPage", tourPage);
+//
+//        return "test";
+//    }
 
     //测试分页学生
     @RequestMapping(value = "/queryRouteByPageServlet/{currentPage}")
@@ -120,26 +130,28 @@ public class RouteServlet {
     }
 
     @RequestMapping(value = "/queryRouteByObjServlet")
-    public String queryRouteByObjServlet(@RequestParam(value = "rid", required = false) String rid, @RequestParam(value = "name", required = false) String name,
-                                         @RequestParam(value = "endPoint", required = false) String endPoint, @RequestParam(value = "sight", required = false) String sight,
-                                         @RequestParam(value = "number", required = false) Integer number, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
-
+    public String queryRouteByObjServlet(@RequestParam(value = "rid", defaultValue = "", required = false) String rid, @RequestParam(value = "name", defaultValue = "", required = false) String name,
+                                         @RequestParam(value = "endPoint", defaultValue = "", required = false) String endPoint, @RequestParam(value = "sight", defaultValue = "", required = false) String sight,
+                                         @RequestParam(value = "number", defaultValue = "", required = false) Integer number, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         List<Route> list = null;
         Route route = null;
-        boolean flag = false;
-        try {
-            route = new Route(rid, name, endPoint, sight, number);
+//        boolean flag = false;
+
+//        try {
+        route = new Route(rid, name, endPoint, sight, number);
+
             list = routeService.fuzzyQueries(route);
-            tourPage = testModelAttribute("1", map);
-            tourPage.setList(list);
-            map.put("tourPage", tourPage);
-            map.put("flag", flag);
-            return "queryRoute";
-        } catch (Exception e) {
-            map.put("flag", flag);
-//            tourPage.setList(null);
-            return "queryRoute";
-        }
+
+        tourPage.setList(list);
+
+        map.put("tourPage", tourPage);
+        return "queryRoute";
+//        } catch (Exception e) {
+//            tourPage = testModelAttribute("1",map);
+//            map.put("tourPage",tourPage);
+//            map.put("flag", flag);
+//            return "queryRoute";
+//        }
 
 
     }
@@ -154,12 +166,12 @@ public class RouteServlet {
             route = new Route(rid, name, endPoint, sight, number);
             flag = routeService.updateRouteByRid(route);
             map.put("flag", flag);
-            tourPage = testModelAttribute("1",map);
-            map.put("tourPage",tourPage);
+            tourPage = testModelAttribute("1", map);
+            map.put("tourPage", tourPage);
             return "queryRoute";
         } catch (Exception e) {
-            tourPage = testModelAttribute("1",map);
-            map.put("tourPage",tourPage);
+            tourPage = testModelAttribute("1", map);
+            map.put("tourPage", tourPage);
             map.put("flag", flag);
             return "queryRoute";
         }
@@ -171,6 +183,32 @@ public class RouteServlet {
         Route upRoute = routeService.queryRouteByRid(rid);
         map.put("upRoute", upRoute);
         return "updateRoute";
+    }
+
+    //用户界面
+    @RequestMapping(value = "/queryRouteByPageServlet2/{currentPage}")
+    public String queryRouteByPageServlet2(@PathVariable("currentPage") int currentPage, Map<String, Object> map) throws IOException {
+
+        TourPage tourPage = new TourPage();
+
+        int pageSize = 5;
+        tourPage.setPageSize(pageSize);
+        currentPage = currentPage == 0 ? 1 : currentPage;
+        tourPage.setCurrentPage(currentPage);
+        //        总数居数量,注意数据
+        Page page = routeService.queryRoutesByPage(currentPage, pageSize);
+
+        int totalCount = (int) page.getTotal();
+        tourPage.setTotalCount(totalCount); //数据总数
+        //        总页数
+        int totalPage = page.getPages(); //总页数
+        tourPage.setTotalPage(totalPage);
+        //当前页的数据集合
+        List<Route> Routes = page.getResult(); //数据
+        tourPage.setList(Routes);
+        map.put("tourPage", tourPage);
+
+        return "consumer";
     }
 
 }

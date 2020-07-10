@@ -41,7 +41,7 @@ public class GuideService {
     }
 
     //    删除花
-    public boolean deleteGuideById(Long id) {
+    public boolean deleteGuideById(String id) {
         if (guideDao.isExit(id)) {
             System.out.println("进入！！");
             return guideDao.deleteGuideById(id);

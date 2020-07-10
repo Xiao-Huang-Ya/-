@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.tour.mapper.ConsumerMapper">
+
+    <select id="queryConsumerByUsername" resultType="Consumer">
+   SELECT username, password
+	FROM public.consumer where username = #{username} and password = #{password}
+    </select>
+
+    <insert id="insertConsumer" parameterType="Consumer">
+INSERT INTO public.consumer(
+	username, password)
+	VALUES (#{username}, #{password})
+    </insert>
+
+    <update id="updateConsumerByUsername" parameterType="string">
+        UPDATE public.consumer
+        SET username=#{username}, password=#{password}
+        WHERE username = #{username}
+    </update>
+</mapper>

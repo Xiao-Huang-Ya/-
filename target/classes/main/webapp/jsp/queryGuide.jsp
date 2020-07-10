@@ -42,29 +42,29 @@
 <!-- 左 -->
 <div class="sidebar-nav">
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>景点管理</a>
-    <ul id="dashboard-menu" class="nav nav-list collapse in">
+    <ul id="dashboard-menu" class="nav nav-list collapse">
         <li><a href="/hello/queryRouteByPageServlet/1">旅游路线管理</a></li>
         <li><a href="/hello/querySightByPageServlet/1">旅游景区管理</a></li>
 
     </ul>
-    <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
+    <a href="#accounts-menu" class="nav-header " data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse ">
-        <li><a href="crud.jsp">车辆信息查询</a></li>
-        <li><a href="crud.jsp">车辆添加</a></li>
-        <li><a href="crud.jsp">车辆删除</a></li>
+        <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
+        <li><a href="#">车辆调度</a></li>
+
     </ul>
-    <a href="/index.jsp" class="nav-header collapsed" data-toggle="collapse"><i
+    <a href="#guide-menu" class="nav-header " data-toggle="collapse"><i
             class="icon-exclamation-sign"></i>导游管理</a>
-    <ul id="/index.jsp" class="nav nav-list collapse in">
+    <ul id="guide-menu" class="nav nav-list collapse in">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="/jsp/addGuide.jsp">导游添加管理</a></li>
+        <li><a href="#">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
     </ul>
 
-    <a href="#tourist-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
+    <a href="#tourist-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
     <ul id="tourist-menu" class="nav nav-list collapse">
-        <li><a href="index.jsp">游客信息管理</a></li>
-        <li><a href="index.jsp">游客登陆管理</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet/1">游客信息管理</a></li>
+        <li><a href="#">游客登陆管理</a></li>
 
     </ul>
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
@@ -78,83 +78,68 @@
 <!-- 右 -->
 <div class="content">
     <div class="header">
-        <h1 class="page-title">商品管理</h1>
+        <h1 class="page-title">导游管理界面</h1>
     </div>
+    <%--    --%>
 
+    <%--添加导游模块--%>
     <div class="well">
-        <!-- search button -->
-        <form class="form-search">
-            <div class="row-fluid" style="text-align: left;">
-                <div class="pull-left span4 unstyled">
-                    <p> 渠道商：<input class="input-medium" type="text"></p>
-                    <p> 状态：
-                        <select class="span1">
-                            <option value="-2">上架</option>
-                            <option value="-2">下架</option>
-                        </select>
-                    </p>
-                    <p> 标签：
-                        <select class="span1">
-                            <option value="-2">所有</option>
-                            <option value="-2">情趣</option>
-                        </select>
-                    </p>
+        <%--        添加模态框容器--%>
+        <div class="center-block" style="width:350px;background-color:rgba(0,0,0,0)">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myAddGuideModal">
+                添加导游
+            </button>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myAddGuideModal" tabindex="-1" role="dialog" aria-labelledby="myAddGuideModal"
+                 aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">
+                        添加导游
+                    </h4>
                 </div>
-                <div class="pull-left span4 unstyled">
-                    <p> 分类：
-                        <select class="span1">
-                            <option value="-2">所有</option>
-                            <option value="161">情爱成人</option>
-                            <option value="63">赠礼</option>
-                            <option value="62">保健塑身</option>
-                            <option value="47">配饰</option>
-                            <option value="46">鞋包</option>
-                            <option value="38">新奇数码</option>
-                            <option value="37">创意百货</option>
-                            <option value="35">美容</option>
-                            <option value="34">服饰</option>
-                        </select>
-                    </p>
-                    <p> 商户：
-                        <select class="span1">
-                            <option value="-2">所有</option>
-                            <option value="161">情爱成人</option>
-                            <option value="63">赠礼</option>
-                            <option value="62">保健塑身</option>
-                            <option value="47">配饰</option>
-                            <option value="46">鞋包</option>
-                            <option value="38">新奇数码</option>
-                            <option value="37">创意百货</option>
-                            <option value="35">美容</option>
-                            <option value="34">服饰</option>
-                        </select>
-                    </p>
-                    <p> 开始时间：<input class="input-medium" type="text" onclick="WdatePicker()"></p>
-                </div>
-                <div class="pull-left span4 unstyled">
-                    <p> 二级分类：
-                        <select class="span1">
-                            <option value="-2">所有</option>
-                            <option value="161">情爱成人</option>
-                            <option value="63">赠礼</option>
-                            <option value="62">保健塑身</option>
-                            <option value="47">配饰</option>
-                            <option value="46">鞋包</option>
-                            <option value="38">新奇数码</option>
-                            <option value="37">创意百货</option>
-                            <option value="35">美容</option>
-                            <option value="34">服饰</option>
-                        </select>
-                    </p>
-                    <p>
-                        商品名：<input class="input-medium" type="text">
-                    </p>
-                    <p> 结束时间：<input class="input-medium " type="text" onclick="WdatePicker()"></p>
+                <div class="center-block offset1" style="width:400px;">
+                    <form id="tab" action="/hello/addGuideServlet" method="post">
+                        <div class="row-fluid" style="text-align: left;">
+                            <div class="pull-left span6 unstyled">
+                                <p>导游编号：
+                                    <input type="text" id="id" name="id" placeholder="请输入导游编号" class="input-xlarge">
+                                </p>
+                                <p>姓名：
+                                    <input type="text" name="name" id="name" placeholder="请输入姓名" class="input-xlarge">
+                                </p>
+                                <p>性别：
+
+                                    <%--            <input type="text" name="gender" id="gender" placeholder="请输入性别" class="input-xlarge">--%>
+                                    <input id="gender" type="radio" name="gender" value="男" class="input-xlarge">男
+                                    <input id="gender" type="radio" name="gender" value="女" class="input-xlarge">女
+
+
+                                </p>
+                                <p>工作量（/小时）：
+                                    <input type="text" name="hours" id="hours" placeholder="请输入工作量（/小时）"
+                                           class="input-xlarge">
+                                </p>
+                                <p>时薪：
+                                    <input type="text" name="salary" id="salary" placeholder="请输入时薪"
+                                           class="input-xlarge">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="center-block " style="background-color:rgba(0,0,0,0)">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                提交
+                            </button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
-            <button type="submit" class="btn">查找</button>
-            <a class="btn btn-primary" onclick="javascript:window.location.href='operation.html'">新增</a>
-        </form>
+        </div>
     </div>
     <div class="well">
         <!-- table -->
@@ -178,8 +163,9 @@
                 <td>${list.hours}</td>
                 <td>${list.salary}</td>
                 <td>
-<%--                    <a href="operation.html"><i class="icon-pencil"></i></a>--%>
-                    <a href="/hello/deleteGuideServlet/${list.id}" role="button" data-toggle="modal" onclick="confirm('确定要删除吗？');" ><i class="icon-remove"></i></a>
+                        <%--                    <a href="operation.html"><i class="icon-pencil"></i></a>--%>
+                            <a href="/hello/deleteGuideServlet/${list.id}" role="button" data-toggle="modal"
+                               onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>
 
                 </td>
             </tr>
@@ -208,7 +194,7 @@
                         <li><a href="/hello/queryGuideByPageServlet/${tourPage.currentPage-1}">上页</a></li>
                         <li class="disabled"><a>尾页</a></li>
                     </c:when>
-                    <c:otherwise >
+                    <c:otherwise>
                         <li><a href="/hello/queryGuideByPageServlet/1">首页</a></li>
                         <li><a href="/hello/queryGuideByPageServlet/${tourPage.currentPage-1}">上页</a></li>
                         <li><a href="/hello/queryGuideByPageServlet/${tourPage.currentPage+1}">下页</a></li>
@@ -253,9 +239,8 @@
 
 
 <script>
-
-        <c:if test="${flag == 'true'}">
-        alert("操作成功");
+    <c:if test="${flag == 'true'}">
+    alert("操作成功");
     </c:if>
 
     <c:if test="${flag == 'false'}">

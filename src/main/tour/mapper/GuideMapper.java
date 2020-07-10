@@ -20,6 +20,6 @@ public interface GuideMapper {
     boolean insertGuide(Guide guide);
 
     //    删除花
-    boolean deleteGuideById(Long id);
+    boolean deleteGuideById(String id);
 
 }

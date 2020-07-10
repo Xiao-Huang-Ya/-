@@ -30,7 +30,7 @@
                     </ul>
                 </li>
             </ul>
-            <a class="brand" href="index.html"><span class="first">旅游管理界面</span></a>
+            <a class="brand" href="/index.jsp"><span class="first">旅游管理界面</span></a>
             <ul class="nav">
                 <li class="active"><a href="#">首页</a></li>
                 <li><a href="#">运营管理</a></li>
@@ -49,22 +49,20 @@
     </ul>
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse ">
-        <li><a href="crud.jsp">车辆信息查询</a></li>
-        <li><a href="crud.jsp">车辆添加</a></li>
-        <li><a href="crud.jsp">车辆删除</a></li>
+        <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
+        <li><a href="#">车辆调度</a></li>
     </ul>
-    <a href="/index.jsp" class="nav-header collapsed" data-toggle="collapse"><i
+    <a href="#guide-menu" class="nav-header collapsed" data-toggle="collapse"><i
             class="icon-exclamation-sign"></i>导游管理</a>
-    <ul id="/index.jsp" class="nav nav-list collapse ">
+    <ul id="guide-menu" class="nav nav-list collapse ">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="/jsp/addGuide.jsp">导游添加管理</a></li>
+        <li><a href="#">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
     </ul>
 
     <a href="#tourist-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
     <ul id="tourist-menu" class="nav nav-list collapse">
-        <li><a href="index.jsp">游客信息管理</a></li>
-        <li><a href="index.jsp">游客登陆管理</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet/1">游客信息</a></li>
 
     </ul>
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
@@ -77,28 +75,51 @@
 </div>
 <!-- 右 -->
 <div class="content">
+
     <div class="header">
-        <h1 class="page-title">商品管理</h1>
+        <h1 class="page-title">旅游路线管理</h1>
     </div>
 
-    <div class="well">
-        <!-- search button -->
-        <form class="form-search" action="" method="post" name="form">
-            <div class="row-fluid" style="text-align: left;">
-                <div class="pull-left span4 unstyled">
-                    <p> 路线编号：<input class="input-medium" id="rid" name="rid" type="text"></p>
-                    <p> 路线名称：<input class="input-medium" id="name" name="name" type="text"></p>
-                    <p> 路线终点：<input class="input-medium" id="endPoint" name="endPoint" type="text"></p>
-                    <p> 景点名称：<input class="input-medium" id="sight" name="sight" type="text"></p>
-                    <p> 景点数量：<input class="input-medium" id="number" name="number" type="text"></p>
-
-                </div>
-
+    <div class="center-block" style="width:350px;background-color:rgba(0,0,0,0)">
+        <!-- 按钮触发模态框 -->
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+            添加路线
+        </button>
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">
+                    添加旅游路线页面
+                </h4>
             </div>
-            <button type="submit" class="btn" onclick="find()">查找</button>
-            <a class="btn btn-primary" onclick="add()">新增</a>
-        </form>
-    </div>
+            <%--添加花朵摸框               --%>
+            <div class="center-block offset1" style="width:300px;">
+                <form class="form-search" action="/hello/addRouteServlet" method="post" name="form" id="form">
+                    <div class="row-fluid" style="text-align: left;">
+                        <div class="pull-left span4 unstyled">
+                            <p> 路线编号：<input class="input-large" id="rid" name="rid" type="text"></p>
+                            <p> 路线名称：<input class="input-large" id="name" name="name" type="text"></p>
+                            <p> 路线终点：<input class="input-large" id="endPoint" name="endPoint" type="text"></p>
+                            <p> 景点名称：<input class="input-large" id="sight" name="sight" type="text"></p>
+                            <p> 景点数量：<input class="input-large" id="number" name="number" type="text"></p>
+                        </div>
+                    </div>
+                    <div class="center-block " style="background-color:rgba(0,0,0,0)">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            提交
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+
     <div class="well">
         <!-- table -->
         <table class="table table-hover table-striped">
@@ -122,14 +143,16 @@
                 <td>${list.number}</td>
                 <td>
                     <a href="/hello/updateReturnRouteServlet/${list.rid}"><i class="icon-pencil"></i></a>
+
                     <a href="/hello/deleteRouteByRidServlet/${list.rid}" role="button" data-toggle="modal"
-                       onclick="confirm('确定要删除吗？');"><i class="icon-remove"></i></a>
+                       onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>
 
                 </td>
             </tr>
             </c:forEach>
 
         </table>
+
         <!-- 分页显示模块 -->
         <div class="pagination">
             <ul>
@@ -194,6 +217,7 @@
 
 
 <script>
+    ${flag == 'true'}
     <c:if test="${flag == 'true'}">
     alert("操作成功");
     </c:if>
@@ -205,13 +229,17 @@
 </script>
 <script>
     function find() {
+
         document.form.action = "/hello/queryRouteByObjServlet";
         document.form.submit();
+
     }
 
     function add() {
         document.form.action = "/hello/addRouteServlet";
         document.form.submit();
     }
+
 </script>
+
 </html>

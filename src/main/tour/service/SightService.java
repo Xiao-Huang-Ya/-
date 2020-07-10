@@ -60,7 +60,7 @@ public class SightService {
     public boolean updateSightBySname(String sname) {
         if (sightDao.isExit(sname)) {
 
-            return sightDao.deleteSightBySname(sname);
+            return sightDao.updateSightBySname(sname);
 
         } else {
             System.out.println("更新失败！！");

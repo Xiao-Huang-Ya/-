@@ -5,48 +5,54 @@
 <mapper namespace="main.tour.mapper.RouteMapper">
 
     <select id="fuzzyQueries" resultType="Route" parameterType="Route">
-  SELECT rid, name, endpoint, sight, "number" FROM public.route
+  SELECT rid, name, endpoint, sight, number FROM route
         <where>
+
             <if test="rid != null and rid !='' ">
                 or rid =#{rid}
             </if>
+
             <if test="name !=null and name !='' ">
-               or name like "%"#{name}"%"
+               or name like '%'#{name}'%'
             </if>
             <if test="endPoint != null and endPoint !='' ">
-                or endPoint like "%"#{endPoint}"%"
+
+                or endPoint like '%'#{endPoint}'%'
             </if>
+
             <if test="sight !=null and sight != '' " >
-                like sight = "%"#{sight}"%"
+                like sight = '%'#{sight}'%'
             </if>
+
             <if test="number != null and number != '' ">
                 or number  = #{number}
             </if>
         </where>
     </select>
+
     <select id="queryRouteByRid" resultType="Route" parameterType="string">
-        SELECT rid, name, endpoint, sight, "number" FROM public.route
+        SELECT rid, name, endpoint, sight, "number" FROM route
         where rid = #{rid}
 
     </select>
     <select id="queryRoutes" resultType="Route">
-SELECT rid, name, endpoint, sight, "number" FROM public.route  order by rid
+SELECT rid, name, endpoint, sight, "number" FROM route  order by rid
     </select>
 
     <insert id="insertRoute" parameterType="Route">
-INSERT INTO public.route(
+INSERT INTO route(
 	rid, name, endpoint, sight, "number")
 	VALUES (#{rid}, #{name}, #{endPoint}, #{sight},#{number})
     </insert>
 
 
     <delete id="deleteRouteByRid" parameterType="string">
-        DELETE FROM public.route
+        DELETE FROM route
         WHERE  rid=#{rid}
     </delete>
 
     <update id="updateRouteByRid" parameterType="Route">
-        UPDATE public.route
+        UPDATE route
         SET rid=#{rid}, name=#{name}, endpoint=#{endPoint}, sight=#{sight}, "number"=#{number}
         WHERE rid = #{rid}
     </update>

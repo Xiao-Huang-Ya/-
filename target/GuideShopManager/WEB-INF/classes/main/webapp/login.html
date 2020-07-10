@@ -1,53 +1,57 @@
-<!DOCTYPE html>
-<html lang="en" ng-app>
+
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Bootstrap Admin</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
-<style type="text/css">
-    body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #f5f5f5;
-    }
-</style>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link type="text/css" href="login.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div class="container">
-    <form name="myForm" class="form-signin" ng-submit="save()" ng-controller="loginController">
-        <h1 class="form-signin-heading">请登录</h1>
-        <input type="text" class="input-block-level" placeholder="userName" ng-model="userName" required name="userName">
-        <input type="password" class="input-block-level" placeholder="Password" ng-model="passWord" required name="passWord">
-        <label class="checkbox">
-            <input type="checkbox" value="remember-me"> 下次自动登录
-        </label>
-        <button class="btn btn-large btn-primary" type="submit" >登录</button>
-        <!--<button class="btn btn-large btn-primary" type="submit" ng-disabled="myForm.$invalid" >登录</button>-->
-    </form>
+    <div class="form row">
+        <div class="form-horizontal col-md-offset-3" id="login_form">
+            <h3 class="form-title">旅游管理系统</h3>
+            <div class="col-md-9">
+                <form action="" id="form" method="post">
+                    <div class="form-group">
+
+                       <select class="form-control" >
+                           <option value="1">管理员</option>
+                           <option value="2">用户</option>
+                       </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <i class="fa fa-user fa-lg"></i>
+                        <input class="form-control required" type="text" placeholder="Username" id="username"
+                               name="username" autofocus="autofocus" />
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock fa-lg"></i>
+                        <input class="form-control required" type="password" placeholder="Password" id="password"
+                               name="password" />
+                    </div>
+
+                    <div class="form-group col-md-offset-9">
+                        <button type="submit" class="btn btn-primary">
+                          登录
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            注册
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>
 </body>
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<script src="js/jquery-1.8.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/angular.min.js"></script>
-<script>
-angular.element(document).ready(function() {
-    angular.module("loginController",[]);
-});
-function loginController ($scope) {
-  $scope.save = function() {
-    //alert($scope.userName+"##"+$scope.passWord)
-    alert("数据验证、保存");
-    window.location.href = "index.html";
-  }
-}
-</script>
 </html>

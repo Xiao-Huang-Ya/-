@@ -51,11 +51,11 @@ public class RouteDao {
     }
 
     //通过主键查询
-    public List<Route> fuzzyQueries(Object obj) throws IOException {
+    public List<Route> fuzzyQueries(Route route) throws IOException {
 
         SqlSession session = genenalMapper.useSqlSession();
         RouteMapper gm = genenalMapper.getMapper(session, RouteMapper.class);
-        List<Route> routes = gm.fuzzyQueries(obj);
+        List<Route> routes = gm.fuzzyQueries(route);
         return routes;
     }
     //通过主键查询

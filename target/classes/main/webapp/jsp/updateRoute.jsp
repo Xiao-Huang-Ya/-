@@ -49,21 +49,19 @@
     </ul>
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse">
-        <li><a href="crud.jsp">车辆信息查询</a></li>
-        <li><a href="crud.jsp">车辆添加</a></li>
-        <li><a href="crud.jsp">车辆删除</a></li>
+        <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
+        <li><a href="#">车辆调度</a></li>
     </ul>
     <a href="/index.jsp" class="nav-header collapsed" data-toggle="collapse"><i
             class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="/index.jsp" class="nav nav-list collapse in">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="/jsp/addGuide.jsp">导游添加管理</a></li>
+        <li><a href="#">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
     </ul>
     <a href="#tourist-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
     <ul id="tourist-menu" class="nav nav-list collapse">
-        <li><a href="index.jsp">游客信息管理</a></li>
-        <li><a href="index.jsp">游客登陆管理</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet/1">游客信息</a></li>
 
     </ul>
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
