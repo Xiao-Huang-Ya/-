@@ -49,6 +49,19 @@ public class PassengerDao {
         }
 
     }
+    public boolean usernameIsExit(Object obj) {
+        boolean flag = false;
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
+
+            return gm.judgeIsExitByUsername((String) obj) > 0 ?true : false;
+        } catch (Exception e) {
+            System.out.println("isExit错误");
+            return false;
+        }
+
+    }
     //通过主键查询
     public Passenger queryPassengerByPid(String pid) throws IOException {
 
@@ -72,6 +85,21 @@ public class PassengerDao {
             SqlSession session = genenalMapper.useSqlSession();
             PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
             result = gm.insertPassenger(Passenger);
+        } catch (Exception e) {
+            System.out.println("插入错误");
+            return false;
+        }
+
+        return result;
+    }
+
+    // 添加
+    public boolean insertPassenger2(Passenger Passenger) {
+        boolean result = false;
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
+            result = gm.insertPassenger2(Passenger);
         } catch (Exception e) {
             System.out.println("插入错误");
             return false;
@@ -107,6 +135,29 @@ public class PassengerDao {
 
         return result;
     }
+//用户报名
 
+    //查询
+    public String queryPassengerStateByUsername(String username) throws IOException {
 
+        SqlSession session = genenalMapper.useSqlSession();
+        PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
+        return  gm.queryPassengerStateByUsername(username);
+
+    }
+
+    //更新
+    public boolean updatePassengerStateByUsername(Passenger passenger) {
+        boolean result = false;
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            PassengerMapper fm = genenalMapper.getMapper(session, PassengerMapper.class);
+            result = fm.updatePassengerStateByUsername(passenger);
+        } catch (Exception e) {
+            System.out.println("更新旅客状态错误");
+            return false;
+        }
+
+        return result;
+    }
 }

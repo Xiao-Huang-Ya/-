@@ -6,10 +6,16 @@
     <meta charset="utf-8">
     <title>Bootstrap Admin</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">
-    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+
+    <%--    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>--%>
+<%--    <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>--%>
 </head>
 <body>
 <!-- 上 -->
@@ -29,7 +35,7 @@
                     </ul>
                 </li>
             </ul>
-            <a class="brand" href="index.jsp"><span class="first">旅游管理界面</span></a>
+            <a class="brand" href="index.jsp"><i class="icon-exclamation-sign"></i>旅游管理界面</a>
             <ul class="nav">
                 <li class="active"><a href="#">首页</a></li>
                 <li><a href="#">营管理运</a></li>
@@ -81,7 +87,7 @@
         <h1 class="page-title">新用户PV</h1>
     </div>
     <!-- highchat show -->
-<%--    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>--%>
+    <%--    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>--%>
 
     <!-- footer -->
     <footer>
@@ -94,8 +100,13 @@
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="/js/jquery-1.8.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<%--<script src="/js/jquery-1.8.1.min.js"></script>--%>
+<%--<script src="/js/bootstrap.min.js"></script>--%>
 
-
+<script src="/js/LAB.min.js"></script>
+<%--<script>--%>
+<%--    $LAB.script("/js/jquery-1.8.1.min.js")--%>
+<%--        .script("/js/bootstrap.min.js")--%>
+<%--        .wait()--%>
+<%--</script>--%>
 </html>

@@ -16,6 +16,7 @@ public class ManagerServlet {
 
     @Autowired
     ManagerService managerService;
+
     public void setManagerService(ManagerService managerService) {
         this.managerService = managerService;
     }
@@ -32,9 +33,12 @@ public class ManagerServlet {
             map.put("judge", judge);
         } else {
             judge = "loginSuccess";
+
             map.put("judge", judge);
-            return  "manager";
+            return "manager";
         }
         return "login";
     }
+
+
 }

@@ -107,8 +107,11 @@
 
                         <%--                    <a href="/hello/deleteRouteByRidServlet/${list.rid}" role="button" data-toggle="modal"--%>
                         <%--                       onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>--%>
-                    <a type="button" href="#" class="form-control">报名</a>
-                    <a type="button" href="#" onclick= "return confirm('你确定删除吗？');" class="form-control">退订</a>
+                        <%--                    ${username}--%>
+                    <a type="button" href="/hello/signUpServlet/${username}" onclick="return confirm('您确定报名吗？');"
+                       class="form-control">报名</a>
+                    <a type="button" href="/hello/signDownServlet/${username}" onclick="return confirm('您确定退订吗？');"
+                       class="form-control">退订</a>
                 </td>
             </tr>
             </c:forEach>
@@ -159,6 +162,51 @@
 <![endif]-->
 <script src="/js/jquery-1.8.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script>
+    <%--     校验报名操作--%>
+    <c:choose>
+    <c:when test="${judge=='registerSuccess'}">
+    alert("欢迎您的到来！！!");
+    </c:when>
+    <c:when test="${judge=='signUpError'}">
+    alert("报名失败！！!");
+    </c:when>
+    <c:when test="${judge=='signedUp' || judge=='waitAssigned'||judge=='successAssigned'}">
+    alert("您已经报名了，请选择其他操作！！!");
+    </c:when>
+    <c:when test="${judge=='unsubscribe'}">
+    alert("正在申请退订.....");
+    </c:when>
+    <c:when test="${judge=='noAction'}">
+    alert("请求无效！！");
+    </c:when>
+    <c:when test="${flag == false}">
+    alert("报名失败！！！");
+    </c:when>
+    <c:when test="${flag==true}">
+    alert("报名成功！！!");
+    </c:when>
+    <%--    退订判断--%>
+    <c:when test="${judge=='unsubscribe2'}">
+    alert("正在处理您的退订，请耐心等待....");
+    </c:when>
 
+    <c:when test="${signDownflag==true}">
+    alert("退订成功！！!");
+    </c:when>
 
+    <c:when test="${signDownflag==false}">
+    alert("退订失败！！!");
+    </c:when>
+
+    <c:when test="${judge=='registered'}">
+    alert("请您先选择旅游路线!!!");
+    </c:when>
+
+    <c:when test="${judge=='signDownError'}">
+    alert("退订失败，请等待！！！");
+    </c:when>
+
+    </c:choose>
+</script>
 </html>

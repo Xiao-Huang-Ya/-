@@ -25,16 +25,25 @@ public class PassengerService {
     }
 
     //添加
-    public boolean insertPassenger(Passenger Passenger) {
-        if (!passengerDao.isExit(Passenger.getVid())) {
-            return passengerDao.insertPassenger(Passenger);
+    public boolean insertPassenger(Passenger passenger) {
+        if (!passengerDao.isExit(passenger.getVid())) {
+            return passengerDao.insertPassenger(passenger);
         } else {
-            System.out.println(Passenger.getVid() + "已存在");
+            System.out.println(passenger.getVid() + "已存在");
             return false;
         }
 
     }
+    //添加
+    public boolean insertPassenger2(Passenger passenger) {
+        if (!passengerDao.isExit(passenger.getVid())) {
+            return passengerDao.insertPassenger2(passenger);
+        } else {
+            System.out.println(passenger.getVid() + "已存在");
+            return false;
+        }
 
+    }
     //删除
     public boolean deletePassengerByPid(String pid) {
         if (passengerDao.isExit(pid)) {
@@ -59,10 +68,28 @@ public class PassengerService {
     //更新
     public boolean updatePassengerByPid(String pid) {
         if (passengerDao.isExit(pid)) {
-            return passengerDao.deletePassengerByPid(pid);
+            return passengerDao.updatePassengerByPid(pid);
 
         } else {
             System.out.println("更新失败！！");
+            return false;
+        }
+    }
+
+    //用户报名操作
+
+    //通过主键查询
+    public String queryPassengerStateByUsername(String username) throws IOException {
+        return passengerDao.queryPassengerStateByUsername(username);
+    }
+
+    //更新
+    public boolean updatePassengerStateByUsername(Passenger passenger) {
+        if (passengerDao.usernameIsExit(passenger.getUsername())) {
+            return passengerDao.updatePassengerStateByUsername(passenger);
+
+        } else {
+            System.out.println("失败！！");
             return false;
         }
     }

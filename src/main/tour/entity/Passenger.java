@@ -12,6 +12,11 @@ public class Passenger {
     private String username;//用户名
     private Vehicle vehicle;//一对一查询
 
+    public Passenger(String username, String state) {
+        this.username =username;
+        this.state =state;
+    }
+
     public Vehicle getVehicle() {
         return vehicle;
     }

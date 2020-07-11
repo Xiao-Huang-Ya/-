@@ -7,6 +7,9 @@
     <select id="judgeIsExit" resultType="int" parameterType="string">
 	select Count(*) from passenger where pid =#{pid}
     </select>
+    <select id="judgeIsExitByUsername" resultType="int" parameterType="string">
+	select Count(*) from passenger where username =#{username}
+    </select>
     <select id="queryPassengerByPid" resultType="Passenger" parameterType="string">
 SELECT pid, pname, pgender, iphone, rid, vid, id, state
 	FROM public.passenger where (state = '待分配' or state = '申请退订' or state = '已分配')
@@ -27,10 +30,22 @@ SELECT pid, pname, pgender, iphone, rid, vid, id, state
         order by pid
     </select>
 
+    <select id="queryPassengerStateByUsername" resultType="string" parameterType="string">
+        SELECT state
+        FROM public.passenger where username = #{username}
+    </select>
+
+
     <insert id="insertPassenger" parameterType="Passenger">
   INSERT INTO public.passenger(
 	pid, pname, pgender, iphone, rid, vid, id, state)
 	VALUES (#{pid}, #{pname}, #{pgender}, #{iphone}, #{rid}, #{vid}, #{id}, #{state})
+    </insert>
+
+    <insert id="insertPassenger2" parameterType="Passenger">
+  INSERT INTO public.passenger(
+	pid, pname, pgender, iphone, rid, vid, id, state,username)
+	VALUES (#{pid}, #{pname}, #{pgender}, #{iphone}, #{rid}, #{vid}, #{id}, #{state},#{username})
     </insert>
 
     <delete id="deletePassengerByPid" parameterType="string">
@@ -40,8 +55,15 @@ SELECT pid, pname, pgender, iphone, rid, vid, id, state
 
     <update id="updatePassengerByPid" parameterType="Passenger">
         UPDATE public.passenger
-        SET pid=?, pname=?, pgender=?, iphone=?, rid=?, vid=?, id=?, state=?
+        SET pid=#{pid}, pname=#{pname}, pgender=#{pgender}, iphone=#{iphone}, rid=#{rid}, vid=#{vid}, id=#{id}, state=#{state}
         WHERE pid = #{pid}
+    </update>
+
+    <update id="updatePassengerStateByUsername" parameterType="Passenger">
+        UPDATE public.passenger
+
+        SET state= #{state}
+        WHERE username = #{username}
     </update>
     <!--    根据旅客查所在车辆id-->
     <!--    <select id="queryVidByPassenger" parameterType="string" resultType="string">-->

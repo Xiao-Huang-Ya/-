@@ -14,14 +14,21 @@ public interface PassengerMapper {
 
     Passenger queryPassengerByPid(String pid);
 
-   int  judgeIsExit(String pid);
+    int judgeIsExit(String pid);
+    int judgeIsExitByUsername(String username);
+
+    String queryPassengerStateByUsername(String username);
 
     List<Passenger> queryPassengers();
 
     boolean insertPassenger(Passenger passenger);
 
+    boolean insertPassenger2(Passenger passenger);
+
     boolean deletePassengerByPid(String pid);
 
     boolean updatePassengerByPid(String pid);
+
+    boolean updatePassengerStateByUsername(Passenger passenger);
 
 }
