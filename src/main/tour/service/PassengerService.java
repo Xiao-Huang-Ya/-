@@ -34,16 +34,18 @@ public class PassengerService {
         }
 
     }
+
     //添加
     public boolean insertPassenger2(Passenger passenger) {
-        if (!passengerDao.isExit(passenger.getVid())) {
+        if (!passengerDao.isExit(passenger.getPid())) {
             return passengerDao.insertPassenger2(passenger);
         } else {
-            System.out.println(passenger.getVid() + "已存在");
+            System.out.println(passenger.getPid() + "已存在");
             return false;
         }
 
     }
+
     //删除
     public boolean deletePassengerByPid(String pid) {
         if (passengerDao.isExit(pid)) {
@@ -92,5 +94,40 @@ public class PassengerService {
             System.out.println("失败！！");
             return false;
         }
+    }
+
+    //车辆调度，通过pid查找rid
+    public String queryRidByPid(String pid) {
+        return passengerDao.queryRidByPid(pid);
+    }
+
+    //更新
+    public boolean updatePassengerVidByVid(Passenger passenger) {
+        if (passengerDao.isExit(passenger.getPid())) {
+            return passengerDao.updatePassengerVidByVid(passenger);
+
+        } else {
+            System.out.println("车辆调度：旅客不存在！！");
+            return false;
+        }
+    }
+
+
+    public String queryVidByPid(String pid) {
+        return passengerDao.queryVidByPid( pid);
+    }
+
+    public boolean updatePassengerStateByPid(Passenger passenger) {
+        if (passengerDao.isExit(passenger.getPid())) {
+            return passengerDao.updatePassengerStateByPid(passenger);
+
+        } else {
+            System.out.println("更新待分配状态：旅客不存在！！");
+            return false;
+        }
+    }
+
+    public Page queryPassengersByPage2(int currentPage, int pageSize) throws IOException {
+        return passengerDao.queryPassengersByPage2(currentPage, pageSize);
     }
 }

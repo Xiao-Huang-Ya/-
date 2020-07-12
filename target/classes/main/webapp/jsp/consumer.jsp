@@ -18,8 +18,9 @@
         <div class="container-fluid">
             <ul class="nav pull-right">
                 <li id="fat-menu" class="dropdown">
+
                     <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user icon-white"></i> Admin
+                        <i class="icon-user icon-white"></i> ${applicationScope.get("username")}
                         <i class="icon-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
@@ -29,51 +30,27 @@
                     </ul>
                 </li>
             </ul>
-            <a class="brand" href="index.jsp"><span class="first">旅游管理界面</span></a>
-            <ul class="nav">
-                <li class="active"><a href="#">首页</a></li>
-                <li><a href="#">营管理运</a></li>
-                <li><a href="#">数据分析</a></li>
-            </ul>
+            <a class="brand" href="/hello/consumerLoginServlet"><span class="first">旅游主界面</span></a>
+            <%--            <ul class="nav">--%>
+            <%--                <li class="active"><a href="#">首页</a></li>--%>
+            <%--                <li><a href="#">营管理运</a></li>--%>
+            <%--                <li><a href="#">数据分析</a></li>--%>
+            <%--            </ul>--%>
         </div>
     </div>
 </div>
 <!-- 左 -->
 <div class="sidebar-nav">
-    <a href="#route" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>景点管理</a>
+    <a href="#route" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>旅游景点</a>
     <ul id="route" class="nav nav-list collapse in ">
-        <li><a href="/hello/consumerQueryRouteByPageServlet2/1">旅游路线查询</a></li>
+        <li>
+            <a href="/hello/consumerQueryRouteServlet/${applicationScope.get("username")}/${applicationScope.get("password")}">旅游路线查询</a>
+        </li>
 
-        <li><a href="/hello/consumerQuerySightByPageServlet2/1">旅游景点查询</a></li>
-
+        <li><a href="/hello/querySightByPageServlet2/1">旅游景点查询</a></li>
 
     </ul>
 
-    <%--    <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>--%>
-    <%--    <ul id="accounts-menu" class="nav nav-list collapse">--%>
-    <%--        <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>--%>
-    <%--        <li><a href="#">车辆调度</a></li>--%>
-
-    <%--    </ul>--%>
-    <%--    <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>导游管理</a>--%>
-    <%--    <ul id="error-menu" class="nav nav-list collapse">--%>
-    <%--        <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>--%>
-    <%--        <li><a href="/jsp/addGuide.jsp">导游添加管理</a></li>--%>
-    <%--        <li><a href="/hello/returnMainPage">导游信息统计</a></li>--%>
-    <%--    </ul>--%>
-
-    <%--    <a href="#tourist-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>--%>
-    <%--    <ul id="tourist-menu" class="nav nav-list collapse">--%>
-    <%--        <li><a href="/hello/queryPassengerByPageServlet/1">游客信息</a></li>--%>
-
-    <%--    </ul>--%>
-    <%--    <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>--%>
-    <%--    <ul id="legal-menu" class="nav nav-list collapse">--%>
-    <%--        <li><a href="/jsp/login.jsp">登录页面</a></li>--%>
-    <%--        <li><a href="register.jsp">注册页面</a></li>--%>
-    <%--        <li><a href="updatepaasword.html">密码修改</a></li>--%>
-    <%--    </ul>--%>
-    <%--    <a href="http://yiquwei.com/" target="_blank" class="nav-header"><i class="icon-exclamation-sign"></i>关于</a>--%>
 </div>
 <!-- 右 -->
 <div class="content">
@@ -108,9 +85,12 @@
                         <%--                    <a href="/hello/deleteRouteByRidServlet/${list.rid}" role="button" data-toggle="modal"--%>
                         <%--                       onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>--%>
                         <%--                    ${username}--%>
-                    <a type="button" href="/hello/signUpServlet/${username}" onclick="return confirm('您确定报名吗？');"
+                        <%--                   <c:set value="${username}" var="name" scope="application"/>--%>
+                    <a type="submit" href="/hello/signUpServlet/${name}/${list.rid}"
+                       onclick="return confirm('您确定报名吗？');"
                        class="form-control">报名</a>
-                    <a type="button" href="/hello/signDownServlet/${username}" onclick="return confirm('您确定退订吗？');"
+                    <a type="button" href="/hello/signDownServlet/${name}/${list.rid}"
+                       onclick="return confirm('您确定退订吗？');"
                        class="form-control">退订</a>
                 </td>
             </tr>
@@ -163,50 +143,50 @@
 <script src="/js/jquery-1.8.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script>
-    <%--     校验报名操作--%>
-    <c:choose>
-    <c:when test="${judge=='registerSuccess'}">
-    alert("欢迎您的到来！！!");
-    </c:when>
-    <c:when test="${judge=='signUpError'}">
-    alert("报名失败！！!");
-    </c:when>
-    <c:when test="${judge=='signedUp' || judge=='waitAssigned'||judge=='successAssigned'}">
-    alert("您已经报名了，请选择其他操作！！!");
-    </c:when>
-    <c:when test="${judge=='unsubscribe'}">
-    alert("正在申请退订.....");
-    </c:when>
-    <c:when test="${judge=='noAction'}">
-    alert("请求无效！！");
-    </c:when>
-    <c:when test="${flag == false}">
-    alert("报名失败！！！");
-    </c:when>
-    <c:when test="${flag==true}">
-    alert("报名成功！！!");
-    </c:when>
-    <%--    退订判断--%>
-    <c:when test="${judge=='unsubscribe2'}">
-    alert("正在处理您的退订，请耐心等待....");
-    </c:when>
+    <%--    &lt;%&ndash;     校验报名操作&ndash;%&gt;--%>
+    <%--    <c:choose>--%>
+    <%--    <c:when test="${judge=='registerSuccess'}">--%>
+    <%--    alert("欢迎您的到来！！!");--%>
+    <%--    </c:when>--%>
+    <%--    <c:when test="${judge=='signUpError'}">--%>
+    <%--    alert("报名失败！！!");--%>
+    <%--    </c:when>--%>
+    <%--    <c:when test="${judge=='signedUp' || judge=='waitAssigned'||judge=='successAssigned'}">--%>
+    <%--    alert("您已经报名了，请选择其他操作！！!");--%>
+    <%--    </c:when>--%>
+    <%--    <c:when test="${judge=='unsubscribe'}">--%>
+    <%--    alert("正在申请退订.....");--%>
+    <%--    </c:when>--%>
+    <%--    <c:when test="${judge=='noAction'}">--%>
+    <%--    alert("请求无效！！");--%>
+    <%--    </c:when>--%>
+    <%--    <c:when test="${flag == false}">--%>
+    <%--    alert("报名失败！！！");--%>
+    <%--    </c:when>--%>
+    <%--    <c:when test="${flag==true}">--%>
+    <%--    alert("报名成功！！!");--%>
+    <%--    </c:when>--%>
+    <%--    &lt;%&ndash;    退订判断&ndash;%&gt;--%>
+    <%--    <c:when test="${judge=='unsubscribe2'}">--%>
+    <%--    alert("正在处理您的退订，请耐心等待....");--%>
+    <%--    </c:when>--%>
 
-    <c:when test="${signDownflag==true}">
-    alert("退订成功！！!");
-    </c:when>
+    <%--    <c:when test="${signDownflag==true}">--%>
+    <%--    alert("退订成功！！!");--%>
+    <%--    </c:when>--%>
 
-    <c:when test="${signDownflag==false}">
-    alert("退订失败！！!");
-    </c:when>
+    <%--    <c:when test="${signDownflag==false}">--%>
+    <%--    alert("退订失败！！!");--%>
+    <%--    </c:when>--%>
 
-    <c:when test="${judge=='registered'}">
-    alert("请您先选择旅游路线!!!");
-    </c:when>
+    <%--    <c:when test="${judge=='registered'}">--%>
+    <%--    alert("请您先选择旅游路线!!!");--%>
+    <%--    </c:when>--%>
 
-    <c:when test="${judge=='signDownError'}">
-    alert("退订失败，请等待！！！");
-    </c:when>
+    <%--    <c:when test="${judge=='signDownError'}">--%>
+    <%--    alert("退订失败，请等待！！！");--%>
+    <%--    </c:when>--%>
 
-    </c:choose>
+    <%--    </c:choose>--%>
 </script>
 </html>

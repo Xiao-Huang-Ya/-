@@ -8,10 +8,8 @@ import main.tour.service.PassengerService;
 import main.tour.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,8 +40,9 @@ public class ConsumerServlet {
         this.passengerService = passengerService;
     }
 
+
     @RequestMapping("/consumerLoginServlet")
-    public String consumerLoginServlet(@RequestParam("name") String name, @RequestParam("pwd") String pwd, Map<String, Object> map) throws IOException {
+    public String consumerLoginServlet(@RequestParam(value = "name") String name, @RequestParam("pwd") String pwd, Map<String, Object> map) throws IOException {
         Consumer consumer = null;
 
         String judge = "";
@@ -57,18 +56,50 @@ public class ConsumerServlet {
             judge = "loginSuccess";
             map.put("judge", judge);
             map.put("username", name);
-            Page page = routeService.queryRoutesByPage2(1, 5);
-            TourPage tourPage = new TourPage();
-            tourPage.setList(page.getResult());
-            tourPage.setCurrentPage(1);
-            tourPage.setTotalCount((int) page.getTotal());
-            tourPage.setPageSize(5);
-            map.put("tourPage", tourPage);
-            return "consumer";
+            map.put("password", pwd);
+
+//            Page page = routeService.queryRoutesByPage2(1, 5);
+//            TourPage tourPage = new TourPage();
+//            tourPage.setList(page.getResult());
+//            tourPage.setCurrentPage(1);
+//            tourPage.setTotalCount((int) page.getTotal());
+//            tourPage.setPageSize(5);
+//            map.put("tourPage", tourPage);
+            return "consumerShow";
         }
         return "login";
     }
-    //注册
+
+    //路线查询
+    @RequestMapping("/consumerQueryRouteServlet/{username}/{password}")
+    public String consumerQueryRouteServlet(@PathVariable(value = "username") String name, @PathVariable("password") String pwd, Map<String, Object> map) throws IOException {
+//        Consumer consumer = null;
+//
+//        String judge = "";
+//        boolean flag = false;
+//        consumer = consumerService.queryConsumerByUsername(new Consumer(name, pwd));
+//        if (consumer == null) {
+//            judge = "needRegister";
+//            map.put("judge", judge);
+//        } else {
+//
+//            judge = "loginSuccess";
+//            map.put("judge", judge);
+//            map.put("username", name);
+
+        Page page = routeService.queryRoutesByPage2(1, 5);
+        TourPage tourPage = new TourPage();
+        tourPage.setList(page.getResult());
+        tourPage.setCurrentPage(1);
+        tourPage.setTotalCount((int) page.getTotal());
+        tourPage.setPageSize(5);
+        map.put("tourPage", tourPage);
+        map.put("username", name);
+        map.put("password", pwd);
+        return "consumer";
+//        }
+//        return "login";
+    }
 
     //注册
     @RequestMapping(value = "/registerServlet")
@@ -82,19 +113,22 @@ public class ConsumerServlet {
 
         boolean flag2 = consumerService.insertConsumer(new Consumer(username, password));
         boolean flag = false;
+        String judge = "";
 //        TourPage tourPage = new TourPage();
-
+//            if(pid=="" || )
         if (flag2 == true) {
             Passenger passenger = new Passenger(pid, pname, pgender, iphone, rid, vid, id, state, username);
             flag = passengerService.insertPassenger2(passenger);
+        } else {
+            judge = "registerError";
+            consumerService.deleteConsumerByUsername(username);
         }
         if (flag == true) {
-            map.put("judge", "registerSuccess");
-            tourPage = testModelAttribute("1", map);
-            map.put("tourPage", tourPage);
-            return "consumer";
+            judge = "registerSuccess";
+        } else {
+            judge = "registerError";
         }
-        map.put("flag", flag);
+        map.put("judge", judge);
         return "login";
     }
 
@@ -114,8 +148,8 @@ public class ConsumerServlet {
     }
     //退订
 
-    @RequestMapping("/signDownServlet/{username}")
-    public String signDownServlet(@PathVariable("username") String username, Map<String, Object> map,
+    @RequestMapping("/signDownServlet/{username}/{rid}")
+    public String signDownServlet(@PathVariable("username") String username, @PathVariable("rid") String rid, Map<String, Object> map,
                                   @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         Consumer consumer = null;
         Passenger passenger = null;
@@ -127,16 +161,16 @@ public class ConsumerServlet {
         } else {
             switch (state) {
                 case "已报名":
-                    signDownflag = passengerService.updatePassengerStateByUsername(new Passenger(username,"已注册"));
+                    signDownflag = passengerService.updatePassengerStateByUsername(new Passenger(username, "已注册", ""));
                     break;
                 case "申请退订":
                     judge = "unsubscribe2";
                     break;
                 case "待分配":
-                    signDownflag = passengerService.updatePassengerStateByUsername(new Passenger(username,"已注册"));
+                    signDownflag = passengerService.updatePassengerStateByUsername(new Passenger(username, "已注册", ""));
                     break;
                 case "已分配":
-                    signDownflag = passengerService.updatePassengerStateByUsername(new Passenger(username,"已注册"));
+                    signDownflag = passengerService.updatePassengerStateByUsername(new Passenger(username, "已注册", ""));
                     break;
                 case "已注册":
                     judge = "registered";
@@ -154,8 +188,8 @@ public class ConsumerServlet {
     }
 
     //报名
-    @RequestMapping("/signUpServlet/{username}")
-    public String signUpServlet(@PathVariable("username") String username, Map<String, Object> map,
+    @RequestMapping("/signUpServlet/{username}/{rid}")
+    public String signUpServlet(@PathVariable("username") String username, @PathVariable("rid") String rid, Map<String, Object> map,
                                 @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         Consumer consumer = null;
         Passenger passenger = null;
@@ -179,7 +213,7 @@ public class ConsumerServlet {
                     judge = "successAssigned";
                     break;
                 case "已注册":
-                    flag = passengerService.updatePassengerStateByUsername(new Passenger(username,"已报名"));
+                    flag = passengerService.updatePassengerStateByUsername(new Passenger(username, "已报名", rid));
                     break;
                 default:
                     judge = "noAction";
@@ -192,4 +226,5 @@ public class ConsumerServlet {
         map.put("tourPage", tourPage);
         return "consumer";
     }
+
 }

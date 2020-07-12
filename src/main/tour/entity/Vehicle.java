@@ -16,6 +16,11 @@ public class Vehicle {
         this.pid = pid;
     }
 
+    public Vehicle( String vid,String state) {
+        this.vid =vid;
+        this.state =state;
+    }
+
     public String getVid() {
         return vid;
     }

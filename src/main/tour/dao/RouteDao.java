@@ -25,7 +25,7 @@ public class RouteDao {
     }
 
     //分页查找
-    public  Page queryRoutesByPage(int currentPage, int pageSize) throws IOException {
+    public Page queryRoutesByPage(int currentPage, int pageSize) throws IOException {
 
         SqlSession session = genenalMapper.useSqlSession();
         RouteMapper gm = genenalMapper.getMapper(session, RouteMapper.class);
@@ -58,12 +58,13 @@ public class RouteDao {
         List<Route> routes = gm.fuzzyQueries(route);
         return routes;
     }
+
     //通过主键查询
     public Route queryRouteByRid(Object obj) throws IOException {
 
         SqlSession session = genenalMapper.useSqlSession();
         RouteMapper gm = genenalMapper.getMapper(session, RouteMapper.class);
-      Route route = gm.queryRouteByRid(obj);
+        Route route = gm.queryRouteByRid(obj);
         return route;
     }
 
@@ -122,5 +123,31 @@ public class RouteDao {
         return result;
     }
 
+    //车辆调度
+//根据车辆调度，通过rid查询该路线车辆数量
+    public int queryVehicleNumberByRid(String rid) {
 
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            RouteMapper gm = genenalMapper.getMapper(session, RouteMapper.class);
+            return gm.queryVehicleNumberByRid(rid);
+
+        } catch (Exception e) {
+            System.out.println("车辆调度：查询vehicleNumber错误");
+            return 0;
+        }
+
+
+    }
+
+    public boolean updateVehicleNumber(Route route) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            RouteMapper fm = genenalMapper.getMapper(session, RouteMapper.class);
+            return fm.updateVehicleNumber( route);
+        } catch (Exception e) {
+            System.out.println("车辆调度：更新路线的车辆数错误");
+            return false;
+        }
+    }
 }

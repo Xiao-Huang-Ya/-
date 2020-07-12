@@ -6,7 +6,23 @@ public class Route {
     private String endPoint;//目的地
     private String sight;//路线中的景点
     private int number;//景点数
-    public  Route (){}
+    private int vehicleNumber;//车辆数
+
+    public Route(String rid, int vehicleNumber) {
+        this.rid = rid;
+        this.vehicleNumber = vehicleNumber;
+    }
+
+    public int getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(int vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
+    }
+
+    public Route() {
+    }
 
     public Route(String rid, String name, String endPoint, String sight, int number) {
         this.rid = rid;

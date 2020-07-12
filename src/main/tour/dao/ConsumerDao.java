@@ -75,4 +75,16 @@ public class ConsumerDao {
     }
 
 
+    public boolean deleteConsumerByUsername(String username) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            ConsumerMapper fm = genenalMapper.getMapper(session, ConsumerMapper.class);
+           return fm.deleteConsumerByUsername(username);
+        } catch (Exception e) {
+            System.out.println("更新错误");
+            return false;
+        }
+
+
+    }
 }

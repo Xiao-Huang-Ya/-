@@ -17,4 +17,5 @@ public interface ConsumerMapper {
 
     boolean updateConsumerByUsername(String username);
 
+    boolean deleteConsumerByUsername(String username);
 }

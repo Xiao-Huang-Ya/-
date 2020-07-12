@@ -41,7 +41,7 @@ public class GuideDao {
         try {
             SqlSession session = genenalMapper.useSqlSession();
             GuideMapper gm = genenalMapper.getMapper(session, GuideMapper.class);
-            flag = queryGuideById((Long) obj) == null ? false : true;
+            flag = queryGuideById((String) obj) == null ? false : true;
             System.out.println("isEixt():" + flag);
         }catch (Exception e){
             System.out.println("isExit错误");
@@ -51,7 +51,7 @@ public class GuideDao {
     }
 
     //通过fid查询花是否存在
-    public Guide queryGuideById(Long number) throws IOException {
+    public Guide queryGuideById(String number) throws IOException {
 
         SqlSession session = genenalMapper.useSqlSession();
         GuideMapper gm = genenalMapper.getMapper(session, GuideMapper.class);

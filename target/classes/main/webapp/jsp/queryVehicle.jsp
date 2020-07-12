@@ -26,7 +26,7 @@
                     <ul class="dropdown-menu">
                         <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
                         <li class="divider"></li>
-                        <li><a tabindex="-1" href="login.html">安全退出</a></li>
+                        <li><a tabindex="-1" href="/jsp/login.jsp" onclick="return confirm('您确定退出吗？');">安全退出</a></li>
                     </ul>
                 </li>
             </ul>
@@ -50,7 +50,7 @@
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse in ">
         <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
-        <li><a href="#">车辆调度</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet2/1">车辆调度</a></li>
 <%--        <li><a href="crud.jsp">车辆删除</a></li>--%>
     </ul>
     <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i
@@ -99,14 +99,18 @@
                     </h4>
                 </div>
                 <div class="center-block offset1" style="width:300px;">
-                    <form class="form-search" action="/hello/addSightServlet" method="post" name="form">
+                    <form class="form-search" action="/hello/addVehicleServlet" method="post" name="form">
                         <div class="row-fluid" style="text-align: left;">
                             <div class="pull-left span4 unstyled">
                                 <p> 车辆编号：<input class="input-large" id="vid" name="vid" type="text"></p>
-                                <p> 所在路线编号：<input class="input-large" id="rid" name="rid" type="text"></p>
-                                <p> 车辆是否工作：<input class="input-large" id="state" name="state" type="text"></p>
-                                <p> 车辆分配导游：<input class="input-large" id="id" name="id" type="text"></p>
-                                <p> 车辆分配游客<input class="input-large" id="pid" name="pid" type="text"></p>
+<%--                                <p> 所在路线编号：<input class="input-large" id="rid" name="rid" type="text"></p>--%>
+                                <p> 车辆是否工作：
+
+                                    <input  type="radio" id="state" name="state" value="是" class="input-xlarge">工作
+                                    <input  type="radio" id="state" name="state" value="否" class="input-xlarge">未工作
+<%--                                    <input class="input-large" id="state" name="state" type="text"></p>--%>
+<%--                                <p> 车辆分配导游：<input class="input-large" id="id" name="id" type="text"></p>--%>
+<%--                                <p> 车辆分配游客<input class="input-large" id="pid" name="pid" type="text"></p>--%>
 
                             </div>
                         </div>
@@ -147,8 +151,8 @@
                 <td>${list.pid}</td>
 
                 <td>
-                        <%--                    <a href="/hello/updateReturnRouteServlet/${list.sname}"><i class="icon-pencil"></i></a>--%>
-                    <a href="/hello/deleteSightServlet/${list.vid}" role="button" data-toggle="modal"
+<%--                    <a href="/hello/"><i class="icon-pencil"></i></a>--%>
+                    <a href="/hello/deleteVehicleServlet/${list.vid}" role="button" data-toggle="modal"
                        onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>
 
                 </td>

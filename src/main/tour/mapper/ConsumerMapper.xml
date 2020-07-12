@@ -20,4 +20,9 @@ INSERT INTO public.consumer(
         SET username=#{username}, password=#{password}
         WHERE username = #{username}
     </update>
+
+    <delete id="deleteConsumerByUsername" parameterType="string">
+        DELETE FROM public.consumer
+        WHERE username = #{username}
+    </delete>
 </mapper>

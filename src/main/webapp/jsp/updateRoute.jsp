@@ -26,7 +26,7 @@
                     <ul class="dropdown-menu">
                         <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
                         <li class="divider"></li>
-                        <li><a tabindex="-1" href="login.html">安全退出</a></li>
+                        <li><a tabindex="-1" href="/jsp/login.jsp" onclick="return confirm('您确定退出吗？');">安全退出</a></li>
                     </ul>
                 </li>
             </ul>
@@ -50,11 +50,11 @@
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse">
         <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
-        <li><a href="#">车辆调度</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet2/1">车辆调度</a></li>
     </ul>
-    <a href="/index.jsp" class="nav-header collapsed" data-toggle="collapse"><i
+    <a href="#guide" class="nav-header" data-toggle="collapse"><i
             class="icon-exclamation-sign"></i>导游管理</a>
-    <ul id="/index.jsp" class="nav nav-list collapse in">
+    <ul id="guide" class="nav nav-list collapse">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
         <li><a href="#">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
@@ -111,10 +111,8 @@
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="js/jquery-1.8.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- 日期控件 -->
-<script src="js/calendar/WdatePicker.js"></script>
+<script src="/js/jquery-1.8.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script>
     <c:if test="${upflag == true}">
     alert("操作成功");

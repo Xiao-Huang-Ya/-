@@ -4,7 +4,8 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/applicationContext.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/db.properties" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/bootstrap" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/img/error.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/img/right.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/mybatis-config.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/springmvc.xml" charset="GBK" />
   </component>

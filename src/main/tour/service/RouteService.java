@@ -77,4 +77,22 @@ public class RouteService {
             return false;
         }
     }
+
+    //根据车辆调度，通过rid查询该路线车辆数量
+    public int queryVehicleNumberByRid(String rid) {
+        return  routeDao.queryVehicleNumberByRid(rid);
+    }
+
+    public boolean updateVehicleNumber(Route route) {
+        if (routeDao.isExit(route.getRid())) {
+
+            return routeDao.updateVehicleNumber(route);
+
+        } else {
+            System.out.println("车辆调度：路线不存在：");
+            return false;
+        }
+    }
+
+//    根据车辆调度，通过rid查询改路线的路线编号
 }

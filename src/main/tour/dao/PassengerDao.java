@@ -21,6 +21,7 @@ public class PassengerDao {
     public void setGenenalMapper(GenenalMapper genenalMapper) {
         this.genenalMapper = genenalMapper;
     }
+
     //分页查找
     public Page queryPassengersByPage(int currentPage, int pageSize) throws IOException {
 
@@ -32,36 +33,35 @@ public class PassengerDao {
 
         return page;
     }
+
     //判断存在
     public boolean isExit(Object obj) {
         boolean flag = false;
         try {
             SqlSession session = genenalMapper.useSqlSession();
             PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
-
-            return gm.judgeIsExit((String) obj) > 0 ?true : false;
-//            flag = queryPassengerByPid((String) obj) == null ? false : true;
-//            System.out.println("isEixt():" + flag);
-//            return flag;
+            return gm.judgeIsExit((String) obj) > 0 ? true : false;
         } catch (Exception e) {
             System.out.println("isExit错误");
             return false;
         }
 
     }
+
     public boolean usernameIsExit(Object obj) {
         boolean flag = false;
         try {
             SqlSession session = genenalMapper.useSqlSession();
             PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
 
-            return gm.judgeIsExitByUsername((String) obj) > 0 ?true : false;
+            return gm.judgeIsExitByUsername((String) obj) > 0 ? true : false;
         } catch (Exception e) {
             System.out.println("isExit错误");
             return false;
         }
 
     }
+
     //通过主键查询
     public Passenger queryPassengerByPid(String pid) throws IOException {
 
@@ -70,6 +70,7 @@ public class PassengerDao {
         Passenger passenger = gm.queryPassengerByPid(pid);
         return passenger;
     }
+
     //    查询全部
     public List<Passenger> queryPassengers() throws IOException {
 
@@ -78,6 +79,7 @@ public class PassengerDao {
         List<Passenger> Passengers = gm.queryPassengers();
         return Passengers;
     }
+
     // 添加
     public boolean insertPassenger(Passenger Passenger) {
         boolean result = false;
@@ -107,6 +109,7 @@ public class PassengerDao {
 
         return result;
     }
+
     //删除
     public boolean deletePassengerByPid(String pid) {
         boolean result = false;
@@ -121,6 +124,7 @@ public class PassengerDao {
 
         return result;
     }
+
     //更新
     public boolean updatePassengerByPid(String pid) {
         boolean result = false;
@@ -135,6 +139,21 @@ public class PassengerDao {
 
         return result;
     }
+
+    //更新
+    public boolean updatePassengerVidByVid(Passenger passenger){
+
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            PassengerMapper fm = genenalMapper.getMapper(session, PassengerMapper.class);
+            return fm.updatePassengerVidByVid(passenger);
+        } catch (Exception e) {
+            System.out.println("车辆调度：更新旅客Video错误");
+            return false;
+        }
+
+
+    }
 //用户报名
 
     //查询
@@ -142,7 +161,7 @@ public class PassengerDao {
 
         SqlSession session = genenalMapper.useSqlSession();
         PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
-        return  gm.queryPassengerStateByUsername(username);
+        return gm.queryPassengerStateByUsername(username);
 
     }
 
@@ -160,4 +179,54 @@ public class PassengerDao {
 
         return result;
     }
+
+    //
+//车辆调度，通过pid查找rid
+    public String queryRidByPid(String pid) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
+            return gm.queryRidByPid(pid);
+        } catch (Exception e) {
+            System.out.println("车辆调度查询Rid错误");
+            return null;
+        }
+
+    }
+
+    public String queryVidByPid(String pid) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
+            return gm.queryVidByPid(pid);
+        } catch (Exception e) {
+            System.out.println("车辆调度查询Vid错误");
+            return null;
+        }
+
+    }
+
+    public boolean updatePassengerStateByPid(Passenger passenger) {
+
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            PassengerMapper fm = genenalMapper.getMapper(session, PassengerMapper.class);
+            return  fm.updatePassengerStateByPid (passenger);
+        } catch (Exception e) {
+            System.out.println("更新旅客状态错误");
+            return false;
+        }
+
+
+    }
+
+    public Page queryPassengersByPage2(int currentPage, int pageSize) throws IOException{
+        SqlSession session = genenalMapper.useSqlSession();
+        PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
+        Page<Object> page = PageHelper.startPage(currentPage, pageSize);
+
+        List<Passenger> list = gm.queryPassengersOnlyWorked();
+
+        return page;
+   }
 }

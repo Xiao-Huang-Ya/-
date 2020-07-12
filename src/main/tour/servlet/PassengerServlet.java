@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,14 +52,6 @@ public class PassengerServlet {
         return tourPage;
     }
 
-//    @RequestMapping("/returnMainPassengerPage")
-//    public String returnMainPage(Map<String, Object> map) throws IOException {
-//        TourPage tourPage = new TourPage();
-//        tourPage.setList(PassengerService.queryPassengers());
-//        map.put("tourPage", tourPage);
-//        return "test";
-//    }
-
     //测试分页学生
     @RequestMapping(value = "/queryPassengerByPageServlet/{currentPage}")
     public String queryPassengerByPageServlet(@PathVariable("currentPage") int currentPage, Map<String, Object> map) throws IOException {
@@ -76,17 +69,17 @@ public class PassengerServlet {
         int totalPage = page.getPages(); //总页数
         tourPage.setTotalPage(totalPage);
         //当前页的数据集合
-        List<Passenger> Passengers = page.getResult(); //数据
-        tourPage.setList(Passengers);
+        List<Passenger> passengers = page.getResult(); //数据
+        tourPage.setList(passengers);
         map.put("tourPage", tourPage);
-        System.out.println(tourPage.getTotalCount());
+
         return "queryPassenger";
     }
 
     @RequestMapping(value = "/addPassengerServlet")
     public String addPassengerServlet(@RequestParam(value = "pid", required = false) String pid, @RequestParam(value = "pname", required = false) String pname,
                                       @RequestParam(value = "pgender", required = false) String pgender, @RequestParam(value = "iphone", required = false) String iphone, @RequestParam(value = "rid", required = false) String rid,
-                                      @RequestParam(value = "vid", required = false) String vid, @RequestParam(value = "id", required = false)String id,
+                                      @RequestParam(value = "vid", required = false) String vid, @RequestParam(value = "id", required = false) String id,
                                       @RequestParam(value = "state", required = false) String state,
                                       Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         boolean flag = false;

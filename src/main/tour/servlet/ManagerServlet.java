@@ -33,7 +33,6 @@ public class ManagerServlet {
             map.put("judge", judge);
         } else {
             judge = "loginSuccess";
-
             map.put("judge", judge);
             return "manager";
         }

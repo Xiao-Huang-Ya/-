@@ -15,7 +15,7 @@
 
 
     <%--    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>--%>
-<%--    <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>--%>
+    <%--    <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>--%>
 </head>
 <body>
 <!-- 上 -->
@@ -57,14 +57,16 @@
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse">
         <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
-        <li><a href="#">车辆调度</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet2/1">车辆调度</a></li>
 
     </ul>
     <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="error-menu" class="nav nav-list collapse">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="/jsp/addGuide.jsp">导游添加管理</a></li>
+        <%--        <li><a href="/jsp/addGuide.jsp">导游添加管理</a></li>--%>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
+        <li><a href="#">导游分配管理</a></li>
+        --%>
     </ul>
 
     <a href="#tourist-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
@@ -75,8 +77,8 @@
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
     <ul id="legal-menu" class="nav nav-list collapse">
         <li><a href="/jsp/login.jsp">登录页面</a></li>
-        <li><a href="register.jsp">注册页面</a></li>
-        <li><a href="updatepaasword.html">密码修改</a></li>
+        <%--        <li><a href="register.jsp">注册页面</a></li>--%>
+        <%--        <li><a href="updatepaasword.html">密码修改</a></li>--%>
     </ul>
     <a href="http://yiquwei.com/" target="_blank" class="nav-header"><i class="icon-exclamation-sign"></i>关于</a>
 </div>

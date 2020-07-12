@@ -5,7 +5,7 @@
 <mapper namespace="main.tour.mapper.RouteMapper">
 
     <select id="fuzzyQueries" resultType="Route" parameterType="Route">
-  SELECT rid, name, endpoint, sight, number FROM route
+        SELECT rid, name, endpoint, sight, number FROM route
         <where>
 
             <if test="rid != null and rid !='' ">
@@ -13,19 +13,19 @@
             </if>
 
             <if test="name !=null and name !='' ">
-               or name like '%'#{name}'%'
+                or name like '%'#{name}'%'
             </if>
             <if test="endPoint != null and endPoint !='' ">
 
                 or endPoint like '%'#{endPoint}'%'
             </if>
 
-            <if test="sight !=null and sight != '' " >
+            <if test="sight !=null and sight != '' ">
                 like sight = '%'#{sight}'%'
             </if>
 
             <if test="number != null and number != '' ">
-                or number  = #{number}
+                or number = #{number}
             </if>
         </where>
     </select>
@@ -33,6 +33,12 @@
     <select id="queryRouteByRid" resultType="Route" parameterType="string">
         SELECT rid, name, endpoint, sight, "number" FROM route
         where rid = #{rid}
+
+    </select>
+
+    <select id="queryVehicleNumberByRid" resultType="int" parameterType="string">
+     SELECT "vehicleNumber"
+	FROM public.route where rid =#{rid}
 
     </select>
     <select id="queryRoutes" resultType="Route">
@@ -54,6 +60,12 @@ INSERT INTO route(
     <update id="updateRouteByRid" parameterType="Route">
         UPDATE route
         SET rid=#{rid}, name=#{name}, endpoint=#{endPoint}, sight=#{sight}, "number"=#{number}
+        WHERE rid = #{rid}
+    </update>
+
+    <update id="updateVehicleNumber" parameterType="Route">
+        UPDATE public.route
+        SET  "vehicleNumber"=#{vehicleNumber}
         WHERE rid = #{rid}
     </update>
 </mapper>

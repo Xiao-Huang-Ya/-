@@ -135,7 +135,7 @@ public class SightServlet {
         tourPage.setList(Sights);
         map.put("tourPage", tourPage);
         System.out.println(tourPage.getTotalCount());
-        return "consumer";
+        return "consumerQuerySight";
     }
 
 }

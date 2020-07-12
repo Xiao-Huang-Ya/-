@@ -13,7 +13,7 @@ import java.util.List;
 public interface GuideMapper {
 
     //    通过id查询花
-    Guide queryGuideById(Long id);
+    Guide queryGuideById(String id);
     //   查询全部花
     List<Guide> queryGuides();
     //    添加花

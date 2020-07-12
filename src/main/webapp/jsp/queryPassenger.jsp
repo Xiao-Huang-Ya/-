@@ -26,11 +26,11 @@
                     <ul class="dropdown-menu">
                         <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
                         <li class="divider"></li>
-                        <li><a tabindex="-1" href="login.html">安全退出</a></li>
+                        <li><a tabindex="-1" href="/jsp/login.jsp" onclick="return confirm('您确定退出吗？');">安全退出</a></li>
                     </ul>
                 </li>
             </ul>
-            <a class="brand" href="/index.jsp"><span class="first">旅游管理界面</span></a>
+            <a class="brand" href="/hello/managerLoginServlet"><span class="first">旅游管理界面</span></a>
             <ul class="nav">
                 <li class="active"><a href="/index.jsp">首页</a></li>
                 <li><a href="#">运营管理</a></li>
@@ -50,7 +50,7 @@
     <a href="#accounts-menu" class="nav-header " data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse">
         <li><a href="/hello/queryPassengerByPageServlet/1">车辆信息查询</a></li>
-        <li><a href="#">车辆调度</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet2/1">车辆调度</a></li>
         <%--        <li><a href="crud.jsp">车辆删除</a></li>--%>
     </ul>
     <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i

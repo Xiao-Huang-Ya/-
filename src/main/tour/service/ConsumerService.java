@@ -47,4 +47,8 @@ public class ConsumerService {
             return false;
         }
     }
+
+    public boolean deleteConsumerByUsername(String username) {
+        return consumerDao.deleteConsumerByUsername( username);
+    }
 }

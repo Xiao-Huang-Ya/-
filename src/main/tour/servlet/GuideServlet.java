@@ -125,7 +125,7 @@ public class GuideServlet extends HttpServlet {
     }
 
     @RequestMapping(value = "/queryGuideByIdServlet/{id}")
-    public String queryGuideByFidServlet(@PathVariable("id") Long id, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
+    public String queryGuideByFidServlet(@PathVariable("id") String id, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         Guide Guide = guideService.queryGuideById(id);
         map.put("Guide", Guide);
         tourPage = testModelAttribute("1", map);

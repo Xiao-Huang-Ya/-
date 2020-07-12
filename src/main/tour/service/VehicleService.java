@@ -59,11 +59,32 @@ public class VehicleService {
     //更新
     public boolean updateVehicleByVid(String vid) {
         if (vehicleDao.isExit(vid)) {
-            return vehicleDao.deleteVehicleByVid(vid);
+            return vehicleDao.updateVehicleByVid(vid);
 
         } else {
             System.out.println("更新失败！！");
             return false;
         }
+    }
+
+//车辆调度：根据pid 获取 vid
+
+    //通过主键查询
+    public String queryVidByRid(String rid) {
+        return vehicleDao.queryVidByRid(rid);
+    }
+
+    public boolean updateVehicleStateByPid(Vehicle vehicle) {
+        if (vehicleDao.isExit(vehicle.getVid())) {
+            boolean flag = vehicleDao.updateVehicleStateByPid(vehicle);
+            return flag;
+        } else {
+            System.out.println("车辆调度：车辆不存在");
+            return false;
+        }
+    }
+
+    public List<Vehicle> queryVehicleByVehicleState() {
+        return vehicleDao.queryVehicleByVehicleState();
     }
 }

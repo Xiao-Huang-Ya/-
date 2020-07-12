@@ -24,4 +24,7 @@ public interface RouteMapper {
     //更新
     boolean updateRouteByRid(Route route);
 
+    int queryVehicleNumberByRid(String rid);
+
+   boolean updateVehicleNumber(Route route);
 }

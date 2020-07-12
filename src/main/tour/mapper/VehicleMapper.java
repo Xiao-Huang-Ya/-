@@ -22,4 +22,10 @@ public interface VehicleMapper {
 
     boolean updateVehicleByVid(String vid);
 
+    boolean updateVehicleStateByPid(Vehicle vehicle);
+
+    String queryVidByRid(String pid);
+
+   List<Vehicle> queryVehicleByVehicleState();
 }
+

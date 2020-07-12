@@ -53,7 +53,7 @@ public class GuideService {
 
 
     //    根据fid查询花
-    public Guide queryGuideById(Long id) throws IOException {
+    public Guide queryGuideById(String id) throws IOException {
         return guideDao.queryGuideById(id);
     }
 

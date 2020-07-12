@@ -10,11 +10,24 @@
     <select id="judgeIsExitByUsername" resultType="int" parameterType="string">
 	select Count(*) from passenger where username =#{username}
     </select>
+
     <select id="queryPassengerByPid" resultType="Passenger" parameterType="string">
-SELECT pid, pname, pgender, iphone, rid, vid, id, state
+    SELECT pid, pname, pgender, iphone, rid, vid, id, state
 	FROM public.passenger where (state = '待分配' or state = '申请退订' or state = '已分配')
 	and pid = #{pid}
 
+
+    </select>
+    <select id="queryPassengersOnlyWorked" resultType="Passenger" parameterType="string">
+    SELECT pid, pname, pgender, iphone, rid, vid, id, state
+	FROM public.passenger where state = '已报名'
+
+
+    </select>
+
+    <select id="queryVidByPid" resultType="Passenger" parameterType="string">
+    SELECT  vid
+	FROM public.passenger where pid = #{pid}
 
     </select>
 
@@ -35,7 +48,10 @@ SELECT pid, pname, pgender, iphone, rid, vid, id, state
         FROM public.passenger where username = #{username}
     </select>
 
-
+    <select id="queryRidByPid" resultType="string" parameterType="string">
+        SELECT rid
+        FROM public.passenger where pid = #{pid}
+    </select>
     <insert id="insertPassenger" parameterType="Passenger">
   INSERT INTO public.passenger(
 	pid, pname, pgender, iphone, rid, vid, id, state)
@@ -59,39 +75,20 @@ SELECT pid, pname, pgender, iphone, rid, vid, id, state
         WHERE pid = #{pid}
     </update>
 
+    <update id="updatePassengerVidByVid" parameterType="Passenger">
+        UPDATE public.passenger
+        SET vid=#{vid}
+        WHERE pid = #{pid}
+    </update>
+
     <update id="updatePassengerStateByUsername" parameterType="Passenger">
         UPDATE public.passenger
-
-        SET state= #{state}
+        SET state= #{state},rid = #{rid}
         WHERE username = #{username}
     </update>
-    <!--    根据旅客查所在车辆id-->
-    <!--    <select id="queryVidByPassenger" parameterType="string" resultType="string">-->
-    <!--        select  p.vid from passenger p, Passenger v where v.pid = #{pid}-->
-    <!--    </select>-->
-    <!--    <resultMap id="pid_vid" type="Passenger">-->
-    <!--        &lt;!&ndash;        作者的信息&ndash;&gt;-->
-    <!--        <id property="pid" column="pid"/>-->
-    <!--        <result property="pname" column="pname"/>-->
-    <!--&lt;!&ndash;        <result property="pgender" column="pgender"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;        <result property="iphone" column="iphone"/>&ndash;&gt;-->
-    <!--        <result property="rid" column="rid"/>-->
-    <!--        <result property="vid" column="vid"/>-->
-    <!--        <result property="id" column="id"/>-->
-    <!--        &lt;!&ndash;        association标签:一对一映射；-->
-    <!--        collections:一对多映射-->
-    <!--        javaType：组成另一个类的类型（另一张表）-->
-    <!--        blog：级联属性-->
-    <!--        &ndash;&gt;-->
-    <!--        <association property="Passenger" javaType="Passenger">-->
-    <!--            <id property="vid" column="vid"/>-->
-    <!--            <result property="bname" column="bname"/>-->
-    <!--        </association>-->
-    <!--    </resultMap>-->
-    <!--    &lt;!&ndash;          select * from writer w inner join blog b-->
-    <!--         on w.bid =b.bid-->
-    <!--         where w.wid =#{wid}&ndash;&gt;-->
-    <!--    <select id="queryVidByPassenger" parameterType="string" resultMap="pid_vid">-->
-    <!--        select  p.vid from passenger p, Passenger v where v.pid = #{pid}-->
-    <!--    </select>-->
+    <update id="updatePassengerStateByPid" parameterType="Passenger">
+        UPDATE public.passenger
+        SET state=#{state}
+        WHERE pid = #{pid}
+    </update>
 </mapper>
