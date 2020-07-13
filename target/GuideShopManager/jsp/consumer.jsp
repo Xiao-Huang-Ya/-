@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bootstrap Admin</title>
+    <title>用户界面</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">
@@ -24,18 +24,15 @@
                         <i class="icon-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
+                        <li><a tabindex="-1" data-toggle="modal"
+                               data-target="#updateConsumerModal">修改密码</a></li>
                         <li class="divider"></li>
                         <li><a tabindex="-1" href="/jsp/login.jsp" onclick="return confirm('您确定退出吗？');">安全退出</a></li>
                     </ul>
                 </li>
             </ul>
             <a class="brand" href="/hello/consumerLoginServlet"><span class="first">旅游主界面</span></a>
-            <%--            <ul class="nav">--%>
-            <%--                <li class="active"><a href="#">首页</a></li>--%>
-            <%--                <li><a href="#">营管理运</a></li>--%>
-            <%--                <li><a href="#">数据分析</a></li>--%>
-            <%--            </ul>--%>
+
         </div>
     </div>
 </div>
@@ -80,16 +77,11 @@
                 <td>${list.sight}</td>
                 <td>${list.number}</td>
                 <td>
-                        <%--                    <a href="/hello/updateReturnRouteServlet/${list.rid}"><i class="icon-pencil"></i></a>--%>
 
-                        <%--                    <a href="/hello/deleteRouteByRidServlet/${list.rid}" role="button" data-toggle="modal"--%>
-                        <%--                       onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>--%>
-                        <%--                    ${username}--%>
-                        <%--                   <c:set value="${username}" var="name" scope="application"/>--%>
-                    <a type="submit" href="/hello/signUpServlet/${name}/${list.rid}"
+                    <a type="submit" href="/hello/signUpServlet/${applicationScope.get("username")}/${list.rid}"
                        onclick="return confirm('您确定报名吗？');"
                        class="form-control">报名</a>
-                    <a type="button" href="/hello/signDownServlet/${name}/${list.rid}"
+                    <a type="button" href="/hello/signDownServlet/${applicationScope.get("username")}/${list.rid}"
                        onclick="return confirm('您确定退订吗？');"
                        class="form-control">退订</a>
                 </td>
@@ -130,11 +122,53 @@
             </ul>
         </div>
     </div>
-    <footer>
-        <hr>
-        <p>© 2013 <a href="http://www.yiquwei.com" target="_blank">Admin</a></p>
-    </footer>
+    <%--更新用户密码--%>
+
+    <div class="well">
+        <%--        更新框容器--%>
+        <div class="center-block" style="width:350px;background-color:rgba(0,0,0,0)">
+
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="updateConsumerModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myAddGuideModal"
+                 aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel3">
+                        修改密码
+                    </h4>
+                </div>
+                <div class="center-block offset1" style="width:400px;">
+                    <form id="updateForm" action="/hello/updateConsumerServlet" method="post">
+                        <div class="row-fluid" style="text-align: left;">
+                            <div class="pull-left span6 unstyled">
+                                <p>用户名：
+                                    <input type="text" id="username" name="username"
+                                           class="input-medium " value="${username}" readonly="readonly">
+                                </p>
+                                <p>密码：
+                                    <input type="text" name="password" id="password" placeholder="请输入密码"
+                                           class="input-medium" value="">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="center-block " style="background-color:rgba(0,0,0,0)">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                修改
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 </body>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -143,50 +177,53 @@
 <script src="/js/jquery-1.8.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script>
-    <%--    &lt;%&ndash;     校验报名操作&ndash;%&gt;--%>
-    <%--    <c:choose>--%>
-    <%--    <c:when test="${judge=='registerSuccess'}">--%>
-    <%--    alert("欢迎您的到来！！!");--%>
-    <%--    </c:when>--%>
-    <%--    <c:when test="${judge=='signUpError'}">--%>
-    <%--    alert("报名失败！！!");--%>
-    <%--    </c:when>--%>
-    <%--    <c:when test="${judge=='signedUp' || judge=='waitAssigned'||judge=='successAssigned'}">--%>
-    <%--    alert("您已经报名了，请选择其他操作！！!");--%>
-    <%--    </c:when>--%>
-    <%--    <c:when test="${judge=='unsubscribe'}">--%>
-    <%--    alert("正在申请退订.....");--%>
-    <%--    </c:when>--%>
-    <%--    <c:when test="${judge=='noAction'}">--%>
-    <%--    alert("请求无效！！");--%>
-    <%--    </c:when>--%>
-    <%--    <c:when test="${flag == false}">--%>
-    <%--    alert("报名失败！！！");--%>
-    <%--    </c:when>--%>
-    <%--    <c:when test="${flag==true}">--%>
-    <%--    alert("报名成功！！!");--%>
-    <%--    </c:when>--%>
-    <%--    &lt;%&ndash;    退订判断&ndash;%&gt;--%>
-    <%--    <c:when test="${judge=='unsubscribe2'}">--%>
-    <%--    alert("正在处理您的退订，请耐心等待....");--%>
-    <%--    </c:when>--%>
+    <%--     校验报名操作--%><%--        <c:when test="${judge=='registerSuccess'}">--%>
+    <%--        alert("欢迎您的到来！！!");--%>
+    <%--        </c:when>--%>
+    <c:choose>
 
-    <%--    <c:when test="${signDownflag==true}">--%>
-    <%--    alert("退订成功！！!");--%>
-    <%--    </c:when>--%>
+    <c:when test="${judge=='signUpError'}">
+    alert("报名失败！！!");
+    </c:when>
+    <c:when test="${updateConsumer=='false'}">
+    alert("更新密码失败！！!");
+    </c:when>
+    <c:when test="${judge=='signedUp' || judge=='waitAssigned'||judge=='successAssigned'}">
+    alert("您已经报名了，请选择其他操作！！!");
+    </c:when>
+    <c:when test="${judge=='unsubscribe'}">
+    alert("正在申请退订.....");
+    </c:when>
+    <c:when test="${judge=='noAction'}">
+    alert("请求无效！！");
+    </c:when>
+    <c:when test="${flag == false}">
+    alert("报名失败！！！");
+    </c:when>
+    <c:when test="${flag==true}">
+    alert("报名成功！！!");
+    </c:when>
+    <%--    退订判断--%>
+    <c:when test="${judge=='unsubscribe2'}">
+    alert("正在处理您的退订，请耐心等待....");
+    </c:when>
 
-    <%--    <c:when test="${signDownflag==false}">--%>
-    <%--    alert("退订失败！！!");--%>
-    <%--    </c:when>--%>
+    <c:when test="${signDownflag==true}">
+    alert("退订成功！！!");
+    </c:when>
 
-    <%--    <c:when test="${judge=='registered'}">--%>
-    <%--    alert("请您先选择旅游路线!!!");--%>
-    <%--    </c:when>--%>
+    <c:when test="${signDownflag==false}">
+    alert("退订失败！！!");
+    </c:when>
 
-    <%--    <c:when test="${judge=='signDownError'}">--%>
-    <%--    alert("退订失败，请等待！！！");--%>
-    <%--    </c:when>--%>
+    <c:when test="${judge=='registered'}">
+    alert("请您先选择旅游路线!!!");
+    </c:when>
 
-    <%--    </c:choose>--%>
+    <c:when test="${judge=='signDownError'}">
+    alert("退订失败，请等待！！！");
+    </c:when>
+
+    </c:choose>
 </script>
 </html>

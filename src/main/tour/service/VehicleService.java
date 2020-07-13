@@ -2,6 +2,7 @@ package main.tour.service;
 
 import com.github.pagehelper.Page;
 import main.tour.dao.VehicleDao;
+import main.tour.entity.Passenger;
 import main.tour.entity.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,5 +87,29 @@ public class VehicleService {
 
     public List<Vehicle> queryVehicleByVehicleState() {
         return vehicleDao.queryVehicleByVehicleState();
+    }
+
+    //    导游分配
+    public String queryIdOnVehicleByVid(String vid) {
+        return vehicleDao.queryIdOnVehicleByVid(vid);
+    }
+
+    public boolean updateVehicleRidByVid(Vehicle vehicle) {
+        if (vehicleDao.isExit(vehicle.getVid())) {
+            boolean flag = vehicleDao.updateVehicleRidByVid(vehicle);
+            return flag;
+        } else {
+            System.out.println("车辆调度：车辆不存在");
+            return false;
+        }
+    }
+  public   boolean functionToUpdatePnumberOnVehicle(String vid){
+      if (vehicleDao.isExit(vid)) {
+          boolean flag = vehicleDao.functionToUpdatePnumberOnVehicle(vid);
+          return flag;
+      } else {
+          System.out.println("车辆调度：车辆不存在");
+          return false;
+      }
     }
 }

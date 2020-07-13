@@ -5,15 +5,15 @@ public class Vehicle {
     private String rid;//路线编号
     private String state;//车辆状态（是否分配）
     private String id;//导游编号
-    private String pid;//旅客身份证
+    private String pnumber;//旅客身份证
     public Vehicle(){}
 
-    public Vehicle(String vid, String rid, String state, String id ,String pid) {
+    public Vehicle(String vid, String rid, String state, String id ,String pnumber) {
         this.vid = vid;
         this.rid = rid;
         this.state = state;
         this.id = id;
-        this.pid = pid;
+        this.pnumber = pnumber;
     }
 
     public Vehicle( String vid,String state) {
@@ -53,11 +53,11 @@ public class Vehicle {
         this.id = id;
     }
 
-    public String getPid() {
-        return pid;
+    public String getPnumber() {
+        return pnumber;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setPnumber(String pnumber) {
+        this.pnumber = pnumber;
     }
 }

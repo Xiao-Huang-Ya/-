@@ -113,8 +113,8 @@ public class PassengerService {
     }
 
 
-    public String queryVidByPid(String pid) {
-        return passengerDao.queryVidByPid( pid);
+    public String queryVidOnPassengerByPid(String pid) {
+        return passengerDao.queryVidOnPassengerByPid( pid);
     }
 
     public boolean updatePassengerStateByPid(Passenger passenger) {
@@ -127,7 +127,19 @@ public class PassengerService {
         }
     }
 
-    public Page queryPassengersByPage2(int currentPage, int pageSize) throws IOException {
-        return passengerDao.queryPassengersByPage2(currentPage, pageSize);
+    public Page queryPassengersByPage2(int currentPage, int pageSize,String state) throws IOException {
+        return passengerDao.queryPassengersByPage2(currentPage, pageSize,state);
+    }
+
+
+    public boolean  updatePassengerIdById(Passenger passenger) {
+        if (passengerDao.isExit(passenger.getPid())) {
+            return passengerDao.updatePassengerIdById( passenger);
+
+        } else {
+            System.out.println("失败！！");
+            return false;
+        }
+
     }
 }

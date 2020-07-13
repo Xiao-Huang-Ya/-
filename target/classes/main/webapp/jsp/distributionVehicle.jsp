@@ -50,20 +50,20 @@
     <a href="#accounts-menu" class="nav-header " data-toggle="collapse"><i class="icon-exclamation-sign"></i>车辆管理</a>
     <ul id="accounts-menu" class="nav nav-list collapse in">
         <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
-        <li><a href="/hello/queryVehicleByPageServlet2/1">车辆调度</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet2/1">车辆调度</a></li>
 
     </ul>
     <a href="#guide-menu" class="nav-header " data-toggle="collapse"><i
             class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="guide-menu" class="nav nav-list collapse ">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="#">导游分配</a></li>
+        <li><a href="/hello/distrubutionGuideShowServlet/1">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
     </ul>
 
     <a href="#tourist-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
     <ul id="tourist-menu" class="nav nav-list collapse">
-        <li><a href="/hello/operationDistributionServlet/1">游客信息管理</a></li>
+        <li><a href="/hello/queryPassengerByPageServlet/1">游客信息查询</a></li>
         <li><a href="#">游客登陆管理</a></li>
 
     </ul>
@@ -79,11 +79,11 @@
 <div class="content">
     <!-- header -->
     <div class="header">
-        <h1 class="page-title">新用户PV</h1>
+        <h1 class="page-title">调度车辆</h1>
     </div>
     <div class="well">
         <!-- table -->
-        <form class="form-control" action="/hello/distributionServlet" method="post">
+        <form class="form-control" action="/hello/distributionBySingleSearchServlet" method="post">
             <p class="form-control">游客编号： <input class="form-control input-medium" name="pid" id="pid"
                                                  placeholder="请输入游客编号">
 

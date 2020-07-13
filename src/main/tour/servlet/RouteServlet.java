@@ -100,7 +100,7 @@ public class RouteServlet {
     @RequestMapping(value = "/addRouteServlet")
     public String addRouteServlet(@RequestParam(value = "rid", required = false) String rid, @RequestParam(value = "name", required = false) String name,
                                   @RequestParam(value = "endPoint", required = false) String endPoint, @RequestParam(value = "sight", required = false) String sight,
-                                  @RequestParam(value = "number", required = false) Integer number, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
+                                  @RequestParam(value = "number", required = false) Integer number,  Integer vehicleNumber,Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         boolean flag = false;
         Route Route = null;
         try {
@@ -157,9 +157,9 @@ public class RouteServlet {
     }
 
     @RequestMapping(value = "/updateRouteByRidServlet")
-    public String updateRouteByRidServlet(@RequestParam(value = "rid", required = false) String rid, @RequestParam(value = "name", required = false) String name,
-                                          @RequestParam(value = "endPoint", required = false) String endPoint, @RequestParam(value = "sight", required = false) String sight,
-                                          @RequestParam(value = "number", required = false) Integer number, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
+    public String updateRouteByRidServlet(@RequestParam(value = "rid2", required = false) String rid, @RequestParam(value = "name2", required = false) String name,
+                                          @RequestParam(value = "endPoint2", required = false) String endPoint, @RequestParam(value = "sight2", required = false) String sight,
+                                          @RequestParam(value = "number2", required = false) Integer number, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         Route route = null;
         boolean flag = false;
         try {

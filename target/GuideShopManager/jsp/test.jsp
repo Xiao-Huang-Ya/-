@@ -57,10 +57,10 @@
         <li><a href="/hello/queryPassengerByPageServlet2/1">车辆调度</a></li>
 <%--        <li><a href="crud.jsp">车辆删除</a></li>--%>
     </ul>
-    <a href="#A" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>导游管理</a>
+    <a href="#A" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="#A" class="nav nav-list collapse in">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="/jsp/addGuide.jsp">导游添加管理</a></li>
+        <li><a href="/hello/distrubutionGuideShowServlet/1">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息管理</a></li>
     </ul>
 
@@ -73,7 +73,6 @@
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
     <ul id="legal-menu" class="nav nav-list collapse">
         <li><a href="login.jsp">登录页面</a></li>
-        <li><a href="register.jsp">注册页面</a></li>
         <li><a href="updatepaasword.html">密码修改</a></li>
     </ul>
     <a href="http://yiquwei.com/" target="_blank" class="nav-header"><i class="icon-exclamation-sign"></i>关于</a>
@@ -82,7 +81,7 @@
 <div class="content">
     <!-- header -->
     <div class="header">
-        <h1 class="page-title">新用户PV</h1>
+        <h1 class="page-title">旅客信息统计</h1>
     </div>
     <!-- highchat show -->
     <%--    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>--%>
@@ -109,7 +108,7 @@
                 // categories:['0','100','200','300','400','500','600','700','800'],
                 min: 0,
                 title: {
-                    text: 'Population (millions)',
+                    text: '金额(/元)',
                     align: 'high'
                 },
                 labels: {
@@ -117,7 +116,7 @@
                 }
             };
             var tooltip = {
-                valueSuffix: ' millions'
+                valueSuffix: ' 元'
             };
             var plotOptions = {
                 bar: {

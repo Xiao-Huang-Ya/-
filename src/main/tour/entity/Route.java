@@ -13,6 +13,15 @@ public class Route {
         this.vehicleNumber = vehicleNumber;
     }
 
+    public Route(String rid, String name, String endPoint, String sight, int number, int vehicleNumber) {
+        this.rid = rid;
+        this.name = name;
+        this.endPoint = endPoint;
+        this.sight = sight;
+        this.number = number;
+        this.vehicleNumber = vehicleNumber;
+    }
+
     public int getVehicleNumber() {
         return vehicleNumber;
     }

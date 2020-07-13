@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
 //dao层
 @Repository
 public class GuideDao {
@@ -36,16 +37,16 @@ public class GuideDao {
     }
 
     //查询花是否存在
-    public boolean isExit(Object obj)  {
+    public boolean isExit(Object obj) {
         boolean flag = false;
         try {
             SqlSession session = genenalMapper.useSqlSession();
             GuideMapper gm = genenalMapper.getMapper(session, GuideMapper.class);
             flag = queryGuideById((String) obj) == null ? false : true;
             System.out.println("isEixt():" + flag);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("isExit错误");
-            return  flag;
+            return flag;
         }
         return flag;
     }
@@ -65,11 +66,11 @@ public class GuideDao {
         SqlSession session = genenalMapper.useSqlSession();
         GuideMapper gm = genenalMapper.getMapper(session, GuideMapper.class);
         List<Guide> guides = gm.queryGuides();
-        return guides ;
+        return guides;
     }
 
     //    添加花
-    public boolean insertGuide(Guide guide){
+    public boolean insertGuide(Guide guide) {
         boolean result = false;
         try {
             SqlSession session = genenalMapper.useSqlSession();
@@ -85,18 +86,66 @@ public class GuideDao {
 
 
     //删除花
-    public boolean deleteGuideById(String id){
+    public boolean deleteGuideById(String id) {
         boolean result = false;
         try {
             SqlSession session = genenalMapper.useSqlSession();
             GuideMapper fm = genenalMapper.getMapper(session, GuideMapper.class);
             result = fm.deleteGuideById(id);
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("删除错误");
             return false;
         }
 
         return result;
     }
+
+    //    导游分配
+    public String queryGuideStateById(String id) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            GuideMapper gm = genenalMapper.getMapper(session, GuideMapper.class);
+            return gm.queryGuideStateById(id);
+
+        } catch (Exception e) {
+            System.out.println("导游分配：查询导游状态出错");
+            return null;
+        }
+
+    }
+
+    public boolean updateGuideStateById(Guide guide) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            GuideMapper fm = genenalMapper.getMapper(session, GuideMapper.class);
+            return fm.updateGuideStateById(guide);
+        } catch (Exception e) {
+            System.out.println("导游分配：更新导游状态出错");
+            return false;
+        }
+    }
+    public boolean updateGuideById(Guide guide) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            GuideMapper fm = genenalMapper.getMapper(session, GuideMapper.class);
+            return fm.updateGuideById(guide);
+        } catch (Exception e) {
+            System.out.println("更新出错");
+            return false;
+        }
+    }
+
+    public List<Guide> queryGuideUnWorked(String state) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            GuideMapper gm = genenalMapper.getMapper(session, GuideMapper.class);
+            List<Guide> guides = gm.queryGuideUnWorked(state);
+            return guides;
+        } catch (Exception e) {
+            System.out.println("分配导游： 所有导游均分配");
+            return null;
+        }
+    }
+
 
 }

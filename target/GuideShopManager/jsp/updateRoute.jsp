@@ -56,7 +56,7 @@
             class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="guide" class="nav nav-list collapse">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="#">导游分配</a></li>
+        <li><a href="/hello/distrubutionGuideShowServlet/1">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
     </ul>
     <a href="#tourist-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>

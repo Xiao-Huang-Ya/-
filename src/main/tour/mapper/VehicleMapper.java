@@ -26,6 +26,13 @@ public interface VehicleMapper {
 
     String queryVidByRid(String pid);
 
-   List<Vehicle> queryVehicleByVehicleState();
+    String queryIdOnVehicleByVid(String vid);
+
+    List<Vehicle> queryVehicleByVehicleState();
+
+    //    boolean updateVehiclePnumber(Vehicle vehicle);
+    boolean functionToUpdatePnumberOnVehicle(String vid);
+
+    boolean updateVehicleRidByVid(Vehicle vehicle);
 }
 

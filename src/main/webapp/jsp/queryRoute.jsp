@@ -56,7 +56,7 @@
             class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="guide-menu" class="nav nav-list collapse ">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="#">导游分配</a></li>
+        <li><a href="/hello/distrubutionGuideShowServlet/1">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
     </ul>
 
@@ -106,6 +106,7 @@
                             <p> 路线终点：<input class="input-large" id="endPoint" name="endPoint" type="text"></p>
                             <p> 景点名称：<input class="input-large" id="sight" name="sight" type="text"></p>
                             <p> 景点数量：<input class="input-large" id="number" name="number" type="text"></p>
+
                         </div>
                     </div>
                     <div class="center-block " style="background-color:rgba(0,0,0,0)">
@@ -122,7 +123,7 @@
 
     <div class="well">
         <!-- table -->
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped" id="table">
             <%--        <table class="table table-bordered table-hover table-condensed">--%>
             <thead>
             <tr>
@@ -131,18 +132,23 @@
                 <th>路线终点</th>
                 <th>路线景点</th>
                 <th>景点数量</th>
+                <th>调度车辆数</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="list" items="${tourPage.list}">
+            <c:forEach var="list" items="${tourPage.list}" varStatus="vs">
             <tr>
                 <td>${list.rid}</td>
                 <td>${list.name}</td>
                 <td>${list.endPoint}</td>
                 <td>${list.sight}</td>
                 <td>${list.number}</td>
+                <td>${list.vehicleNumber}</td>
                 <td>
-                    <a href="/hello/updateReturnRouteServlet/${list.rid}"><i class="icon-pencil"></i></a>
+                    <a onclick="updateRoute(this);" id="${vs.index+1}" data-toggle="modal"
+                       data-target="#updateRouteModal"><i
+                            class="icon-pencil"></i></a>
+                        <%--                    <a href="/hello/updateReturnRouteServlet/${list.rid}"><i class="icon-pencil"></i></a>--%>
 
                     <a href="/hello/deleteRouteByRidServlet/${list.rid}" role="button" data-toggle="modal"
                        onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>
@@ -185,27 +191,65 @@
             </ul>
         </div>
     </div>
-    <!-- delete showmodaldialog -->
-    <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Delete Confirmation</h3>
-        </div>
-        <div class="modal-body">
-            <p class="error-text"><i class="icon-warning-sign modal-icon"></i>Are you sure you want to delete this data?
-            </p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+    <%--  更新路线模态框--%>
+
+    <div class="well">
+        <%--        更新框容器--%>
+        <div class="center-block" style="width:350px;background-color:rgba(0,0,0,0)">
+
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="updateRouteModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myAddGuideModal"
+                 aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myAddGuideModal">
+                        更新导游
+                    </h4>
+                </div>
+                <div class="center-block offset1" style="width:400px;">
+                    <form id="updateForm" action="/hello/updateRouteByRidServlet" method="post">
+                        <div class="row-fluid" style="text-align: left;">
+                            <div class="pull-left span6 unstyled">
+                                <p>路线编号：
+                                    <input type="text" id="rid2" name="rid2"
+                                           class="input-xlarge" value="" readonly="readonly">
+                                </p>
+                                <p>路线名称：
+                                    <input type="text" name="name2" id="name2" placeholder="请输入路线名称"
+                                           class="input-xlarge" value="">
+                                </p>
+                                <p>路线终点：
+                                    <input type="text" name="endPoint2" id="enPoint2" placeholder="请输入路线终点"
+                                           class="input-xlarge" value="">
+                                </p>
+
+                                <p>景点名称：
+                                    <input type="text" name="sight2" id="sight2" placeholder="请输入景点名称"
+                                           class="input-xlarge">
+                                </p>
+                                <p>景点数量：
+                                    <input type="text" name="number2" id="number2" placeholder="请输入景点数量"
+                                           class="input-xlarge">
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="center-block " style="background-color:rgba(0,0,0,0)">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                更新
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
         </div>
     </div>
-    <!-- footer -->
-    <footer>
-        <hr>
-        <p>© 2013 <a href="http://www.yiquwei.com" target="_blank">Admin</a></p>
-    </footer>
 </div>
 </body>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -240,6 +284,26 @@
         document.form.submit();
     }
 
+</script>
+
+<script>
+    function updateRoute(obj) {
+        var id = $(obj).attr("id"); //动态获取每一次循环的 id
+        var rid2 = document.getElementById("table").rows[id].cells[0].innerText;
+        var name2 = document.getElementById("table").rows[id].cells[1].innerText;
+        var endPoint2 = document.getElementById("table").rows[id].cells[2].innerText;
+        var sight2 = document.getElementById("table").rows[id].cells[3].innerText;
+        var number2 = document.getElementById("table").rows[id].cells[4].innerText;
+
+
+        $('#id2').val(rid2);
+        $('#name2').val(name2);
+        $('#endPoint2').val(endPoint2);
+        $('#sight2').val(sight2);
+        $('#number2').val(number2);
+
+
+    }
 </script>
 
 </html>

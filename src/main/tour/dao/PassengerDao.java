@@ -141,7 +141,7 @@ public class PassengerDao {
     }
 
     //更新
-    public boolean updatePassengerVidByVid(Passenger passenger){
+    public boolean updatePassengerVidByVid(Passenger passenger) {
 
         try {
             SqlSession session = genenalMapper.useSqlSession();
@@ -194,11 +194,11 @@ public class PassengerDao {
 
     }
 
-    public String queryVidByPid(String pid) {
+    public String queryVidOnPassengerByPid(String pid) {
         try {
             SqlSession session = genenalMapper.useSqlSession();
             PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
-            return gm.queryVidByPid(pid);
+            return gm.queryVidOnPassengerByPid(pid);
         } catch (Exception e) {
             System.out.println("车辆调度查询Vid错误");
             return null;
@@ -211,7 +211,7 @@ public class PassengerDao {
         try {
             SqlSession session = genenalMapper.useSqlSession();
             PassengerMapper fm = genenalMapper.getMapper(session, PassengerMapper.class);
-            return  fm.updatePassengerStateByPid (passenger);
+            return fm.updatePassengerStateByPid(passenger);
         } catch (Exception e) {
             System.out.println("更新旅客状态错误");
             return false;
@@ -220,13 +220,25 @@ public class PassengerDao {
 
     }
 
-    public Page queryPassengersByPage2(int currentPage, int pageSize) throws IOException{
+    //查询所有旅客状态的旅客信息
+    public Page queryPassengersByPage2(int currentPage, int pageSize, String state) throws IOException {
         SqlSession session = genenalMapper.useSqlSession();
         PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
         Page<Object> page = PageHelper.startPage(currentPage, pageSize);
 
-        List<Passenger> list = gm.queryPassengersOnlyWorked();
+        List<Passenger> list = gm.queryPassengersOnlyWorked(state);
 
         return page;
-   }
+    }
+
+    public boolean updatePassengerIdById(Passenger passenger) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            PassengerMapper fm = genenalMapper.getMapper(session, PassengerMapper.class);
+            return fm.updatePassengerIdById( passenger);
+        } catch (Exception e) {
+            System.out.println("分配导游：更新旅客的导游编号错误");
+            return false;
+        }
+    }
 }

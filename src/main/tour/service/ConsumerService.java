@@ -20,7 +20,6 @@ public class ConsumerService {
     }
 
 
-
     //添加花
     public boolean insertConsumer(Consumer consumer) {
         if (!consumerDao.isExit(consumer.getUsername())) {
@@ -37,10 +36,10 @@ public class ConsumerService {
         return consumerDao.queryConsumerByUsername(consumer);
     }
 
-    public boolean updateConsumerByUsername(String username) {
-        if (consumerDao.isExit(username)) {
+    public boolean updateConsumerByUsername(Consumer consumer) {
+        if (consumerDao.isExit(consumer)) {
 
-            return consumerDao.updateConsumerByUsername(username);
+            return consumerDao.updateConsumerByUsername(consumer);
 
         } else {
             System.out.println("更新失败！！");
@@ -48,7 +47,7 @@ public class ConsumerService {
         }
     }
 
-    public boolean deleteConsumerByUsername(String username) {
-        return consumerDao.deleteConsumerByUsername( username);
+    public boolean deleteConsumerByUsername(Consumer consumer) {
+        return consumerDao.deleteConsumerByUsername(consumer);
     }
 }

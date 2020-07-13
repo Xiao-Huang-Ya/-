@@ -9,7 +9,7 @@
     </select>
 
     <select id="queryGuides" resultType="Guide">
-SELECT id, name, gender, hours, salary FROM guide order by id
+SELECT id, name, gender, hours, salary ,state FROM guide order by id
     </select>
 
     <insert id="insertGuide" parameterType="Guide">
@@ -20,5 +20,24 @@ INSERT INTO guide(id, name, gender, hours, salary) VALUES (#{id}, #{name}, #{gen
     <delete id="deleteGuideById" parameterType="string">
         DELETE FROM guide WHERE id=#{id}
     </delete>
+    <!--    导游分配-->
+    <select id="queryGuideStateById" parameterType="string">
+   SELECT state FROM guide  where id=#{id}
+    </select>
+    <update id="updateGuideStateById" parameterType="Guide">
+    UPDATE public.guide
+    SET state=#{state}
+    WHERE id = #{id}
+    </update>
 
+    <update id="updateGuideById" parameterType="Guide">
+        UPDATE public.guide
+        SET name=#{name}, gender=#{gender}, hours=${hours}, salary=#{salary}
+        WHERE id =#{id}
+    </update>
+
+
+    <select id="queryGuideUnWorked" parameterType="string" resultType="Guide">
+    SELECT * FROM guide  where state=#{state}
+    </select>
 </mapper>

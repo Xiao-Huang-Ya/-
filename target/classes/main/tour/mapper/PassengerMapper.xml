@@ -20,16 +20,11 @@
     </select>
     <select id="queryPassengersOnlyWorked" resultType="Passenger" parameterType="string">
     SELECT pid, pname, pgender, iphone, rid, vid, id, state
-	FROM public.passenger where state = '已报名'
+	FROM public.passenger where state = #{state}
 
 
     </select>
 
-    <select id="queryVidByPid" resultType="Passenger" parameterType="string">
-    SELECT  vid
-	FROM public.passenger where pid = #{pid}
-
-    </select>
 
     <select id="queryPassengers" resultType="Passenger">
         SELECT pid, pname, pgender, iphone, rid, vid, id, state
@@ -91,4 +86,19 @@
         SET state=#{state}
         WHERE pid = #{pid}
     </update>
+    <!--    导游分配-->
+    <select id="queryVidOnPassengerByPid" resultType="String" parameterType="string">
+    SELECT  vid
+	FROM public.passenger where pid = #{pid}
+
+    </select>
+
+
+    <update id="updatePassengerIdById" parameterType="Passenger">
+        UPDATE public.passenger
+        SET  id=#{id}
+        WHERE pid = #{pid}
+    </update>
+
+
 </mapper>

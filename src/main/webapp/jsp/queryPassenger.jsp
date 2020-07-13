@@ -53,15 +53,15 @@
         <li><a href="/hello/queryPassengerByPageServlet2/1">车辆调度</a></li>
         <%--        <li><a href="crud.jsp">车辆删除</a></li>--%>
     </ul>
-    <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i
+    <a href="#error-menu" class="nav-header" data-toggle="collapse"><i
             class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="error-menu" class="nav nav-list collapse ">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="#">导游分配</a></li>
+        <li><a href="/hello/distrubutionGuideShowServlet/1">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
     </ul>
 
-    <a href="#tourist-menu" class="nav-header" data-toggle="collapse in"><i class="icon-exclamation-sign"></i>游客管理</a>
+    <a href="#tourist-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
     <ul id="tourist-menu" class="nav nav-list collapse in">
         <li><a href="/hello/queryPassengerByPageServlet/1">游客信息</a></li>
         <%--        <li><a href="index.jsp">游客登陆管理</a></li>--%>

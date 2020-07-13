@@ -57,7 +57,7 @@
             class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="guide-menu" class="nav nav-list collapse in">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="#">导游分配</a></li>
+        <li><a href="/hello/distrubutionGuideShowServlet/1">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
     </ul>
 
@@ -143,7 +143,7 @@
     </div>
     <div class="well">
         <!-- table -->
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped" id="table" name="table">
             <%--        <table class="table table-bordered table-hover table-condensed">--%>
             <thead>
             <tr>
@@ -152,26 +152,94 @@
                 <th>性别</th>
                 <th>工作量（/小时）</th>
                 <th>时薪</th>
+                <th>是否工作</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="list" items="${tourPage.list}">
+            <c:forEach var="list" items="${tourPage.list}" varStatus="vs">
             <tr>
                 <td>${list.id}</td>
                 <td>${list.name}</td>
                 <td>${list.gender}</td>
                 <td>${list.hours}</td>
                 <td>${list.salary}</td>
+                <td>${list.state}</td>
                 <td>
-                        <%--                    <a href="operation.html"><i class="icon-pencil"></i></a>--%>
-                            <a href="/hello/deleteGuideServlet/${list.id}" role="button" data-toggle="modal"
-                               onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>
+                    <a onclick="updateGuide(this);" id="${vs.index+1}" data-toggle="modal"
+                       data-target="#updateGuideModal"><i
+                            class="icon-pencil"></i></a>
+                    <a href="/hello/deleteGuideServlet/${list.id}" role="button" data-toggle="modal"
+                       onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>
 
                 </td>
             </tr>
             </c:forEach>
 
         </table>
+
+        <%--更新导游模块--%>
+        <div class="well">
+            <%--        更新框容器--%>
+            <div class="center-block" style="width:350px;background-color:rgba(0,0,0,0)">
+                <%--                <button class="btn btn-primary" data-toggle="modal" data-target="#updateGuideModal">--%>
+                <%--                    添加导游--%>
+                <%--                </button>--%>
+                <!-- 模态框（Modal） -->
+                <div class="modal fade" id="updateGuideModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myAddGuideModal"
+                     aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel3">
+                            更新导游
+                        </h4>
+                    </div>
+                    <div class="center-block offset1" style="width:400px;">
+                        <form id="updateForm" action="/hello/updateGuideByIdServlet" method="post">
+                            <div class="row-fluid" style="text-align: left;">
+                                <div class="pull-left span6 unstyled">
+                                    <p>导游编号：
+                                        <input type="text" id="id2" name="id2" placeholder="请输入导游编号"
+                                               class="input-xlarge" value="" readonly="readonly">
+                                    </p>
+                                    <p>姓名：
+                                        <input type="text" name="name2" id="name2" placeholder="请输入姓名"
+                                               class="input-xlarge" value="">
+                                    </p>
+                                    <p>性别：
+
+                                        <%--            <input type="text" name="gender" id="gender" placeholder="请输入性别" class="input-xlarge">--%>
+                                        <input id="gender1" type="radio" name="gender2" value="男" class="input-xlarge">男
+                                        <input id="gender2" type="radio" name="gender2" value="女" class="input-xlarge">女
+
+
+                                    </p>
+                                    <p>工作量（/小时）：
+                                        <input type="text" name="hours2" id="hours2" placeholder="请输入工作量（/小时）"
+                                               class="input-xlarge">
+                                    </p>
+                                    <p>时薪：
+                                        <input type="text" name="salary2" id="salary2" placeholder="请输入时薪"
+                                               class="input-xlarge">
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="center-block " style="background-color:rgba(0,0,0,0)">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    更新
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- 分页显示模块 -->
         <div class="pagination">
             <ul>
@@ -237,14 +305,42 @@
 <script src="/js/jquery-1.8.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 
+<script>
+    function updateGuide(obj) {
+        var id = $(obj).attr("id"); //动态获取每一次循环的 id
+        var id2 = document.getElementById("table").rows[id].cells[0].innerText;
+        var name2 = document.getElementById("table").rows[id].cells[1].innerText;
+        var gender2 = document.getElementById("table").rows[id].cells[2].innerText;
+        var hours2 = document.getElementById("table").rows[id].cells[3].innerText;
+        var salary2 = document.getElementById("table").rows[id].cells[4].innerText;
 
+
+        $('#id2').val(id2);
+        $('#name2').val(name2);
+        if (gender2 == '男') {
+            document.getElementById('gender1').checked = true;
+        } else {
+            document.getElementById('gender2').checked = true;
+        }
+        $('#hours2').val(hours2);
+        $('#salary2').val(salary2);
+
+    }
+</script>
 <script>
     <c:if test="${flag == 'true'}">
-    alert("操作成功");
+    alert("操作成功！");
+    </c:if>
+
+    <c:if test="${updateGuideFlag == 'false'}">
+    alert("更新失败！");
+    </c:if>
+    <c:if test="${updateGuideFlag == 'true'}">
+    alert("更新成功！");
     </c:if>
 
     <c:if test="${flag == 'false'}">
-    alert("操作失败");
+    alert("操作失败！");
     </c:if>
 
 </script>

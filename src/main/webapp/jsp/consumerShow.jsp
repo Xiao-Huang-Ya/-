@@ -13,29 +13,33 @@
 </head>
 <body>
 <!-- 上 -->
+
 <div class="navbar">
     <div class="navbar-inner">
         <div class="container-fluid">
             <ul class="nav pull-right">
                 <li id="fat-menu" class="dropdown">
-                    <c:set value="${username}" var="name" scope="application"/>
+                    <c:set scope="application" var="username" value="${username}"/>
+                    <c:set scope="application" var="password" value="${password}"/>
+                    <%--                    <c:set value="${username}" var="name" scope="application"/>--%>
                     <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-user icon-white"></i>${applicationScope.get("username")}
                         <i class="icon-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
+                        <li><a tabindex="-1" data-toggle="modal"
+                               data-target="#updateConsumerModal">修改密码</a></li>
                         <li class="divider"></li>
                         <li><a tabindex="-1" href="/jsp/login.jsp" onclick="return confirm('您确定退出吗？');">安全退出</a></li>
                     </ul>
                 </li>
             </ul>
             <a class="brand" href="/hello/consumerLoginServlet"><span class="first">旅游主界面</span></a>
-<%--            <ul class="nav">--%>
-<%--                <li class="active"><a href="#">首页</a></li>--%>
-<%--                <li><a href="#">营管理运</a></li>--%>
-<%--                <li><a href="#">数据分析</a></li>--%>
-<%--            </ul>--%>
+            <%--            <ul class="nav">--%>
+            <%--                <li class="active"><a href="#">首页</a></li>--%>
+            <%--                <li><a href="#">营管理运</a></li>--%>
+            <%--                <li><a href="#">数据分析</a></li>--%>
+            <%--            </ul>--%>
         </div>
     </div>
 </div>
@@ -43,9 +47,10 @@
 <div class="sidebar-nav">
     <a href="#route" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>旅游景点</a>
     <ul id="route" class="nav nav-list collapse in ">
-        <c:set scope="application" var="username" value="${username}}" />
-        <c:set scope="application" var="password" value="${password}" />
-        <li><a href="/hello/consumerQueryRouteServlet/${applicationScope.get("username")}/${applicationScope.get("password")}">旅游路线查询</a></li>
+
+        <li>
+            <a href="/hello/consumerQueryRouteServlet/${applicationScope.get("username")}/${applicationScope.get("password")}">旅游路线查询</a>
+        </li>
 
         <li><a href="/hello/querySightByPageServlet2/1">旅游景点查询</a></li>
 
@@ -54,85 +59,53 @@
 </div>
 <!-- 右 -->
 <div class="content">
-    <!-- header -->
-<%--    <div class="header">--%>
-<%--        <h1 class="page-title">新用户PV</h1>--%>
-<%--    </div>--%>
-<%--    <div class="well">--%>
-<%--        <!-- table -->--%>
-<%--        <table class="table table-hover table-striped">--%>
-<%--            &lt;%&ndash;        <table class="table table-bordered table-hover table-condensed">&ndash;%&gt;--%>
-<%--            <thead>--%>
-<%--            <tr>--%>
-<%--                <th>路线编号</th>--%>
-<%--                <th>路线名称</th>--%>
-<%--                <th>路线终点</th>--%>
-<%--                <th>路线景点</th>--%>
-<%--                <th>景点数量</th>--%>
-<%--            </tr>--%>
-<%--            </thead>--%>
-<%--            <tbody>--%>
-<%--            <c:forEach var="list" items="${tourPage.list}">--%>
-<%--            <tr>--%>
-<%--                <td>${list.rid}</td>--%>
-<%--                <td>${list.name}</td>--%>
-<%--                <td>${list.endPoint}</td>--%>
-<%--                <td>${list.sight}</td>--%>
-<%--                <td>${list.number}</td>--%>
-<%--                <td>--%>
-<%--                        &lt;%&ndash;                    <a href="/hello/updateReturnRouteServlet/${list.rid}"><i class="icon-pencil"></i></a>&ndash;%&gt;--%>
+    <%--更新用户密码--%>
 
-<%--                        &lt;%&ndash;                    <a href="/hello/deleteRouteByRidServlet/${list.rid}" role="button" data-toggle="modal"&ndash;%&gt;--%>
-<%--                        &lt;%&ndash;                       onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>&ndash;%&gt;--%>
-<%--                        &lt;%&ndash;                    ${username}&ndash;%&gt;--%>
-<%--&lt;%&ndash;                   <c:set value="${username}" var="name" scope="application"/>&ndash;%&gt;--%>
-<%--                    <a type="submit" href="/hello/signUpServlet/${name}/${list.rid}" onclick="return confirm('您确定报名吗？');"--%>
-<%--                       class="form-control">报名</a>--%>
-<%--                    <a type="button" href="/hello/signDownServlet/${name}/${list.rid}" onclick="return confirm('您确定退订吗？');"--%>
-<%--                       class="form-control">退订</a>--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-<%--            </c:forEach>--%>
+    <div class="well">
+        <%--        更新框容器--%>
+        <div class="center-block" style="width:350px;background-color:rgba(0,0,0,0)">
 
-<%--        </table>--%>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="updateConsumerModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myAddGuideModal"
+                 aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel3">
+                        修改密码
+                    </h4>
+                </div>
+                <div class="center-block offset1" style="width:400px;">
+                    <form id="updateForm" action="/hello/updateConsumerServlet" method="post">
+                        <div class="row-fluid" style="text-align: left;">
+                            <div class="pull-left span6 unstyled">
+                                <p>用户名：
+                                    <input type="text" id="username" name="username"
+                                           class="input-medium" value="${username}" readonly="readonly">
+                                </p>
+                                <p>密码：
+                                    <input type="text" name="password" id="password" placeholder="请输入密码"
+                                           class="input-medium" value="">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="center-block " style="background-color:rgba(0,0,0,0)">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                修改
+                            </button>
+                        </div>
+                    </form>
 
-<%--        <!-- 分页显示模块 -->--%>
-<%--        <div class="pagination">--%>
-<%--            <ul>--%>
-
-<%--                <c:choose>--%>
-<%--                    <c:when test="${tourPage.totalCount <= tourPage.pageSize}">--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/1">首页</a></li>--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/${tourPage.totalPage}">尾页</a></li>--%>
-<%--                    </c:when>--%>
-<%--                    <c:when test="${tourPage.currentPage == 1}">--%>
-<%--                        <li class="disabled"><a>首页</a></li>--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/${tourPage.currentPage+1}">下页</a></li>--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/${tourPage.totalPage}">尾页</a></li>--%>
-
-<%--                    </c:when>--%>
-<%--                    <c:when test="${tourPage.currentPage == tourPage.totalPage}">--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/1">首页</a>--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/${tourPage.currentPage-1}">上页</a></li>--%>
-<%--                        <li class="disabled"><a>尾页</a></li>--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/1">首页</a></li>--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/${tourPage.currentPage-1}">上页</a></li>--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/${tourPage.currentPage+1}">下页</a></li>--%>
-<%--                        <li><a href="/hello/queryRouteByPageServlet2/${tourPage.totalPage}">尾页</a></li>--%>
-
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
-
-<%--            </ul>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--    <footer>--%>
-<%--        <hr>--%>
-<%--        <p>© 2013 <a href="http://www.yiquwei.com" target="_blank">Admin</a></p>--%>
-<%--    </footer>--%>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 </body>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>

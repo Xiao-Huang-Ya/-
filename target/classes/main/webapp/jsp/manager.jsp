@@ -65,7 +65,7 @@
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
         <%--        <li><a href="/jsp/addGuide.jsp">导游添加管理</a></li>--%>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
-        <li><a href="#">导游分配管理</a></li>
+        <li><a href="/hello/distrubutionGuideShowServlet/1">导游分配管理</a></li>
         --%>
     </ul>
 

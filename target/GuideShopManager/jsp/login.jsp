@@ -180,9 +180,9 @@
         <c:when test="${judge=='loginSuccess'}">
         alert("登陆成功！！!");
         </c:when>
-<%--        <c:when test="${judge=='loginError'}">--%>
-<%--        alert("管理员登陆失败！！!");--%>
-<%--        </c:when>--%>
+        <c:when test="${updateConsumer=='true'}">
+        alert("更新密码成功，请重新登录！！！");
+        </c:when>
 
         <c:when test="${judge=='needRegister'}">
         alert("登录失败，请您注册！！！");

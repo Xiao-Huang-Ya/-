@@ -14,12 +14,22 @@ public interface GuideMapper {
 
     //    通过id查询花
     Guide queryGuideById(String id);
+
     //   查询全部花
     List<Guide> queryGuides();
+
     //    添加花
     boolean insertGuide(Guide guide);
 
     //    删除花
     boolean deleteGuideById(String id);
+
+    String queryGuideStateById(String id);
+
+    boolean updateGuideStateById(Guide guide);
+
+    List<Guide> queryGuideUnWorked(String state);
+
+    boolean updateGuideById(Guide guide);
 
 }

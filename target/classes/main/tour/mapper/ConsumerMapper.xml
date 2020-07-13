@@ -15,13 +15,13 @@ INSERT INTO public.consumer(
 	VALUES (#{username}, #{password})
     </insert>
 
-    <update id="updateConsumerByUsername" parameterType="string">
+    <update id="updateConsumerByUsername" parameterType="Consumer">
         UPDATE public.consumer
-        SET username=#{username}, password=#{password}
+        SET  password=#{password}
         WHERE username = #{username}
     </update>
 
-    <delete id="deleteConsumerByUsername" parameterType="string">
+    <delete id="deleteConsumerByUsername" parameterType="Consumer">
         DELETE FROM public.consumer
         WHERE username = #{username}
     </delete>

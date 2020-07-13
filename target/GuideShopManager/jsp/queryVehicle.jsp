@@ -57,7 +57,7 @@
             class="icon-exclamation-sign"></i>导游管理</a>
     <ul id="error-menu" class="nav nav-list collapse ">
         <li><a href="/hello/queryGuideByPageServlet/1">导游信息查询</a></li>
-        <li><a href="#">导游分配</a></li>
+        <li><a href="/hello/distrubutionGuideShowServlet/1">导游分配</a></li>
         <li><a href="/hello/returnMainPage">导游信息统计</a></li>
     </ul>
 
@@ -138,7 +138,7 @@
                 <th>路线编号</th>
                 <th>是否工作</th>
                 <th>分配导游</th>
-                <th>分配游客</th>
+                <th>分配游客人数</th>
             </tr>
             </thead>
             <tbody>
@@ -148,7 +148,7 @@
                 <td>${list.rid}</td>
                 <td>${list.state}</td>
                 <td>${list.id}</td>
-                <td>${list.pid}</td>
+                <td>${list.pnumber}</td>
 
                 <td>
 <%--                    <a href="/hello/"><i class="icon-pencil"></i></a>--%>

@@ -24,7 +24,9 @@
                         <i class="icon-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
+
+                        <li><a tabindex="-1" data-toggle="modal"
+                               data-target="#updateConsumerModal">修改密码</a></li>
                         <li class="divider"></li>
                         <li><a tabindex="-1" href="/jsp/login.jsp" onclick="return confirm('您确定退出吗？');">安全退出</a></li>
                     </ul>
@@ -39,12 +41,13 @@
 <div class="sidebar-nav">
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>旅游景点</a>
     <ul id="dashboard-menu" class="nav nav-list collapse in">
-                <li><a href="/hello/consumerQueryRouteServlet/${applicationScope.get("username")}/${applicationScope.get("password")}">旅游路线管理</a></li>
+        <li>
+            <a href="/hello/consumerQueryRouteServlet/${applicationScope.get("username")}/${applicationScope.get("password")}">旅游路线查询</a>
+        </li>
         <li><a href="/hello/querySightByPageServlet2/1">旅游景点查询</a></li>
 
     </ul>
 
-    <a href="http://yiquwei.com/" target="_blank" class="nav-header"><i class="icon-exclamation-sign"></i>关于</a>
 </div>
 <!-- 右 -->
 <div class="content">
@@ -104,7 +107,51 @@
             </ul>
         </div>
     </div>
+    <%--更新用户密码--%>
 
+    <div class="well">
+        <%--        更新框容器--%>
+        <div class="center-block" style="width:350px;background-color:rgba(0,0,0,0)">
+
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="updateConsumerModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myAddGuideModal"
+                 aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel3">
+                        修改密码
+                    </h4>
+                </div>
+                <div class="center-block offset1" style="width:400px;height: 300px">
+                    <form id="updateForm" action="/hello/updateConsumerServlet" method="post">
+                        <div class="row-fluid" style="text-align: left;">
+                            <div class="pull-left span6 unstyled">
+                                <p>用户名：
+                                    <input type="text" id="username" name="username"
+                                           class="input-medium " value="${username}" readonly="readonly">
+                                </p>
+                                <p>密码：
+                                    <input type="text" name="password" id="password" placeholder="请输入密码"
+                                           class="input-medium" value="">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="center-block " style="background-color:rgba(0,0,0,0)">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                修改
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->

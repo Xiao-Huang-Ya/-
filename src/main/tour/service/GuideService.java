@@ -61,4 +61,25 @@ public class GuideService {
         return guideDao.queryGuides();
     }
 
+    //分配导游
+    public List<Guide> queryGuideUnWorked(String state) {
+        return guideDao.queryGuideUnWorked(state);
+    }
+
+    public boolean  updateGuideState(Guide guide) {
+        if (guideDao.isExit(guide.getId())) {
+            return guideDao.updateGuideStateById(guide);
+        } else {
+            System.out.println("更新的游客不存在");
+            return false;
+        }
+    }
+    public boolean  updateGuideById(Guide guide) {
+        if (guideDao.isExit(guide.getId())) {
+            return guideDao.updateGuideById(guide);
+        } else {
+            System.out.println("更新的游客不存在");
+            return false;
+        }
+    }
 }

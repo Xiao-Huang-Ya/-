@@ -60,12 +60,12 @@ public class ConsumerDao {
         return result;
     }
     //更新
-    public boolean updateConsumerByUsername(String username) {
+    public boolean updateConsumerByUsername(Consumer consumer) {
         boolean result = false;
         try {
             SqlSession session = genenalMapper.useSqlSession();
             ConsumerMapper fm = genenalMapper.getMapper(session, ConsumerMapper.class);
-            result = fm.updateConsumerByUsername(username);
+            result = fm.updateConsumerByUsername(consumer);
         } catch (Exception e) {
             System.out.println("更新错误");
             return false;
@@ -75,11 +75,11 @@ public class ConsumerDao {
     }
 
 
-    public boolean deleteConsumerByUsername(String username) {
+    public boolean deleteConsumerByUsername(Consumer consumer) {
         try {
             SqlSession session = genenalMapper.useSqlSession();
             ConsumerMapper fm = genenalMapper.getMapper(session, ConsumerMapper.class);
-           return fm.deleteConsumerByUsername(username);
+           return fm.deleteConsumerByUsername(consumer);
         } catch (Exception e) {
             System.out.println("更新错误");
             return false;

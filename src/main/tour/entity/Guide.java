@@ -7,6 +7,7 @@ public class Guide {
     private String gender;//导游性别
     private int hours;//日工作量
     private double salary;//时薪
+    private String state;//导游是否工作
 
     public Guide() {
     }
@@ -24,6 +25,19 @@ public class Guide {
         this.name = name;
         this.hours = hours;
         this.salary = salary;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Guide(String id, String state) {
+        this.id = id ;
+        this.state = state;
     }
 
     public String getId() {

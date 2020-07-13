@@ -14,16 +14,18 @@ public interface PassengerMapper {
 
     Passenger queryPassengerByPid(String pid);
 
+    String queryPassengerStateByUsername(String username);
+
+    List<Passenger> queryPassengers();
+
+    List<Passenger> queryPassengersOnlyWorked(String state);
+
+    public String queryRidByPid(String pid);
+
     int judgeIsExit(String pid);
 
     int judgeIsExitByUsername(String username);
 
-    String queryPassengerStateByUsername(String username);
-
-    List<Passenger> queryPassengers();
-    List<Passenger> queryPassengersOnlyWorked();
-
-    public String queryRidByPid(String pid);
 
     boolean insertPassenger(Passenger passenger);
 
@@ -37,7 +39,9 @@ public interface PassengerMapper {
 
     boolean updatePassengerVidByVid(Passenger passenger);
 
-    String   queryVidByPid(String pid);
+    String queryVidOnPassengerByPid(String pid);
 
-  boolean updatePassengerStateByPid(Passenger passenger);
+    boolean updatePassengerStateByPid(Passenger passenger);
+
+    boolean updatePassengerIdById(Passenger passenger);
 }

@@ -5,12 +5,12 @@
 <mapper namespace="main.tour.mapper.VehicleMapper">
 
     <select id="queryVehicleByVid" resultType="Vehicle">
-    SELECT vid, rid, state, id, pid
+    SELECT vid, rid, state, id, pnumber
 	FROM vehicle where vid = #{vid}
     </select>
 
     <select id="queryVehicles" resultType="Vehicle">
-     SELECT vid, rid, state, id, pid
+     SELECT vid, rid, state, id, pnumber
 	FROM vehicle order  by vid
     </select>
 
@@ -20,7 +20,7 @@
     </select>
 
     <select id="queryVehicleByVehicleState" resultType="Vehicle">
-  SELECT vid, rid, state, pid, id
+  SELECT vid, rid, state, pnumber, id
 	FROM public.vehicle where state='否'
     </select>
 
@@ -37,7 +37,7 @@
 
     <update id="updateVehicleByVid" parameterType="Vehicle">
         UPDATE vehicle
-        SET vid=#{vid}, rid=#{rid}, state=#{state}, id=#{id}, pid=#{pid}
+        SET vid=#{vid}, rid=#{rid}, state=#{state}, id=#{id}, pnumber=#{pnumber}
         WHERE vid = #{vid}
     </update>
 
@@ -46,5 +46,25 @@
         SET  state = #{state}
         WHERE  vid = #{vid}
     </update>
+    <!--    导游分配-->
+
+    <select id="queryIdOnVehicleByVid" resultType="string" parameterType="string">
+      SELECT   id
+	FROM public.vehicle where  vid = #{vid}
+    </select>
+    <update id="updateVehicleRidByVid" parameterType="Vehicle">
+   UPDATE vehicle
+        SET  rid = #{rid}
+        WHERE  vid = #{vid}
+    </update>
+    <update id="updateVehiclePnumber" parameterType="Vehicle">
+   UPDATE vehicle
+        SET  pumber=#{pnumber}
+        WHERE  vid = #{vid}
+    </update>
+<!--    调用存储函数-->
+    <select id="functionToUpdatePnumberOnVehicle" parameterType="string" statementType="CALLABLE" useCache="false">
+        select updatepnumber(#{vid})
+    </select>
 
 </mapper>

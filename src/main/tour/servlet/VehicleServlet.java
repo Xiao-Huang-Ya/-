@@ -80,7 +80,7 @@ public class VehicleServlet {
 
         tourPage2.setPageSize(pageSize);
         //        总数居数量,注意数据
-        Page page = passengerService.queryPassengersByPage2(currentPage2, 5);
+        Page page = passengerService.queryPassengersByPage2(currentPage2, 5, "已报名");
         int totalCount = (int) page.getTotal();
         tourPage2.setTotalCount(totalCount);
         //        总页数
@@ -103,7 +103,7 @@ public class VehicleServlet {
         currentPage = currentPage == 0 ? 1 : currentPage;
         tourPage.setCurrentPage(currentPage);
         //        总数居数量,注意数据
-        Page page = passengerService.queryPassengersByPage2(currentPage, pageSize);
+        Page page = passengerService.queryPassengersByPage2(currentPage, pageSize, "已报名");
 
         int totalCount = (int) page.getTotal();
         tourPage.setTotalCount(totalCount); //数据总数
@@ -137,7 +137,7 @@ public class VehicleServlet {
         List<Vehicle> Vehicles = page.getResult(); //数据
         tourPage.setList(Vehicles);
         map.put("tourPage", tourPage);
-        System.out.println(tourPage.getTotalCount());
+
         return "queryVehicle";
     }
 
@@ -189,11 +189,90 @@ public class VehicleServlet {
     public String distributionServlet(@PathVariable("pid") String pid, Map<String, Object> map, @ModelAttribute("tourPage2") TourPage tourPage) throws IOException {
         String rid = passengerService.queryRidByPid(pid);
         Passenger p = new Passenger();
+        Vehicle vehicle = new Vehicle();
         String result = "";
         if (rid != null && rid != "") {
             int vehicleNumber = routeService.queryVehicleNumberByRid(rid);
             if (vehicleNumber > 0) {
-                String vid =vehicleService.queryVidByRid(rid);
+                String vid = vehicleService.queryVidByRid(rid);
+                boolean flag = passengerService.updatePassengerVidByVid(new Passenger(pid, vid));
+                boolean vehicleStateFlag = vehicleService.updateVehicleStateByPid(new Vehicle(vid, "是"));
+                if (flag && vehicleStateFlag) {
+                    result = "distributionSuccess";//分配成功
+                    p.setPid(pid);
+                    p.setState("待分配");//已分配车辆，还未分配导游
+                    passengerService.updatePassengerStateByPid(p);
+                    map.put("result", result);
+                    tourPage = testModelAttribute2("1", map);
+                    map.put("tourPage", tourPage);
+                    return "distributionVehicle";
+                } else {
+                    result = "distributionError";//分配错误
+                    map.put("result", result);
+                    tourPage = testModelAttribute2("1", map);
+                    map.put("tourPage", tourPage);
+                    return "distributionVehicle";
+                }
+            } else {
+                //查询车辆状态未在工作中的状态
+                List<Vehicle> vehicles = vehicleService.queryVehicleByVehicleState();
+                if (vehicles != null && vehicles.size() > 0) {
+                    String vid2 = vehicles.get(0).getVid();
+//                    String rid2 = vehicles.get(0).getRid();
+                    int vehicleNumber2 = routeService.queryVehicleNumberByRid(rid) + 1;
+                    boolean updateVehicleNumber = routeService.updateVehicleNumber(new Route(rid, vehicleNumber2));
+                    boolean flag2 = passengerService.updatePassengerVidByVid(new Passenger(pid, vid2));
+                    boolean vehicleStateFlag2 = vehicleService.updateVehicleStateByPid(new Vehicle(vid2, "是"));
+
+                    if (updateVehicleNumber && flag2 && vehicleStateFlag2) {
+                        result = "distributionSuccess";//分配成功
+                        p.setPid(pid);
+                        p.setState("待分配");//已分配车辆，还未分配导游
+                        passengerService.updatePassengerStateByPid(p);
+                        map.put("result", result);
+                        tourPage = testModelAttribute2("1", map);
+                        map.put("tourPage", tourPage);
+                        //更新车辆表中，该车辆的rid
+                        vehicle.setRid(rid);
+                        vehicle.setVid(vid2);
+                        boolean updateVehicleRidByVid = vehicleService.updateVehicleRidByVid(vehicle);
+                        //更新该车辆的人数
+                        vehicleService.functionToUpdatePnumberOnVehicle(vid2);
+                        return "distributionVehicle";
+                    } else {
+                        result = "distributionError";//分配错误
+                        map.put("result", result);
+                        tourPage = testModelAttribute2("1", map);
+                        map.put("tourPage", tourPage);
+                        return "distributionVehicle";
+                    }
+
+                } else {
+                    result = "distributionError";//分配错误
+                    map.put("result", result);
+                    tourPage = testModelAttribute2("1", map);
+                    map.put("tourPage", tourPage);
+                    return "distributionVehicle";
+                }
+            }
+        }
+        result = "distributionError";//分配错误
+        map.put("result", result);
+        tourPage = testModelAttribute2("1", map);
+        map.put("tourPage", tourPage);
+        return "distributionVehicle";
+    }
+
+    //单独查询调度
+    @RequestMapping(value = "/distributionBySingleSearchServlet")
+    public String distributionBySingleSearchServlet(@RequestParam("pid") String pid, Map<String, Object> map, @ModelAttribute("tourPage2") TourPage tourPage) throws IOException {
+        String rid = passengerService.queryRidByPid(pid);
+        Passenger p = new Passenger();
+        String result = "";
+        if (rid != null && rid != "") {
+            int vehicleNumber = routeService.queryVehicleNumberByRid(rid);
+            if (vehicleNumber > 0) {
+                String vid = vehicleService.queryVidByRid(rid);
                 boolean flag = passengerService.updatePassengerVidByVid(new Passenger(pid, vid));
                 boolean vehicleStateFlag = vehicleService.updateVehicleStateByPid(new Vehicle(vid, "是"));
                 if (flag && vehicleStateFlag) {

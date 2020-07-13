@@ -149,4 +149,41 @@ public class VehicleDao {
             return  null;
         }
     }
+//    导游分配
+
+
+    //通过主键查询
+    public String queryIdOnVehicleByVid(String vid){
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            VehicleMapper gm = genenalMapper.getMapper(session, VehicleMapper.class);
+            return gm.queryIdOnVehicleByVid(vid);
+        } catch (Exception e) {
+            System.out.println("导游分配：id获取错误");
+            return null;
+        }
+    }
+
+    public boolean updateVehicleRidByVid(Vehicle vehicle) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            VehicleMapper fm = genenalMapper.getMapper(session, VehicleMapper.class);
+            boolean flag = fm.updateVehicleRidByVid(vehicle);
+            return  flag;
+        } catch (Exception e) {
+            System.out.println("车辆调度：更新车辆状态错误");
+            return false;
+        }
+    }
+    public boolean functionToUpdatePnumberOnVehicle(String vid){
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            VehicleMapper fm = genenalMapper.getMapper(session, VehicleMapper.class);
+            boolean flag = fm.functionToUpdatePnumberOnVehicle(vid);
+            return  flag;
+        } catch (Exception e) {
+            System.out.println("调用存储函数错误");
+            return false;
+        }
+}
 }

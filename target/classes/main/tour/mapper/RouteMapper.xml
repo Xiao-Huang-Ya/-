@@ -42,7 +42,8 @@
 
     </select>
     <select id="queryRoutes" resultType="Route">
-SELECT rid, name, endpoint, sight, "number" FROM route  order by rid
+SELECT rid, name, endpoint, sight, "number", "vehicleNumber"
+	FROM public.route   order by rid
     </select>
 
     <insert id="insertRoute" parameterType="Route">
@@ -65,7 +66,7 @@ INSERT INTO route(
 
     <update id="updateVehicleNumber" parameterType="Route">
         UPDATE public.route
-        SET  "vehicleNumber"=#{vehicleNumber}
+        SET  vehicleNumber=#{vehicleNumber}
         WHERE rid = #{rid}
     </update>
 </mapper>

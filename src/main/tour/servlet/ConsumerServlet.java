@@ -58,13 +58,6 @@ public class ConsumerServlet {
             map.put("username", name);
             map.put("password", pwd);
 
-//            Page page = routeService.queryRoutesByPage2(1, 5);
-//            TourPage tourPage = new TourPage();
-//            tourPage.setList(page.getResult());
-//            tourPage.setCurrentPage(1);
-//            tourPage.setTotalCount((int) page.getTotal());
-//            tourPage.setPageSize(5);
-//            map.put("tourPage", tourPage);
             return "consumerShow";
         }
         return "login";
@@ -73,19 +66,6 @@ public class ConsumerServlet {
     //路线查询
     @RequestMapping("/consumerQueryRouteServlet/{username}/{password}")
     public String consumerQueryRouteServlet(@PathVariable(value = "username") String name, @PathVariable("password") String pwd, Map<String, Object> map) throws IOException {
-//        Consumer consumer = null;
-//
-//        String judge = "";
-//        boolean flag = false;
-//        consumer = consumerService.queryConsumerByUsername(new Consumer(name, pwd));
-//        if (consumer == null) {
-//            judge = "needRegister";
-//            map.put("judge", judge);
-//        } else {
-//
-//            judge = "loginSuccess";
-//            map.put("judge", judge);
-//            map.put("username", name);
 
         Page page = routeService.queryRoutesByPage2(1, 5);
         TourPage tourPage = new TourPage();
@@ -121,7 +101,7 @@ public class ConsumerServlet {
             flag = passengerService.insertPassenger2(passenger);
         } else {
             judge = "registerError";
-            consumerService.deleteConsumerByUsername(username);
+            consumerService.deleteConsumerByUsername(new Consumer(username, password));
         }
         if (flag == true) {
             judge = "registerSuccess";
@@ -227,4 +207,18 @@ public class ConsumerServlet {
         return "consumer";
     }
 
+    @RequestMapping("/updateConsumerServlet")
+    public String updateConsumer(@RequestParam("username") String username, @RequestParam("password") String password, @ModelAttribute("tourPage") TourPage tourPage, Map<String, Object> map) throws IOException {
+        boolean flag = consumerService.updateConsumerByUsername(new Consumer(username, password));
+        if (flag) {
+            map.put("updateConsumer", true);
+            return "login";
+        } else {
+            map.put("updateConsumer", false);
+            tourPage = testModelAttribute("1", map);
+            map.put("tourPage", tourPage);
+            return "consumer";
+        }
+
+    }
 }
