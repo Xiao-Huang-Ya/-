@@ -6,9 +6,19 @@ public class Vehicle {
     private String state;//车辆状态（是否分配）
     private String id;//导游编号
     private String pnumber;//旅客身份证
+    private double vehiclecost;//车辆日费用
     public Vehicle(){}
 
-    public Vehicle(String vid, String rid, String state, String id ,String pnumber) {
+    public Vehicle(String vid, String rid, String state, String id, String pnumber, double vehiclecost) {
+        this.vid = vid;
+        this.rid = rid;
+        this.state = state;
+        this.id = id;
+        this.pnumber = pnumber;
+        this.vehiclecost = vehiclecost;
+    }
+
+    public Vehicle(String vid, String rid, String state, String id , String pnumber) {
         this.vid = vid;
         this.rid = rid;
         this.state = state;
@@ -19,6 +29,20 @@ public class Vehicle {
     public Vehicle( String vid,String state) {
         this.vid =vid;
         this.state =state;
+    }
+
+    public Vehicle(String vid, String state, double vehiclecost) {
+        this.vid = vid;
+        this.state = state;
+        this.vehiclecost = vehiclecost;
+    }
+
+    public double getVehiclecost() {
+        return vehiclecost;
+    }
+
+    public void setVehiclecost(double vehiclecost) {
+        this.vehiclecost = vehiclecost;
     }
 
     public String getVid() {

@@ -144,10 +144,11 @@ public class VehicleServlet {
     @RequestMapping(value = "/addVehicleServlet")
     public String addVehicleServlet(@RequestParam(value = "vid", required = false) String vid,
                                     @RequestParam(value = "state", required = false) String state,
+                                    @RequestParam(value = "vehiclecost", required = false) double vehiclecost,
                                     Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         boolean flag = false;
         try {
-            Vehicle vehicle = new Vehicle(vid, state);
+            Vehicle vehicle = new Vehicle(vid, state,vehiclecost);
             flag = vehicleService.insertVehicle(vehicle);
             map.put("flag", flag);
             tourPage = testModelAttribute("1", map);
@@ -191,40 +192,14 @@ public class VehicleServlet {
         Passenger p = new Passenger();
         Vehicle vehicle = new Vehicle();
         String result = "";
-        if (rid != null && rid != "") {
-            int vehicleNumber = routeService.queryVehicleNumberByRid(rid);
-            if (vehicleNumber > 0) {
-                String vid = vehicleService.queryVidByRid(rid);
-                boolean flag = passengerService.updatePassengerVidByVid(new Passenger(pid, vid));
-                boolean vehicleStateFlag = vehicleService.updateVehicleStateByPid(new Vehicle(vid, "是"));
-                if (flag && vehicleStateFlag) {
-                    result = "distributionSuccess";//分配成功
-                    p.setPid(pid);
-                    p.setState("待分配");//已分配车辆，还未分配导游
-                    passengerService.updatePassengerStateByPid(p);
-                    map.put("result", result);
-                    tourPage = testModelAttribute2("1", map);
-                    map.put("tourPage", tourPage);
-                    return "distributionVehicle";
-                } else {
-                    result = "distributionError";//分配错误
-                    map.put("result", result);
-                    tourPage = testModelAttribute2("1", map);
-                    map.put("tourPage", tourPage);
-                    return "distributionVehicle";
-                }
-            } else {
-                //查询车辆状态未在工作中的状态
-                List<Vehicle> vehicles = vehicleService.queryVehicleByVehicleState();
-                if (vehicles != null && vehicles.size() > 0) {
-                    String vid2 = vehicles.get(0).getVid();
-//                    String rid2 = vehicles.get(0).getRid();
-                    int vehicleNumber2 = routeService.queryVehicleNumberByRid(rid) + 1;
-                    boolean updateVehicleNumber = routeService.updateVehicleNumber(new Route(rid, vehicleNumber2));
-                    boolean flag2 = passengerService.updatePassengerVidByVid(new Passenger(pid, vid2));
-                    boolean vehicleStateFlag2 = vehicleService.updateVehicleStateByPid(new Vehicle(vid2, "是"));
-
-                    if (updateVehicleNumber && flag2 && vehicleStateFlag2) {
+        try {
+            if (rid != null && rid != "") {
+                int vehicleNumber = routeService.queryVehicleNumberByRid(rid);
+                if (vehicleNumber > 0) {
+                    String vid = vehicleService.queryVidByRid(rid);
+                    boolean flag = passengerService.updatePassengerVidByVid(new Passenger(pid, vid));
+                    boolean vehicleStateFlag = vehicleService.updateVehicleStateByPid(new Vehicle(vid, "是"));
+                    if (flag && vehicleStateFlag) {
                         result = "distributionSuccess";//分配成功
                         p.setPid(pid);
                         p.setState("待分配");//已分配车辆，还未分配导游
@@ -232,12 +207,6 @@ public class VehicleServlet {
                         map.put("result", result);
                         tourPage = testModelAttribute2("1", map);
                         map.put("tourPage", tourPage);
-                        //更新车辆表中，该车辆的rid
-                        vehicle.setRid(rid);
-                        vehicle.setVid(vid2);
-                        boolean updateVehicleRidByVid = vehicleService.updateVehicleRidByVid(vehicle);
-                        //更新该车辆的人数
-                        vehicleService.functionToUpdatePnumberOnVehicle(vid2);
                         return "distributionVehicle";
                     } else {
                         result = "distributionError";//分配错误
@@ -246,21 +215,69 @@ public class VehicleServlet {
                         map.put("tourPage", tourPage);
                         return "distributionVehicle";
                     }
-
                 } else {
-                    result = "distributionError";//分配错误
-                    map.put("result", result);
-                    tourPage = testModelAttribute2("1", map);
-                    map.put("tourPage", tourPage);
-                    return "distributionVehicle";
+                    //查询车辆状态未在工作中的状态
+                    List<Vehicle> vehicles = vehicleService.queryVehicleByVehicleState();
+                    if (vehicles != null && vehicles.size() > 0) {
+                        String vid2 = vehicles.get(0).getVid();
+//                    String rid2 = vehicles.get(0).getRid();
+                        int vehicleNumber2 = routeService.queryVehicleNumberByRid(rid) + 1;
+                        boolean updateVehicleNumber = routeService.updateVehicleNumber(new Route(rid, vehicleNumber2));
+                        boolean flag2 = passengerService.updatePassengerVidByVid(new Passenger(pid, vid2));
+                        boolean vehicleStateFlag2 = vehicleService.updateVehicleStateByPid(new Vehicle(vid2, "是"));
+
+                        if (updateVehicleNumber && flag2 && vehicleStateFlag2) {
+                            result = "distributionSuccess";//分配成功
+                            p.setPid(pid);
+                            p.setState("待分配");//已分配车辆，还未分配导游
+                            passengerService.updatePassengerStateByPid(p);
+                            map.put("result", result);
+                            tourPage = testModelAttribute2("1", map);
+                            map.put("tourPage", tourPage);
+                            //更新车辆表中，该车辆的rid
+                            vehicle.setRid(rid);
+                            vehicle.setVid(vid2);
+                            boolean updateVehicleRidByVid = vehicleService.updateVehicleRidByVid(vehicle);
+                            //更新该车辆的人数
+                            vehicleService.functionToUpdatePnumberOnVehicle(vid2);
+                            return "distributionVehicle";
+                        } else {
+                            if (updateVehicleNumber == false)
+                                routeService.updateVehicleNumber(new Route(rid, vehicleNumber2 = -1));
+                            if (flag2 == false)
+                                passengerService.updatePassengerVidByVid(new Passenger(pid, ""));
+                            if (vehicleStateFlag2 == false)
+                                vehicleService.updateVehicleStateByPid(new Vehicle(vid2, "否"));
+                            result = "distributionError";//分配错误
+                            map.put("result", result);
+                            tourPage = testModelAttribute2("1", map);
+                            map.put("tourPage", tourPage);
+                            return "distributionVehicle";
+                        }
+
+                    } else {
+                        result = "distributionError";//分配错误
+                        map.put("result", result);
+                        tourPage = testModelAttribute2("1", map);
+                        map.put("tourPage", tourPage);
+                        return "distributionVehicle";
+                    }
                 }
             }
+            result = "distributionError";//分配错误
+            map.put("result", result);
+            tourPage = testModelAttribute2("1", map);
+            map.put("tourPage", tourPage);
+            return "distributionVehicle";
+        } catch (Exception e) {
+            System.out.println("捕获所有异常");
+            result = "distributionError";//分配错误
+            map.put("result", result);
+            tourPage = testModelAttribute2("1", map);
+            map.put("tourPage", tourPage);
+            return "distributionVehicle";
         }
-        result = "distributionError";//分配错误
-        map.put("result", result);
-        tourPage = testModelAttribute2("1", map);
-        map.put("tourPage", tourPage);
-        return "distributionVehicle";
+
     }
 
     //单独查询调度
@@ -333,6 +350,12 @@ public class VehicleServlet {
         map.put("tourPage", tourPage);
         return "distributionVehicle";
     }
-
+//车辆信息统计
+    @RequestMapping("/vehicleDIServlet")
+    public String vehicleDIServlet(Map<String,Object> map,@ModelAttribute("tourPage")TourPage tourPage) throws IOException {
+        tourPage = testModelAttribute("1",map);
+        map.put("tourPage",tourPage);
+        return "vehicleDI";
+    }
 
 }

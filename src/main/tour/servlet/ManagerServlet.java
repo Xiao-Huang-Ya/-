@@ -34,6 +34,8 @@ public class ManagerServlet {
         } else {
             judge = "loginSuccess";
             map.put("judge", judge);
+            Manager managerInfo = new Manager(name,pwd);
+            map.put("managerInfo",managerInfo);
             return "manager";
         }
         return "login";

@@ -112,4 +112,14 @@ public class VehicleService {
           return false;
       }
     }
+
+    public boolean updateIdOnVehicle(Vehicle vehicle) {
+        if (vehicleDao.isExit(vehicle.getVid())) {
+            boolean flag = vehicleDao.updateIdOnVehicle(vehicle);
+            return flag;
+        } else {
+            System.out.println("车辆调度：车辆不存在");
+            return false;
+        }
+    }
 }

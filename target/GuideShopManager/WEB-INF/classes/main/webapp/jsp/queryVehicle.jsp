@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bootstrap Admin</title>
+    <title>管理员界面</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -20,21 +20,33 @@
             <ul class="nav pull-right">
                 <li id="fat-menu" class="dropdown">
                     <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user icon-white"></i> Admin
+                        <i class="icon-user icon-white"></i>${sessionScope.get("account")}
                         <i class="icon-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
-                        <li class="divider"></li>
+
                         <li><a tabindex="-1" href="/jsp/login.jsp" onclick="return confirm('您确定退出吗？');">安全退出</a></li>
                     </ul>
                 </li>
             </ul>
-            <a class="brand" href="/index.jsp"><span class="first">旅游管理界面</span></a>
+            <a class="brand" href="/jsp/index.jsp"><span class="first">旅游管理界面</span></a>
             <ul class="nav">
-                <li class="active"><a href="/index.jsp">首页</a></li>
-                <li><a href="#">运营管理</a></li>
-                <li><a href="#">数据分析</a></li>
+                <li class="active"><a href="/jsp/index.jsp">首页</a></li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">旅游数据分析<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/hello/returnMainPage">导游信息统计</a>
+                        </li>
+                        <li>
+                            <a href="/hello/vehicleDIServlet">车辆信息统计</a>
+                        </li>
+                        <li>
+                            <a href="/hello/sightDIServlet">旅游景点信息统计</a>
+                        </li>
+
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -51,7 +63,7 @@
     <ul id="accounts-menu" class="nav nav-list collapse in ">
         <li><a href="/hello/queryVehicleByPageServlet/1">车辆信息查询</a></li>
         <li><a href="/hello/queryPassengerByPageServlet2/1">车辆调度</a></li>
-<%--        <li><a href="crud.jsp">车辆删除</a></li>--%>
+        <%--        <li><a href="crud.jsp">车辆删除</a></li>--%>
     </ul>
     <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i
             class="icon-exclamation-sign"></i>导游管理</a>
@@ -68,11 +80,10 @@
     </ul>
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
     <ul id="legal-menu" class="nav nav-list collapse">
-        <li><a href="login.html">登录页面</a></li>
-        <li><a href="register.html">注册页面</a></li>
-        <li><a href="updatepaasword.html">密码修改</a></li>
+        <li><a href="/jsp/login.jsp">登录页面</a></li>
+
     </ul>
-    <a href="http://yiquwei.com/" target="_blank" class="nav-header"><i class="icon-exclamation-sign"></i>关于</a>
+
 </div>
 <!-- 右 -->
 <div class="content">
@@ -88,7 +99,8 @@
                 添加车辆
             </button>
             <!-- 模态框（Modal） -->
-            <div class="modal fade" id="myAddVehicleModal" tabindex="-1" role="dialog" aria-labelledby="myAddVehicleModal"
+            <div class="modal fade" id="myAddVehicleModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myAddVehicleModal"
                  aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -103,15 +115,18 @@
                         <div class="row-fluid" style="text-align: left;">
                             <div class="pull-left span4 unstyled">
                                 <p> 车辆编号：<input class="input-large" id="vid" name="vid" type="text"></p>
-<%--                                <p> 所在路线编号：<input class="input-large" id="rid" name="rid" type="text"></p>--%>
+                                <%--                                <p> 所在路线编号：<input class="input-large" id="rid" name="rid" type="text"></p>--%>
                                 <p> 车辆是否工作：
 
-                                    <input  type="radio" id="state" name="state" value="是" class="input-xlarge">工作
-                                    <input  type="radio" id="state" name="state" value="否" class="input-xlarge">未工作
-<%--                                    <input class="input-large" id="state" name="state" type="text"></p>--%>
-<%--                                <p> 车辆分配导游：<input class="input-large" id="id" name="id" type="text"></p>--%>
-<%--                                <p> 车辆分配游客<input class="input-large" id="pid" name="pid" type="text"></p>--%>
+                                    <input type="radio" id="state" name="state" value="是" class="input-xlarge">工作
+                                    <input type="radio" id="state" name="state" value="否" class="input-xlarge">未工作
 
+
+                                    <%--                                <p> 车辆分配游客<input class="input-large" id="pid" name="pid" type="text"></p>--%>
+                                </p>
+                                <p> 每日费用：<input class="input-large" id="vehiclecost" name="vehiclecost" type="text">
+                                </p>
+                                <%--                                <p> 所在路线编号：<input class="input-large" id="rid" name="rid" type="text"></p>--%>
                             </div>
                         </div>
                         <%--            <input class="btn btn-primary" type="submit" value="新增"/>--%>
@@ -139,6 +154,7 @@
                 <th>是否工作</th>
                 <th>分配导游</th>
                 <th>分配游客人数</th>
+                <th>每日费用</th>
             </tr>
             </thead>
             <tbody>
@@ -149,9 +165,8 @@
                 <td>${list.state}</td>
                 <td>${list.id}</td>
                 <td>${list.pnumber}</td>
-
+                <td>${list.vehiclecost}</td>
                 <td>
-<%--                    <a href="/hello/"><i class="icon-pencil"></i></a>--%>
                     <a href="/hello/deleteVehicleServlet/${list.vid}" role="button" data-toggle="modal"
                        onclick="return confirm('你确定删除吗？');"><i class="icon-remove"></i></a>
 
@@ -192,29 +207,7 @@
             </ul>
         </div>
     </div>
-    <!-- delete showmodaldialog -->
-    <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel"
-         aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Delete Confirmation</h3>
-        </div>
-        <div class="modal-body">
-            <p class="error-text"><i class="icon-warning-sign modal-icon"></i>Are you sure you want to
-                delete this data?
-            </p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            <button class="btn btn-danger" data-dismiss="modal">Delete</button>
-        </div>
-    </div>
-    <!-- footer -->
-    <footer>
-        <hr>
-        <p>© 2013 <a href="http://www.yiquwei.com" target="_blank">Admin</a></p>
-    </footer>
+
 </div>
 </body>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->

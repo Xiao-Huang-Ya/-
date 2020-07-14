@@ -34,5 +34,7 @@ public interface VehicleMapper {
     boolean functionToUpdatePnumberOnVehicle(String vid);
 
     boolean updateVehicleRidByVid(Vehicle vehicle);
+
+    boolean updateIdOnVehicle(Vehicle vehicle);
 }
 

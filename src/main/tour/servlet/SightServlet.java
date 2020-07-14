@@ -1,8 +1,10 @@
 package main.tour.servlet;
 
 import com.github.pagehelper.Page;
-import main.tour.entity.Sight;
-import main.tour.entity.TourPage;
+import jdk.nashorn.internal.ir.LiteralNode;
+import main.tour.entity.*;
+import main.tour.service.PassengerService;
+import main.tour.service.RouteService;
 import main.tour.service.SightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServlet;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +26,23 @@ public class SightServlet {
     @Autowired
     SightService sightService;
 
+
     public void setSightService(SightService sightService) {
         this.sightService = sightService;
+    }
+
+    @Autowired
+    RouteService routeService;
+
+    public void setRouteService(RouteService routeService) {
+        this.routeService = routeService;
+    }
+
+    @Autowired
+    PassengerService passengerService;
+
+    public void setPassengerService(PassengerService passengerService) {
+        this.passengerService = passengerService;
     }
 
     @ModelAttribute
@@ -136,6 +154,27 @@ public class SightServlet {
         map.put("tourPage", tourPage);
         System.out.println(tourPage.getTotalCount());
         return "consumerQuerySight";
+    }
+
+    //景点DI分析
+    @RequestMapping("/sightDIServlet")
+    public String sightDIServlet(Map<String, Object> map) throws IOException {
+
+        //查询所有路线名称
+        List<Route> routes = routeService.queryRoutes();
+        List<SightDI> tourPage = new ArrayList<>();
+//        SightDI sightDI = new SightDI();
+        String name = null;
+        int number = 0;
+        for (int i = 0; i < routes.size(); i++) {
+            name = routes.get(i).getName();
+            number = passengerService.queryPidNumberByRid(routes.get(i).getRid());
+           SightDI sightDI = new SightDI(name, number);
+         tourPage.add(sightDI);
+
+        }
+        map.put("tourPage", tourPage);
+        return "sightDI";
     }
 
 }

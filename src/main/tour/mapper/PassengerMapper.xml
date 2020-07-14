@@ -10,7 +10,9 @@
     <select id="judgeIsExitByUsername" resultType="int" parameterType="string">
 	select Count(*) from passenger where username =#{username}
     </select>
-
+    <select id="queryPidNumberByRid" resultType="int" parameterType="string">
+	select Count(*) from passenger where rid =#{rid} and state = '已分配'
+    </select>
     <select id="queryPassengerByPid" resultType="Passenger" parameterType="string">
     SELECT pid, pname, pgender, iphone, rid, vid, id, state
 	FROM public.passenger where (state = '待分配' or state = '申请退订' or state = '已分配')

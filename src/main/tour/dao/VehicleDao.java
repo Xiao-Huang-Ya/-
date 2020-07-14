@@ -186,4 +186,16 @@ public class VehicleDao {
             return false;
         }
 }
+
+    public boolean updateIdOnVehicle(Vehicle vehicle) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            VehicleMapper fm = genenalMapper.getMapper(session, VehicleMapper.class);
+            boolean flag = fm.updateIdOnVehicle( vehicle);
+            return  flag;
+        } catch (Exception e) {
+            System.out.println("车辆调度：更新车辆状态错误");
+            return false;
+        }
+    }
 }

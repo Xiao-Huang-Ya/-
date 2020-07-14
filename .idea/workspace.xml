@@ -8,35 +8,29 @@
   <component name="ChangeListManager">
     <list default="true" id="9ce00fab-4658-4851-ae41-fc5da192b9db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/dao/ConsumerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/dao/ConsumerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/dao/GuideDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/dao/GuideDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/dao/PassengerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/dao/PassengerDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/tour/dao/RouteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/dao/RouteDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/dao/VehicleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/dao/VehicleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/entity/Guide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/entity/Guide.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/entity/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/entity/Route.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/entity/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/entity/Vehicle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/mapper/ConsumerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/mapper/ConsumerMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/mapper/ConsumerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/mapper/ConsumerMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/mapper/GuideMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/mapper/GuideMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/mapper/GuideMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/mapper/GuideMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/mapper/PassengerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/mapper/PassengerMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/mapper/PassengerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/mapper/PassengerMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/mapper/RouteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/mapper/RouteMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/mapper/VehicleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/mapper/VehicleMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/mapper/VehicleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/mapper/VehicleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/service/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/service/ConsumerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/service/GuideService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/service/GuideService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/service/PassengerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/service/PassengerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/service/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/service/VehicleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/servlet/ConsumerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/servlet/ConsumerServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/servlet/GuideServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/servlet/GuideServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tour/servlet/RouteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/servlet/RouteServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/tour/servlet/ManagerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/servlet/ManagerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/tour/servlet/SightServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/servlet/SightServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tour/servlet/VehicleServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tour/servlet/VehicleServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/consumer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/consumer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/consumerQuerySight.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/consumerQuerySight.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/consumerShow.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/consumerShow.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/distributionGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/distributionGuide.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/distributionVehicle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/distributionVehicle.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/manager.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/manager.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/queryGuide.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/queryPassenger.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/queryPassenger.jsp" afterDir="false" />
@@ -45,29 +39,39 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/queryVehicle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/queryVehicle.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/test.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/updateRoute.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/updateRoute.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/reference.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/reference.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/updatepaasword.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/updatepassword.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/dao/GuideDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/dao/GuideDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/dao/PassengerDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/dao/PassengerDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/dao/VehicleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/dao/VehicleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Guide.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Guide.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Route.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Vehicle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/entity/Vehicle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/GuideMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/GuideMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/GuideMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/GuideMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/PassengerMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/PassengerMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/PassengerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/PassengerMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/RouteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/RouteMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/VehicleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/VehicleMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/VehicleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/mapper/VehicleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/service/GuideService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/service/GuideService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/service/PassengerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/service/PassengerService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/service/VehicleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/service/VehicleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/ConsumerServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/ConsumerServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/GuideServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/GuideServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/ManagerServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/ManagerServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/SightServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/SightServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/VehicleServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/tour/servlet/VehicleServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/consumer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/consumer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/consumerQuerySight.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/consumerQuerySight.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/consumerShow.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/consumerShow.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/distributionGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/distributionGuide.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/distributionVehicle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/distributionVehicle.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/manager.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/manager.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryGuide.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryPassenger.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryPassenger.jsp" afterDir="false" />
@@ -76,9 +80,14 @@
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryVehicle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/queryVehicle.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/test.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/updateRoute.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/WEB-INF/classes/main/webapp/jsp/updateRoute.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/index.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/consumer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/consumer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/consumerQuerySight.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/consumerQuerySight.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/consumerShow.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/consumerShow.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/distributionGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/distributionGuide.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/distributionVehicle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/distributionVehicle.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/manager.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/manager.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryGuide.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryPassenger.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryPassenger.jsp" afterDir="false" />
@@ -87,28 +96,38 @@
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryVehicle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/queryVehicle.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/test.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/GuideShopManager/jsp/updateRoute.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/GuideShopManager/jsp/updateRoute.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/dao/GuideDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/dao/GuideDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/reference.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/reference.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/updatepaasword.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/GuideShopManager/updatepassword.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/dao/PassengerDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/dao/PassengerDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/dao/VehicleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/dao/VehicleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/entity/Guide.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/entity/Guide.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/entity/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/entity/Route.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/entity/Vehicle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/entity/Vehicle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/mapper/GuideMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/mapper/GuideMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/mapper/GuideMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/mapper/GuideMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/mapper/PassengerMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/mapper/PassengerMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/mapper/PassengerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/mapper/PassengerMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/mapper/RouteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/mapper/RouteMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/mapper/VehicleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/mapper/VehicleMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/mapper/VehicleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/mapper/VehicleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/service/GuideService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/service/GuideService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/service/PassengerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/service/PassengerService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/service/VehicleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/service/VehicleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/servlet/ConsumerServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/servlet/ConsumerServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/servlet/GuideServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/servlet/GuideServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/servlet/ManagerServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/servlet/ManagerServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/tour/servlet/SightServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/servlet/SightServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/tour/servlet/VehicleServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/tour/servlet/VehicleServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/consumer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/consumer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/consumerQuerySight.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/consumerQuerySight.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/consumerShow.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/consumerShow.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/distributionGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/distributionGuide.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/distributionVehicle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/distributionVehicle.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/manager.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/manager.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/queryGuide.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/queryGuide.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/webapp/jsp/queryPassenger.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/webapp/jsp/queryPassenger.jsp" afterDir="false" />
@@ -133,9 +152,9 @@
         <option value="Interface" />
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="Class" />
         <option value="JavaScript File" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -197,9 +216,12 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp\css" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp\jsp" />
+      <recent name="D:\IntelliJSpace\TourismManagement\src" />
+      <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp\img" />
+      <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp\WEB-INF\lib" />
+      <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="main.tour.servlet" />
@@ -207,12 +229,9 @@
       <recent name="main.tour.dao" />
       <recent name="main.tour.mapper" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp\jsp" />
-      <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp\img" />
-      <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp\WEB-INF\lib" />
-      <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp\css" />
+      <recent name="D:\IntelliJSpace\TourismManagement\src\main\webapp\jsp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -411,7 +430,8 @@
       <workItem from="1594429196760" duration="1150000" />
       <workItem from="1594430912891" duration="39173000" />
       <workItem from="1594514969696" duration="33222000" />
-      <workItem from="1594602017060" duration="39573000" />
+      <workItem from="1594602017060" duration="40243000" />
+      <workItem from="1594686754318" duration="23041000" />
     </task>
     <task id="LOCAL-00001" summary="正在更新。。。。。">
       <created>1594183180611</created>
@@ -457,5 +477,13 @@
     <MESSAGE value="正在更新。。。。。" />
     <MESSAGE value="第二次上传" />
     <option name="LAST_COMMIT_MESSAGE" value="第二次上传" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="passenger" />
+        <watch expression="sightDI.number" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

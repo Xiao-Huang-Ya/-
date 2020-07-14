@@ -20,21 +20,33 @@
             <ul class="nav pull-right">
                 <li id="fat-menu" class="dropdown">
                     <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user icon-white"></i> Admin
+                        <i class="icon-user icon-white"></i> ${sessionScope.get("account")}
                         <i class="icon-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
-                        <li class="divider"></li>
+
                         <li><a tabindex="-1" href="/jsp/login.jsp" onclick="return confirm('您确定退出吗？');">安全退出</a></li>
                     </ul>
                 </li>
             </ul>
-            <a class="brand" href="index.html"><span class="first">旅游管理界面</span></a>
+            <a class="brand" href="/jsp/index.jsp"><span class="first">旅游管理界面</span></a>
             <ul class="nav">
-                <li class="active"><a href="#">首页</a></li>
-                <li><a href="#">运营管理</a></li>
-                <li><a href="#">数据分析</a></li>
+                <li class="active"><a href="/jsp/index.jsp">首页</a></li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">旅游数据分析<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/hello/returnMainPage">导游信息统计</a>
+                        </li>
+                        <li>
+                            <a href="/hello/vehicleDIServlet">车辆信息统计</a>
+                        </li>
+                        <li>
+                            <a href="/hello/sightDIServlet">旅游景点信息统计</a>
+                        </li>
+
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -64,16 +76,14 @@
     <a href="#tourist-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
     <ul id="tourist-menu" class="nav nav-list collapse">
         <li><a href="/hello/queryPassengerByPageServlet/1">游客信息查询</a></li>
-        <li><a href="#">游客登陆管理</a></li>
 
     </ul>
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
     <ul id="legal-menu" class="nav nav-list collapse">
-        <li><a href="login.html">登录页面</a></li>
-        <li><a href="register.html">注册页面</a></li>
-        <li><a href="updatepaasword.html">密码修改</a></li>
+        <li><a href="/jsp/login.jsp">登录页面</a></li>
+
     </ul>
-    <a href="http://yiquwei.com/" target="_blank" class="nav-header"><i class="icon-exclamation-sign"></i>关于</a>
+
 </div>
 <!-- 右 -->
 <div class="content">

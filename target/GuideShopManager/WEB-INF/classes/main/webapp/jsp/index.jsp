@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bootstrap Admin</title>
+    <title>管理员界面</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.min.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
@@ -22,21 +22,34 @@
             <ul class="nav pull-right">
                 <li id="fat-menu" class="dropdown">
                     <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user icon-white"></i> Admin
+                        <i class="icon-user icon-white"></i> ${sessionScope.get("account")}
                         <i class="icon-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="updatepaasword.html">修改密码</a></li>
-                        <li class="divider"></li>
+
                         <li><a tabindex="-1" href="/jsp/login.jsp" onclick="return confirm('您确定退出吗？');">安全退出</a></li>
                     </ul>
                 </li>
             </ul>
-            <a class="brand" href="index.jsp"><span class="first">旅游管理界面</span></a>
+            <a class="brand" href="/jsp/index.jsp"><span class="first">旅游管理界面</span></a>
             <ul class="nav">
-                <li class="active"><a href="#">首页</a></li>
-                <li><a href="#">营管理运</a></li>
-                <li><a href="#">数据分析</a></li>
+                <li class="active"><a href="/jsp/index.jsp">首页</a></li>
+
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">旅游数据分析<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/hello/returnMainPage">导游信息统计</a>
+                        </li>
+                        <li>
+                            <a href="/hello/vehicleDIServlet">车辆信息统计</a>
+                        </li>
+                        <li>
+                            <a href="/hello/sightDIServlet">旅游景点信息统计</a>
+                        </li>
+
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -71,26 +84,17 @@
     </ul>
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
     <ul id="legal-menu" class="nav nav-list collapse">
-        <li><a href="login.jsp">登录页面</a></li>
-        <li><a href="register.jsp">注册页面</a></li>
-        <li><a href="updatepaasword.html">密码修改</a></li>
+        <li><a href="/jsp/login.jsp">登录页面</a></li>
+
     </ul>
-    <a href="http://yiquwei.com/" target="_blank" class="nav-header"><i class="icon-exclamation-sign"></i>关于</a>
+
 </div>
 <!-- 右 -->
 <div class="content">
     <!-- header -->
     <div class="header">
-        <h1 class="page-title">新用户PV</h1>
+        <h1 class="page-title">欢迎${account}的到来</h1>
     </div>
-    <!-- highchat show -->
-<%--    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>--%>
-
-    <!-- footer -->
-    <footer>
-        <hr>
-        <p>© 2013 <a href="http://www.yiquwei.com" target="_blank">Admin</a></p>
-    </footer>
 </div>
 </body>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->

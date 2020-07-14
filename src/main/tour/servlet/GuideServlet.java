@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import main.tour.entity.Guide;
 import main.tour.entity.Passenger;
 import main.tour.entity.TourPage;
+import main.tour.entity.Vehicle;
 import main.tour.service.GuideService;
 import main.tour.service.PassengerService;
 import main.tour.service.VehicleService;
@@ -149,17 +150,18 @@ public class GuideServlet extends HttpServlet {
         map.put("tourPage", tourPage);
         return "test";
     }
+
     //更新导游信息
     @RequestMapping(value = "/updateGuideByIdServlet")
     public String updateGuideByIdServlet(@RequestParam(value = "id2", required = false) String id, @RequestParam(value = "name2", required = false) String name,
                                          @RequestParam(value = "gender2", required = false) String gender, @RequestParam(value = "hours2", required = false) Integer hours,
-                                         @RequestParam(value = "salary2", required = false) Double salary,@ModelAttribute("tourPage")TourPage tourPage,Map<String,Object> map) throws IOException {
-     Guide guide = new Guide(id,name,gender,hours,salary);
+                                         @RequestParam(value = "salary2", required = false) Double salary, @ModelAttribute("tourPage") TourPage tourPage, Map<String, Object> map) throws IOException {
+        Guide guide = new Guide(id, name, gender, hours, salary);
 //        map.put("Guide", Guide);
-       boolean flag =  guideService.updateGuideById(guide);
+        boolean flag = guideService.updateGuideById(guide);
         tourPage = testModelAttribute("1", map);
         map.put("tourPage", tourPage);
-        map.put("updateGuideFlag",flag);
+        map.put("updateGuideFlag", flag);
         return "queryGuide";
     }
 
@@ -220,56 +222,124 @@ public class GuideServlet extends HttpServlet {
         return "distributionGuide";
     }
 
+    /**
+     *分配导游
+     *  1.  if (pid.vid ).id  != null
+     *         then pid.id = vid.id
+     *      else
+     *        gid =( id.state = '未工作' )
+     *        pid.id = gid
+     *        vid.id =gid
+     *
+     *
+     *
+     * @param pid
+     * @param map
+     * @param tourPage
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("/distrubutionGuideServlet/{pid}")
     public String test(@PathVariable(value = "pid", required = false) String pid, Map<String, Object> map, @ModelAttribute("tourPage2") TourPage tourPage) throws IOException {
         //在旅客表中根据pid，查询vid
         boolean flag = false;
+        boolean updatePassengerState = false;
+        boolean updateGuideState = false;
         Passenger passenger = new Passenger();
         Passenger passenger2 = new Passenger();
-        String vid = passengerService.queryVidOnPassengerByPid(pid);
-        if (vid != null && vid != "") {
-            //根据vid 获取 id
-            String id = vehicleService.queryIdOnVehicleByVid(vid);
-            if (id != null && id != "") {
-                //将游客的导游编号 pid.id = vid.id
-                passenger.setPid(pid);
-                passenger.setId(id);
-                flag = passengerService.updatePassengerIdById(passenger);
-                passenger2.setPid(pid);
-                passenger2.setState("已分配");
-                passengerService.updatePassengerStateByPid(passenger2);
-                map.put("flag", flag);
-                tourPage = testModelAttribute2("1", map);
-                map.put("tourPage", tourPage);
-                return "distributionGuide";
-            } else {
-                //查询，并获得一个未在工作导游
-                List<Guide> guides = guideService.queryGuideUnWorked("否");
-                if (guides != null && guides.size() > 0) {
-                    String gid = guides.get(0).getId();
+        try {
+            String vid = passengerService.queryVidOnPassengerByPid(pid);
+            if (vid != null && vid != "") {
+                //根据vid 获取 id
+                String id = vehicleService.queryIdOnVehicleByVid(vid);
+                if (id != null && id != "") {
+                    //将游客的导游编号 pid.id = vid.id
                     passenger.setPid(pid);
-                    passenger.setId(gid);
+                    passenger.setId(id);
                     flag = passengerService.updatePassengerIdById(passenger);
-                    guideService.updateGuideState(new Guide(gid, "是"));
                     passenger2.setPid(pid);
                     passenger2.setState("已分配");
-                    passengerService.updatePassengerStateByPid(passenger2);
-                    map.put("flag", flag);
-                    tourPage = testModelAttribute2("1", map);
-                    map.put("tourPage", tourPage);
-                    return "distributionGuide";
-                } else {
-                    map.put("flag", flag);
-                    tourPage = testModelAttribute2("1", map);
-                    map.put("tourPage", tourPage);
-                    return "distributionGuide";
-                }
-            }
+                    updatePassengerState = passengerService.updatePassengerStateByPid(passenger2);
+                    if (flag && updatePassengerState) {
+                        map.put("flag", true);
+                        tourPage = testModelAttribute2("1", map);
+                        map.put("tourPage", tourPage);
+                        return "distributionGuide";
+                    } else {
+                        //rollback
+                        Passenger passenger3 = new Passenger();
+                        passenger3.setPid(pid);
+                        passenger3.setId("");
+                        passengerService.updatePassengerIdById(passenger3);
 
+                        passenger3.setPid(pid);
+                        passenger3.setState("待分配");
+                        passengerService.updatePassengerStateByPid(passenger3);
+
+                        map.put("flag", false);
+                        tourPage = testModelAttribute2("1", map);
+                        map.put("tourPage", tourPage);
+                        return "distributionGuide";
+                    }
+                } else {
+                    //查询，并获得一个未在工作导游
+                    List<Guide> guides = guideService.queryGuideUnWorked("否");
+                    if (guides != null && guides.size() > 0) {
+                        String gid = guides.get(0).getId();
+                        passenger.setPid(pid);
+                        passenger.setId(gid);
+                        flag = passengerService.updatePassengerIdById(passenger);
+                        updateGuideState = guideService.updateGuideState(new Guide(gid, "是"));
+                        passenger2.setPid(pid);
+                        passenger2.setState("已分配");
+                        updatePassengerState = passengerService.updatePassengerStateByPid(passenger2);
+                        if (flag && updateGuideState && updatePassengerState) {
+                            Vehicle vehicle = new Vehicle();
+                            map.put("flag", true);
+                            //将该车辆表 vid.id = gid
+                            vehicle.setId(gid);
+                            vehicle.setVid(vid);
+                            vehicleService.updateIdOnVehicle(vehicle);
+                            tourPage = testModelAttribute2("1", map);
+                            map.put("tourPage", tourPage);
+                            return "distributionGuide";
+                        } else {
+                            //rollback
+                            Passenger passenger4 = new Passenger();
+                            passenger4.setPid(pid);
+                            passenger4.setId("");
+                            passengerService.updatePassengerIdById(passenger4);
+
+                            guideService.updateGuideState(new Guide(gid, "否"));
+
+                            passenger2.setPid(pid);
+                            passenger2.setState("待分配");
+                            passengerService.updatePassengerStateByPid(passenger2);
+
+                            map.put("flag", false);
+                            tourPage = testModelAttribute2("1", map);
+                            map.put("tourPage", tourPage);
+                            return "distributionGuide";
+                        }
+
+                    } else {
+                        map.put("judge", "AllWorkGuides");
+                        tourPage = testModelAttribute2("1", map);
+                        map.put("tourPage", tourPage);
+                        return "distributionGuide";
+                    }
+                }
+
+            }
+            map.put("flag", flag);
+            tourPage = testModelAttribute2("1", map);
+            map.put("tourPage", tourPage);
+            return "distributionGuide";
+        } catch (Exception e) {
+            map.put("flag", flag);
+            tourPage = testModelAttribute2("1", map);
+            map.put("tourPage", tourPage);
+            return "distributionGuide";
         }
-        map.put("flag", flag);
-        tourPage = testModelAttribute2("1", map);
-        map.put("tourPage", tourPage);
-        return "distrubutionGuide";
     }
 }

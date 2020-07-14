@@ -44,4 +44,6 @@ public interface PassengerMapper {
     boolean updatePassengerStateByPid(Passenger passenger);
 
     boolean updatePassengerIdById(Passenger passenger);
+
+    int queryPidNumberByRid(String rid);
 }

@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main.tour.mapper.VehicleMapper">
 
-    <select id="queryVehicleByVid" resultType="Vehicle">
-    SELECT vid, rid, state, id, pnumber
+    <select id="queryVehicleByVid" resultType="Vehicle" parameterType="string">
+    SELECT vid, rid, state, id, pnumber,vehiclecost
 	FROM vehicle where vid = #{vid}
     </select>
 
     <select id="queryVehicles" resultType="Vehicle">
-     SELECT vid, rid, state, id, pnumber
-	FROM vehicle order  by vid
+    SELECT vid, rid, state, id, pnumber, vehiclecost
+	FROM public.vehicle order  by vid
     </select>
 
     <select id="queryVidByRid" resultType="string" parameterType="string">
@@ -20,14 +20,14 @@
     </select>
 
     <select id="queryVehicleByVehicleState" resultType="Vehicle">
-  SELECT vid, rid, state, pnumber, id
+  SELECT vid, rid, state, pnumber, id,vehiclecost
 	FROM public.vehicle where state='否'
     </select>
 
     <insert id="insertVehicle" parameterType="Vehicle">
     INSERT INTO vehicle(
-	vid,state)
-	VALUES (#{vid}, #{state})
+	vid,state,vehiclecost)
+	VALUES (#{vid}, #{state},#{vehiclecost})
     </insert>
 
     <delete id="deleteVehicleByVid" parameterType="string">
@@ -37,7 +37,7 @@
 
     <update id="updateVehicleByVid" parameterType="Vehicle">
         UPDATE vehicle
-        SET vid=#{vid}, rid=#{rid}, state=#{state}, id=#{id}, pnumber=#{pnumber}
+        SET vid=#{vid}, rid=#{rid}, state=#{state}, id=#{id}, pnumber=#{pnumber},vehiclecost=#{vehiclecost}
         WHERE vid = #{vid}
     </update>
 
@@ -46,7 +46,13 @@
         SET  state = #{state}
         WHERE  vid = #{vid}
     </update>
+
     <!--    导游分配-->
+    <update id="updateIdOnVehicle" parameterType="Vehicle">
+   UPDATE vehicle
+        SET  id = #{id}
+        WHERE  vid = #{vid}
+    </update>
 
     <select id="queryIdOnVehicleByVid" resultType="string" parameterType="string">
       SELECT   id
@@ -62,7 +68,7 @@
         SET  pumber=#{pnumber}
         WHERE  vid = #{vid}
     </update>
-<!--    调用存储函数-->
+    <!--    调用存储函数-->
     <select id="functionToUpdatePnumberOnVehicle" parameterType="string" statementType="CALLABLE" useCache="false">
         select updatepnumber(#{vid})
     </select>

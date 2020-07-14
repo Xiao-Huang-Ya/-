@@ -53,7 +53,7 @@
 <div class="content">
     <!-- header -->
     <div class="header">
-        <h1 class="page-title">新用户PV</h1>
+        <h1 class="page-title">欢迎${applicationScope.get("username")}的到来</h1>
     </div>
     <div class="well">
         <!-- table -->

@@ -142,4 +142,8 @@ public class PassengerService {
         }
 
     }
+
+    public int queryPidNumberByRid(String rid) {
+        return  passengerDao.queryPidNumberByRid( rid);
+    }
 }

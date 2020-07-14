@@ -241,4 +241,15 @@ public class PassengerDao {
             return false;
         }
     }
+
+    public int queryPidNumberByRid(String rid) {
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            PassengerMapper gm = genenalMapper.getMapper(session, PassengerMapper.class);
+            return gm.queryPidNumberByRid( rid);
+        } catch (Exception e) {
+            System.out.println("车辆调度查询Vid错误");
+            return 0;
+        }
+    }
 }

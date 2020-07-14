@@ -144,7 +144,7 @@ public class RouteDao {
         try {
             SqlSession session = genenalMapper.useSqlSession();
             RouteMapper fm = genenalMapper.getMapper(session, RouteMapper.class);
-            return fm.updateVehicleNumber( route);
+            return fm.updateVehicleNumber(route);
         } catch (Exception e) {
             System.out.println("车辆调度：更新路线的车辆数错误");
             return false;
