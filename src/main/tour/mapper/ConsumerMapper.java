@@ -12,6 +12,7 @@ import main.tour.entity.Manager;
 public interface ConsumerMapper {
 
     Consumer queryConsumerByUsername(Consumer consumer);
+    int  judgeConsumerByUsername(Consumer consumer);
 
     boolean insertConsumer(Consumer consumer);
 

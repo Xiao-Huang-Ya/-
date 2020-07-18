@@ -149,7 +149,7 @@
                                            class="input-medium " value="${username}" readonly="readonly">
                                 </p>
                                 <p>密码：
-                                    <input type="text" name="password" id="password" placeholder="请输入密码"
+                                    <input type="password" name="password" id="password" placeholder="请输入密码"
                                            class="input-medium" value="">
                                 </p>
                             </div>
@@ -226,4 +226,21 @@
 
     </c:choose>
 </script>
+<script>
+    window.onload = function () {
+        document.getElementById("updateForm").onsubmit = function () {
+            return checkPassword();
+        }
+        function checkPassword() {
+            var consignee = document.getElementById("password").value;
+            var reg = /^(\w){6,20}$/;
+            var flag = reg.test(consignee);
+            if (flag == false) {
+                alert("密码（6~20位字母、数字、下划线）！！！");
+            }
+            return flag;
+        }
+    }
+</script>
+
 </html>

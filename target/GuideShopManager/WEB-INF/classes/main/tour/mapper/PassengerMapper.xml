@@ -51,8 +51,8 @@
     </select>
     <insert id="insertPassenger" parameterType="Passenger">
   INSERT INTO public.passenger(
-	pid, pname, pgender, iphone, rid, vid, id, state)
-	VALUES (#{pid}, #{pname}, #{pgender}, #{iphone}, #{rid}, #{vid}, #{id}, #{state})
+	pid, pname, pgender, iphone, rid)
+	VALUES (#{pid}, #{pname}, #{pgender}, #{iphone}, #{rid})
     </insert>
 
     <insert id="insertPassenger2" parameterType="Passenger">

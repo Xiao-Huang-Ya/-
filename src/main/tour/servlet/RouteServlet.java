@@ -159,11 +159,11 @@ public class RouteServlet {
     @RequestMapping(value = "/updateRouteByRidServlet")
     public String updateRouteByRidServlet(@RequestParam(value = "rid2", required = false) String rid, @RequestParam(value = "name2", required = false) String name,
                                           @RequestParam(value = "endPoint2", required = false) String endPoint, @RequestParam(value = "sight2", required = false) String sight,
-                                          @RequestParam(value = "number2", required = false) Integer number, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
+                                          @RequestParam(value = "number2", required = false) String number, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         Route route = null;
         boolean flag = false;
         try {
-            route = new Route(rid, name, endPoint, sight, number);
+            route = new Route(rid, name, endPoint, sight, Integer.parseInt(number));
             flag = routeService.updateRouteByRid(route);
             map.put("flag", flag);
             tourPage = testModelAttribute("1", map);

@@ -112,20 +112,20 @@
                     </h4>
                 </div>
                 <div class="center-block offset1" style="width:300px;">
-                    <form class="form-search" action="/hello/addPassengerServlet" method="post" name="form">
+                    <form id="addPassengerForm" class="form-search" action="/hello/addPassengerServlet" method="post" name="form">
                         <div class="row-fluid" style="text-align: left;">
                             <div class="pull-left span4 unstyled">
                                 <p> 身份证<input class="input-large" id="pid" name="pid" type="text"></p>
                                 <p> 姓名<input class="input-large" id="pname" name="pname" type="text"></p>
                                 <p> 性别
-                                    <input class="input-large" type="radio" name="pgender" value="男" class="input-large">男
+                                    <input class="input-large" type="radio" name="pgender" value="男" class="input-large" checked="checked">男
                                     <input class="input-large"  type="radio" name="pgender" value="女" class="input-large">女
                                 </p>
                                 <p> 电话<input class="input-large" id="iphone" name="iphone" type="text"></p>
                                 <p> 路线编号<input class="input-large" id="rid" name="rid" type="text"></p>
-                                <p> 车辆编号<input class="input-large" id="vid" name="vid" type="text"></p>
-                                <p> 导游编号<input class="input-large" id="id" name="id" type="text"></p>
-                                <p> 旅客状态<input class="input-large" id="state" name="state" type="text"></p>
+<%--                                <p> 车辆编号<input class="input-large" id="vid" name="vid" type="text"></p>--%>
+<%--                                <p> 导游编号<input class="input-large" id="id" name="id" type="text"></p>--%>
+<%--                                <p> 旅客状态<input class="input-large" id="state" name="state" type="text"></p>--%>
 
                             </div>
                         </div>
@@ -236,6 +236,61 @@
     alert("操作失败");
     </c:if>
 
+</script>
+
+<script>
+    window.onload = function () {
+        document.getElementById("addPassengerForm").onsubmit = function () {
+            return checkPid() && checkPname() && checkIphone() && checkRid();
+        }
+
+        function checkPid() {
+            //获取用户名对象
+            var rid = document.getElementById("pid").value;
+            // 获取spanname
+            // 定义正则表达式
+            var reg = /(^\d{15}$)|(^\d{17}([0-9]|X)$)/;
+            var flag = reg.test(rid);
+            if (flag == false) {
+                alert("游客身份证非法！！！");
+            }
+            return flag;
+        }
+
+        //检验总价：个位~十万位
+        function checkPname() {
+            var name = document.getElementById("pname").value;
+            var reg = /^[\u4e00-\u9fa5]{1,30}$/;
+
+            var flag = reg.test(name);
+            if (flag == false) {
+                alert("游客名字非法！！！");
+            }
+            return flag;
+        }
+
+        //检验价格：价格小数点前6位，小数点后3位
+        function checkIphone() {
+            //获取用户名对象
+            var price = document.getElementById("iphone").value;
+            var reg = /^1[3456789]\d{9,11}$/;
+            var flag = reg.test(price);
+            if (flag == false) {
+                alert("电话非法！！！");
+            }
+            return flag;
+        }
+        //检验顾客名：汉字
+        function checkRid() {
+            var consignee = document.getElementById("vid").value;
+            var reg = /^[A-Za-z0-9]{1,12}$/;
+            var flag = reg.test(consignee);
+            if (flag == false) {
+                alert("车辆编号非法！！！");
+            }
+            return flag;
+        }
+    }
 </script>
 
 </html>

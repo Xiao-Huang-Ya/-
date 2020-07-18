@@ -78,14 +78,13 @@ public class PassengerServlet {
 
     @RequestMapping(value = "/addPassengerServlet")
     public String addPassengerServlet(@RequestParam(value = "pid", required = false) String pid, @RequestParam(value = "pname", required = false) String pname,
-                                      @RequestParam(value = "pgender", required = false) String pgender, @RequestParam(value = "iphone", required = false) String iphone, @RequestParam(value = "rid", required = false) String rid,
-                                      @RequestParam(value = "vid", required = false) String vid, @RequestParam(value = "id", required = false) String id,
-                                      @RequestParam(value = "state", required = false) String state,
+                                      @RequestParam(value = "pgender", required = false) String pgender, @RequestParam(value = "iphone", required = false) String iphone,
+                                      @RequestParam(value = "rid", required = false) String rid,
                                       Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         boolean flag = false;
         try {
 //            System.out.println(Long.valueOf(id));
-            Passenger passenger = new Passenger(pid, pname, pgender, iphone, rid, vid, id, state);
+            Passenger passenger = new Passenger(pid, pname, pgender, iphone, rid);
             flag = passengerService.insertPassenger(passenger);
             map.put("flag", flag);
             tourPage = testModelAttribute("1", map);

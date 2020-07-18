@@ -28,7 +28,7 @@ public class ConsumerDao {
         try {
             SqlSession session = genenalMapper.useSqlSession();
             ConsumerMapper gm = genenalMapper.getMapper(session, ConsumerMapper.class);
-            flag = queryConsumerByUsername((Consumer) obj) == null ? false : true;
+            flag = gm.queryConsumerByUsername((Consumer) obj) == null ? false : true;
             System.out.println("isEixt():" + flag);
         } catch (Exception e) {
             System.out.println("isExit错误");
@@ -66,6 +66,19 @@ public class ConsumerDao {
             SqlSession session = genenalMapper.useSqlSession();
             ConsumerMapper fm = genenalMapper.getMapper(session, ConsumerMapper.class);
             result = fm.updateConsumerByUsername(consumer);
+        } catch (Exception e) {
+            System.out.println("更新错误");
+            return false;
+        }
+
+        return result;
+    }
+    public boolean judgeConsumerByUsername(Consumer consumer){
+        boolean result = false;
+        try {
+            SqlSession session = genenalMapper.useSqlSession();
+            ConsumerMapper fm = genenalMapper.getMapper(session, ConsumerMapper.class);
+            result = fm.judgeConsumerByUsername(consumer) > 0 ? true :false;
         } catch (Exception e) {
             System.out.println("更新错误");
             return false;

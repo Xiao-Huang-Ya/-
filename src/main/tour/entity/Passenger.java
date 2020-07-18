@@ -23,6 +23,14 @@ public class Passenger {
         this.vid = vid;
     }
 
+    public Passenger(String pid, String pname, String pgender, String iphone, String rid) {
+        this.pid = pid;
+        this.pname = pname;
+        this.pgender = pgender;
+        this.iphone = iphone;
+        this.rid = rid;
+    }
+
     public Vehicle getVehicle() {
         return vehicle;
     }

@@ -102,7 +102,7 @@
 
 
                             <p> 性别
-                                <input class="form-group" type="radio" name="pgender" value="男">男
+                                <input class="form-group" type="radio" name="pgender" value="男" checked="checked">男
                                 <input class="input-medium" type="radio" name="pgender" value="女">女
                             </p>
 
@@ -197,6 +197,70 @@
         </c:choose>
 
     </script>
+    <script>
+        window.onload = function () {
+            document.getElementById("form2").onsubmit = function () {
+                return checkPid() && checkPname() && checkIphone() && checkUsername() && checkPassword();
+            }
+
+            function checkPid() {
+                //获取用户名对象
+                var rid = document.getElementById("pid").value;
+                // 获取spanname
+                // 定义正则表达式
+                var reg = /(^\d{15}$)|(^\d{17}([0-9]|X)$)/;
+                var flag = reg.test(rid);
+                if (flag == false) {
+                    alert("游客身份证非法！！！");
+                }
+                return flag;
+            }
+
+            //检验总价：个位~十万位
+            function checkPname() {
+                var name = document.getElementById("pname").value;
+                var reg = /^[\u4e00-\u9fa5]{1,30}$/;
+
+                var flag = reg.test(name);
+                if (flag == false) {
+                    alert("游客名字非法！！！");
+                }
+                return flag;
+            }
+
+            //检验价格：价格小数点前6位，小数点后3位
+            function checkIphone() {
+                //获取用户名对象
+                var price = document.getElementById("iphone").value;
+                var reg = /^1[3456789]\d{9,11}$/;
+                var flag = reg.test(price);
+                if (flag == false) {
+                    alert("电话非法！！！");
+                }
+                return flag;
+            }
+            //检验顾客名：汉字
+            function checkUsername() {
+                var consignee = document.getElementById("username").value;
+                var reg = /^[a-zA-Z0-9_-]{6,16}$/;
+                var flag = reg.test(consignee);
+                if (flag == false) {
+                    alert("用户名（6~16位字母、数字、下划线）！！！");
+                }
+                return flag;
+            }
+            function checkPassword() {
+                var consignee = document.getElementById("password").value;
+                var reg = /^(\w){6,20}$/;
+                var flag = reg.test(consignee);
+                if (flag == false) {
+                    alert("密码（6~20位字母、数字、下划线）！！！");
+                }
+                return flag;
+            }
+        }
+    </script>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

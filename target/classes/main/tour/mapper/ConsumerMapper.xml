@@ -4,11 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main.tour.mapper.ConsumerMapper">
 
-    <select id="queryConsumerByUsername" resultType="Consumer">
+    <select id="queryConsumerByUsername" resultType="Consumer" parameterType="Consumer">
    SELECT username, password
 	FROM public.consumer where username = #{username} and password = #{password}
     </select>
-
+    <select id="judgeConsumerByUsername" resultType="int" parameterType="Consumer">
+   select COUNT (*) from consumer where username = #{username}
+    </select>
     <insert id="insertConsumer" parameterType="Consumer">
 INSERT INTO public.consumer(
 	username, password)

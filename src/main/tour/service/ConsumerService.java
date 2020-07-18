@@ -36,8 +36,10 @@ public class ConsumerService {
         return consumerDao.queryConsumerByUsername(consumer);
     }
 
+
+
     public boolean updateConsumerByUsername(Consumer consumer) {
-        if (consumerDao.isExit(consumer)) {
+        if (consumerDao.judgeConsumerByUsername(consumer)) {
 
             return consumerDao.updateConsumerByUsername(consumer);
 

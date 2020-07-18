@@ -251,7 +251,7 @@
                         <div class="center-block " style="background-color:rgba(0,0,0,0)">
                             <button type="button" class="btn btn-default" data-dismiss="modal">取消
                             </button>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" id="updateBtn">
                                 更新
                             </button>
                         </div>
@@ -270,17 +270,86 @@
 <script src="/js/jquery-1.8.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 
+<script>
+
+    window.onload = function () {
+
+        document.getElementById("form").onsubmit = function () {
+            return checkRid() && checkName() && checkEndPoint() && checkSight() && checkNumber();
+        }
+
+        function checkRid() {
+            //获取用户名对象
+            var rid = document.getElementById("rid").value;
+            // 获取spanname
+            // 定义正则表达式
+            var reg = /^[A-Za-z0-9]+$/;
+            var flag = reg.test(rid);
+            if (flag == false) {
+                alert("路线编号非法！！！");
+            }
+
+            return flag;
+        }
+
+        //检验总价：个位~十万位
+        function checkName() {
+            var name = document.getElementById("name").value;
+            var reg = /^[\u4e00-\u9fa5]{1,30}$/;
+
+            var flag = reg.test(name);
+            if (flag == false) {
+                alert("路线名称（汉字）非法！！！");
+            }
+            return flag;
+        }
+
+        //检验价格：价格小数点前6位，小数点后3位
+        function checkEndPoint() {
+            //获取用户名对象
+            var price = document.getElementById("endPoint").value;
+
+            var reg = /^[\u4e00-\u9fa5]{1,30}$/;
+            var flag = reg.test(price);
+
+            if (flag == false) {
+                alert("路线终点（汉字）非法！！！");
+            }
+            return flag;
+        }
+
+        //检验顾客名：汉字
+        function checkSight() {
+            var consignee = document.getElementById("sight").value;
+            var reg = /^([\u4e00-\u9fa5]|[-_.]){1,30}$/;
+            var flag = reg.test(consignee);
+            if (flag == false) {
+                alert("景点（汉字或_）非法！！！");
+            }
+            return flag;
+        }
+
+        //检验电话号码
+        function checkNumber() {
+            var telephone = document.getElementById("number").value;
+            var reg = /^[1-9]{1,3}$/;
+            var flag = reg.test(telephone);
+            if (flag == false) {
+                alert("景点数量非法！！！");
+            }
+            return flag;
+        }
+    }
+</script>
 
 <script>
     ${flag == 'true'}
     <c:if test="${flag == 'true'}">
     alert("操作成功");
     </c:if>
-
     <c:if test="${flag == 'false'}">
     alert("操作失败");
     </c:if>
-
 </script>
 <script>
     function find() {

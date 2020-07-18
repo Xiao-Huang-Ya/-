@@ -77,7 +77,7 @@
     <a href="#tourist-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>游客管理</a>
     <ul id="tourist-menu" class="nav nav-list collapse">
         <li><a href="/hello/queryPassengerByPageServlet/1">游客信息查询</a></li>
-<%--        <li><a href="#">游客登陆管理</a></li>--%>
+        <%--        <li><a href="#">游客登陆管理</a></li>--%>
 
     </ul>
     <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统页面</a>
@@ -110,7 +110,7 @@
                     </h4>
                 </div>
                 <div class="center-block offset1" style="width:400px;">
-                    <form id="tab" action="/hello/addGuideServlet" method="post">
+                    <form id="addGuideForm" action="/hello/addGuideServlet" method="post">
                         <div class="row-fluid" style="text-align: left;">
                             <div class="pull-left span6 unstyled">
                                 <p>导游编号：
@@ -122,7 +122,8 @@
                                 <p>性别：
 
                                     <%--            <input type="text" name="gender" id="gender" placeholder="请输入性别" class="input-xlarge">--%>
-                                    <input id="gender" type="radio" name="gender" value="男" class="input-xlarge">男
+                                    <input id="gender" type="radio" name="gender" value="男" class="input-xlarge"
+                                           checked="checked">男
                                     <input id="gender" type="radio" name="gender" value="女" class="input-xlarge">女
 
 
@@ -206,7 +207,7 @@
                         </h4>
                     </div>
                     <div class="center-block offset1" style="width:400px;">
-                        <form id="updateForm" action="/hello/updateGuideByIdServlet" method="post">
+                        <form id="updateGuideForm" action="/hello/updateGuideByIdServlet" method="post">
                             <div class="row-fluid" style="text-align: left;">
                                 <div class="pull-left span6 unstyled">
                                     <p>导游编号：
@@ -220,7 +221,8 @@
                                     <p>性别：
 
                                         <%--            <input type="text" name="gender" id="gender" placeholder="请输入性别" class="input-xlarge">--%>
-                                        <input id="gender1" type="radio" name="gender2" value="男" class="input-xlarge">男
+                                        <input id="gender1" type="radio" name="gender2" value="男" class="input-xlarge"
+                                               checked="checked">男
                                         <input id="gender2" type="radio" name="gender2" value="女" class="input-xlarge">女
 
 
@@ -334,4 +336,61 @@
     </c:if>
 
 </script>
+
+<script>
+    window.onload = function () {
+        document.getElementById("addGuideForm").onsubmit = function () {
+            return checkId() && checkName() && checkHours() && checkSalary();
+        }
+        function checkId() {
+            //获取用户名对象
+            var rid = document.getElementById("id").value;
+            // 获取spanname
+            // 定义正则表达式
+            var reg = /^[A-Za-z0-9]+$/;
+            var flag = reg.test(rid);
+            if (flag == false) {
+                alert("导游编号非法！！！");
+            }
+            return flag;
+        }
+
+        //检验总价：个位~十万位
+        function checkName() {
+            var name = document.getElementById("name").value;
+            var reg = /^[\u4e00-\u9fa5]{1,30}$/;
+
+            var flag = reg.test(name);
+            if (flag == false) {
+                alert("导游名字非法！！！");
+            }
+            return flag;
+        }
+
+        //检验价格：价格小数点前6位，小数点后3位
+        function checkHours() {
+            //获取用户名对象
+            var price = document.getElementById("hours").value;
+            var reg = /^[0-9]{1,2}$/;
+            var flag = reg.test(price);
+            if (flag == false) {
+                alert("日工作量（/小时）！！！");
+            }
+            return flag;
+        }
+        //检验顾客名：汉字
+        function checkSalary() {
+            var consignee = document.getElementById("salary").value;
+            var reg = /^[0-9]+(.[0-9]{1,5})?$/;
+            var flag = reg.test(consignee);
+            if (flag == false) {
+                alert("日薪资（/元）非法！！！");
+            }
+            return flag;
+        }
+    }
+</script>
+
+
+
 </html>

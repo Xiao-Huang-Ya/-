@@ -106,11 +106,11 @@ public class GuideServlet extends HttpServlet {
 
     @RequestMapping(value = "/addGuideServlet")
     public String addGuideServlet(@RequestParam(value = "id", required = false) String id, @RequestParam(value = "name", required = false) String name,
-                                  @RequestParam(value = "gender", required = false) String gender, @RequestParam(value = "hours", required = false) Integer hours,
-                                  @RequestParam(value = "salary", required = false) Double salary, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
+                                  @RequestParam(value = "gender", required = false) String gender, @RequestParam(value = "hours", required = false) String hours,
+                                  @RequestParam(value = "salary", required = false) String salary, Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         boolean flag = false;
         try {
-            Guide guide = new Guide(id, name, gender, hours, salary);
+            Guide guide = new Guide(id, name, gender, Integer.parseInt(hours), Double.parseDouble(salary));
 
             flag = guideService.insertGuide(guide);
             tourPage = testModelAttribute("1", map);
@@ -119,7 +119,7 @@ public class GuideServlet extends HttpServlet {
         } catch (Exception e) {
             map.put("flag", flag);
             tourPage = testModelAttribute("1", map);
-            return "addGuide";
+            return "queryGuide";
         }
 
     }
@@ -154,11 +154,19 @@ public class GuideServlet extends HttpServlet {
     //更新导游信息
     @RequestMapping(value = "/updateGuideByIdServlet")
     public String updateGuideByIdServlet(@RequestParam(value = "id2", required = false) String id, @RequestParam(value = "name2", required = false) String name,
-                                         @RequestParam(value = "gender2", required = false) String gender, @RequestParam(value = "hours2", required = false) Integer hours,
-                                         @RequestParam(value = "salary2", required = false) Double salary, @ModelAttribute("tourPage") TourPage tourPage, Map<String, Object> map) throws IOException {
-        Guide guide = new Guide(id, name, gender, hours, salary);
+                                         @RequestParam(value = "gender2", required = false) String gender, @RequestParam(value = "hours2", required = false) String hours,
+                                         @RequestParam(value = "salary2", required = false) String  salary, @ModelAttribute("tourPage") TourPage tourPage, Map<String, Object> map) throws IOException {
+        boolean flag =false;
+        if(name.equals("") || hours.equals("") || salary.equals("")){
+            tourPage = testModelAttribute("1", map);
+            map.put("tourPage", tourPage);
+            map.put("updateGuideFlag", flag);
+            return "queryGuide";
+        }
+
+        Guide guide = new Guide(id, name, gender, Integer.parseInt(hours), Double.parseDouble(salary));
 //        map.put("Guide", Guide);
-        boolean flag = guideService.updateGuideById(guide);
+       flag = guideService.updateGuideById(guide);
         tourPage = testModelAttribute("1", map);
         map.put("tourPage", tourPage);
         map.put("updateGuideFlag", flag);

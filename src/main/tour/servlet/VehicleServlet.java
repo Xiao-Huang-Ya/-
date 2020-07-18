@@ -144,11 +144,11 @@ public class VehicleServlet {
     @RequestMapping(value = "/addVehicleServlet")
     public String addVehicleServlet(@RequestParam(value = "vid", required = false) String vid,
                                     @RequestParam(value = "state", required = false) String state,
-                                    @RequestParam(value = "vehiclecost", required = false) double vehiclecost,
+                                    @RequestParam(value = "vehiclecost", required = false) String vehiclecost,
                                     Map<String, Object> map, @ModelAttribute("tourPage") TourPage tourPage) throws IOException {
         boolean flag = false;
         try {
-            Vehicle vehicle = new Vehicle(vid, state,vehiclecost);
+            Vehicle vehicle = new Vehicle(vid, state,Double.parseDouble(vehiclecost));
             flag = vehicleService.insertVehicle(vehicle);
             map.put("flag", flag);
             tourPage = testModelAttribute("1", map);

@@ -160,4 +160,20 @@
 
     </c:choose>
 </script>
+<script>
+    window.onload = function () {
+        document.getElementById("updateForm").onsubmit = function () {
+            return checkPassword();
+        }
+        function checkPassword() {
+            var consignee = document.getElementById("password").value;
+            var reg = /^(\w){6,20}$/;
+            var flag = reg.test(consignee);
+            if (flag == false) {
+                alert("密码（6~20位字母、数字、下划线）！！！");
+            }
+            return flag;
+        }
+    }
+</script>
 </html>

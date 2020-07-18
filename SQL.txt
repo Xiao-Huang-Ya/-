@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.16
 -- Dumped by pg_dump version 12.0
 
--- Started on 2020-07-14 17:47:46
+-- Started on 2020-07-14 18:09:08
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,29 +18,144 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP DATABASE tour;
 --
--- TOC entry 2183 (class 1262 OID 32923)
--- Name: tour; Type: DATABASE; Schema: -; Owner: postgres
+-- TOC entry 192 (class 1255 OID 41245)
+-- Name: updatepnumber(character varying); Type: FUNCTION; Schema: public; Owner: postgres
+--
+-- Database: tour
+
+-- DROP DATABASE tour;
+
+CREATE DATABASE tour
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Chinese (Simplified)_China.936'
+    LC_CTYPE = 'Chinese (Simplified)_China.936'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+CREATE FUNCTION public.updatepnumber(v character varying) RETURNS void
+    LANGUAGE sql
+    AS $$
+update vehicle set pnumber = pnumber +1 where vid =v
+$$;
+
+
+ALTER FUNCTION public.updatepnumber(v character varying) OWNER TO postgres;
+
+SET default_tablespace = '';
+
+--
+-- TOC entry 191 (class 1259 OID 33069)
+-- Name: consumer; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE DATABASE tour WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Chinese (Simplified)_China.936' LC_CTYPE = 'Chinese (Simplified)_China.936';
+CREATE TABLE public.consumer (
+    username character varying NOT NULL,
+    password character varying NOT NULL
+);
 
 
-ALTER DATABASE tour OWNER TO postgres;
+ALTER TABLE public.consumer OWNER TO postgres;
 
-\connect tour
+--
+-- TOC entry 185 (class 1259 OID 32951)
+-- Name: guide; Type: TABLE; Schema: public; Owner: postgres
+--
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
+CREATE TABLE public.guide (
+    name character varying,
+    gender character varying DEFAULT '男'::character varying,
+    hours integer,
+    salary numeric(5,2),
+    id character varying NOT NULL,
+    state character(2) DEFAULT '否'::bpchar NOT NULL,
+    CONSTRAINT guide_gender_check CHECK (((gender)::text = ANY ((ARRAY['男'::character varying, '女'::character varying])::text[])))
+);
+
+
+ALTER TABLE public.guide OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 33061)
+-- Name: manager; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.manager (
+    account character varying NOT NULL,
+    password character varying NOT NULL
+);
+
+
+ALTER TABLE public.manager OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 32985)
+-- Name: passenger; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.passenger (
+    pid character varying NOT NULL,
+    pname character varying NOT NULL,
+    pgender character varying DEFAULT '男'::character(1),
+    iphone character varying NOT NULL,
+    rid character varying,
+    vid character varying,
+    id character varying,
+    state character varying DEFAULT '已注册'::character varying NOT NULL,
+    username character varying
+);
+
+
+ALTER TABLE public.passenger OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 32969)
+-- Name: route; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.route (
+    rid character varying NOT NULL,
+    name character varying,
+    endpoint character varying,
+    sight character varying,
+    number integer,
+    "vehicleNumber" integer DEFAULT 0
+);
+
+
+ALTER TABLE public.route OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 32961)
+-- Name: sight; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.sight (
+    sname character varying(30) NOT NULL,
+    location text NOT NULL
+);
+
+
+ALTER TABLE public.sight OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 32977)
+-- Name: vehicle; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.vehicle (
+    vid character varying NOT NULL,
+    rid character varying,
+    state character varying,
+    id character varying,
+    pnumber integer DEFAULT 0 NOT NULL,
+    vehiclecost numeric(6,2) DEFAULT 0.00
+);
+
+
+ALTER TABLE public.vehicle OWNER TO postgres;
 
 --
 -- TOC entry 2177 (class 0 OID 33069)
@@ -48,141 +163,109 @@ SET row_security = off;
 -- Data for Name: consumer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.consumer (username, password) VALUES ('123456', '123456');
-INSERT INTO public.consumer (username, password) VALUES ('17619566032', '17619566032');
-INSERT INTO public.consumer (username, password) VALUES ('111', '111');
-INSERT INTO public.consumer (username, password) VALUES ('333', '333');
-INSERT INTO public.consumer (username, password) VALUES ('444', '444');
-INSERT INTO public.consumer (username, password) VALUES ('999', '999');
-INSERT INTO public.consumer (username, password) VALUES ('lk', '123456');
-INSERT INTO public.consumer (username, password) VALUES ('www', 'www');
-INSERT INTO public.consumer (username, password) VALUES ('000', '000');
-INSERT INTO public.consumer (username, password) VALUES ('45', '45');
-INSERT INTO public.consumer (username, password) VALUES ('777', '777');
-INSERT INTO public.consumer (username, password) VALUES ('ttt', 'ttt');
-INSERT INTO public.consumer (username, password) VALUES ('ll', 'll');
-INSERT INTO public.consumer (username, password) VALUES ('w', 'www');
-INSERT INTO public.consumer (username, password) VALUES ('a', 'a');
-INSERT INTO public.consumer (username, password) VALUES ('asdas', 'asdsa');
-INSERT INTO public.consumer (username, password) VALUES ('666', '666');
-INSERT INTO public.consumer (username, password) VALUES ('wjy', 'wjy');
-INSERT INTO public.consumer (username, password) VALUES ('abc', 'abc');
-INSERT INTO public.consumer (username, password) VALUES ('789', '789');
-INSERT INTO public.consumer (username, password) VALUES ('kkk', '123');
-INSERT INTO public.consumer (username, password) VALUES ('9', '9');
-INSERT INTO public.consumer (username, password) VALUES ('464654', '4645646');
-INSERT INTO public.consumer (username, password) VALUES ('p', 'p');
-INSERT INTO public.consumer (username, password) VALUES ('53', '53');
-INSERT INTO public.consumer (username, password) VALUES ('58', '58');
-INSERT INTO public.consumer (username, password) VALUES ('test', 'test');
-INSERT INTO public.consumer (username, password) VALUES ('222', '222');
-INSERT INTO public.consumer (username, password) VALUES ('111111', '111111');
-INSERT INTO public.consumer (username, password) VALUES ('55555', '55555');
-INSERT INTO public.consumer (username, password) VALUES ('q', 'q');
-INSERT INTO public.consumer (username, password) VALUES ('42', '42');
-INSERT INTO public.consumer (username, password) VALUES ('f', 'f');
-INSERT INTO public.consumer (username, password) VALUES ('888', '888');
-INSERT INTO public.consumer (username, password) VALUES ('b208', 'b208');
 
 
---
--- TOC entry 2171 (class 0 OID 32951)
--- Dependencies: 185
--- Data for Name: guide; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('柳絮', '女', 5, 50.00, '002', '是 ');
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('刘璐', '女', 6, 70.00, '003', '是 ');
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('李白', '男', 7, 40.00, '004', '是 ');
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('上海之旅', '女', 6, 50.00, '13', '是 ');
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('云辙', '男', 6, 60.00, '007', '是 ');
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('123456', '男', 6, 50.00, '4', '是 ');
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('江湖', '男', 6, 43.20, '005', '是 ');
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('小黑', '男', 5, 80.00, '001', '是 ');
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('上海之旅', '男', 6, 30.00, '006', '是 ');
-INSERT INTO public.guide (name, gender, hours, salary, id, state) VALUES ('花木兰', '男', 6, 30.00, '009', '是 ');
-
-
---
--- TOC entry 2176 (class 0 OID 33061)
--- Dependencies: 190
--- Data for Name: manager; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.manager (account, password) VALUES ('123456', '123456');
-
-
---
--- TOC entry 2175 (class 0 OID 32985)
--- Dependencies: 189
--- Data for Name: passenger; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('wjy', 'wjy', '男', 'wjy', '', '', '', '已注册', 'wjy');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('asdas', 'asdas', '女', 'asd', '', '', '', '已注册', 'asdas');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('666', '666', '男', '666', '002', 'C003', '002', '已分配', '666');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('abc', 'abc', '男', 'abc', '', '', '', '已注册', 'abc');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('9', '9', '男', '9', '', '', '', '已注册', '9');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('4654654', '46546456', '男', '4645645', '', '', '', '已注册', '464654');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('58', '58', '女', '58', '', '', '', '已注册', '58');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('222', '软件工程', '男', '17619566032', '002', NULL, NULL, '已注册', '222');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('55555', '55555', '男', '55555', '003', 'A002', '009', '已分配', '55555');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('42', '42', '男', '42', '002', 'C004', '', '待分配', '42');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('6103219980603', '玄安', '男', '17619566032', '005', 'D002', '006', '已分配', 'b208');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('as', 'a', '女', 'a', '004', 'A003', '009', '已分配', 'a');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('test', 'test', '男', '110', '004', 'A003', '4', '已分配', 'test');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('ffef', 'fwef', '男', 'f', '005', 'D002', '006', '已分配', 'f');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('q', 'q', '男', 'q', '001', 'B001', '009', '已分配', 'q');
-INSERT INTO public.passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('333', '软件工程', '男', '17619566032', '003', 'A004', '006', '已分配', '333');
+INSERT INTO consumer (username, password) VALUES ('123456', '123456');
+INSERT INTO consumer (username, password) VALUES ('17619566032', '17619566032');
+INSERT INTO consumer (username, password) VALUES ('111', '111');
+INSERT INTO consumer (username, password) VALUES ('333', '333');
+INSERT INTO consumer (username, password) VALUES ('444', '444');
+INSERT INTO consumer (username, password) VALUES ('999', '999');
+INSERT INTO consumer (username, password) VALUES ('lk', '123456');
+INSERT INTO consumer (username, password) VALUES ('www', 'www');
+INSERT INTO consumer (username, password) VALUES ('000', '000');
+INSERT INTO consumer (username, password) VALUES ('45', '45');
+INSERT INTO consumer (username, password) VALUES ('777', '777');
+INSERT INTO consumer (username, password) VALUES ('ttt', 'ttt');
+INSERT INTO consumer (username, password) VALUES ('ll', 'll');
+INSERT INTO consumer (username, password) VALUES ('w', 'www');
+INSERT INTO consumer (username, password) VALUES ('a', 'a');
+INSERT INTO consumer (username, password) VALUES ('asdas', 'asdsa');
+INSERT INTO consumer (username, password) VALUES ('666', '666');
+INSERT INTO consumer (username, password) VALUES ('wjy', 'wjy');
+INSERT INTO consumer (username, password) VALUES ('abc', 'abc');
+INSERT INTO consumer (username, password) VALUES ('789', '789');
+INSERT INTO consumer (username, password) VALUES ('kkk', '123');
+INSERT INTO consumer (username, password) VALUES ('9', '9');
+INSERT INTO consumer (username, password) VALUES ('464654', '4645646');
+INSERT INTO consumer (username, password) VALUES ('p', 'p');
+INSERT INTO consumer (username, password) VALUES ('53', '53');
+INSERT INTO consumer (username, password) VALUES ('58', '58');
+INSERT INTO consumer (username, password) VALUES ('test', 'test');
+INSERT INTO consumer (username, password) VALUES ('222', '222');
+INSERT INTO consumer (username, password) VALUES ('111111', '111111');
+INSERT INTO consumer (username, password) VALUES ('55555', '55555');
+INSERT INTO consumer (username, password) VALUES ('q', 'q');
+INSERT INTO consumer (username, password) VALUES ('42', '42');
+INSERT INTO consumer (username, password) VALUES ('f', 'f');
+INSERT INTO consumer (username, password) VALUES ('888', '888');
+INSERT INTO consumer (username, password) VALUES ('b208', 'b208');
 
 
---
--- TOC entry 2173 (class 0 OID 32969)
--- Dependencies: 187
--- Data for Name: route; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
-INSERT INTO public.route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('006', '上海之旅', '上海外滩', '上海夜景-迪士尼乐园', 5, 0);
-INSERT INTO public.route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('004', '敦煌之旅', '敦煌市', '莫高窟-鸣沙山月牙泉-沙洲夜市-敦煌市', 4, 0);
-INSERT INTO public.route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('003', '环游青海湖', '青海湖', '西宁-塔尔寺-青海湖', 3, 1);
-INSERT INTO public.route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('002', '泸沽湖之旅', '沪沽湖', '昆明-大理-丽江-香格里拉-泸沽湖', 5, 1);
-INSERT INTO public.route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('005', '古城西安', '大雁塔', '大明宫-未央宫-钟楼-大雁塔', 4, 1);
-INSERT INTO public.route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('001', '拉萨朝圣之旅', '布达拉宫广场', '大昭寺-八廓街-色拉寺-布达拉宫广场', 4, 1);
-INSERT INTO public.route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('007', '华山之行', '华山', '华山', 1, 0);
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('柳絮', '女', 5, 50.00, '002', '是 ');
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('刘璐', '女', 6, 70.00, '003', '是 ');
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('李白', '男', 7, 40.00, '004', '是 ');
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('上海之旅', '女', 6, 50.00, '13', '是 ');
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('云辙', '男', 6, 60.00, '007', '是 ');
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('123456', '男', 6, 50.00, '4', '是 ');
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('江湖', '男', 6, 43.20, '005', '是 ');
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('小黑', '男', 5, 80.00, '001', '是 ');
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('上海之旅', '男', 6, 30.00, '006', '是 ');
+INSERT INTO guide (name, gender, hours, salary, id, state) VALUES ('花木兰', '男', 6, 30.00, '009', '是 ');
 
 
---
--- TOC entry 2172 (class 0 OID 32961)
--- Dependencies: 186
--- Data for Name: sight; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.sight (sname, location) VALUES ('黄鹤楼', '湖北武汉');
-INSERT INTO public.sight (sname, location) VALUES ('岳阳楼', '湖南岳阳');
-INSERT INTO public.sight (sname, location) VALUES ('大雁塔', '陕西西安');
-INSERT INTO public.sight (sname, location) VALUES ('河南', '少林寺');
-INSERT INTO public.sight (sname, location) VALUES ('青铜器博物馆', '陕西宝鸡');
-INSERT INTO public.sight (sname, location) VALUES ('都江堰', '四川成都');
-INSERT INTO public.sight (sname, location) VALUES ('华山', '陕西渭南');
+INSERT INTO manager (account, password) VALUES ('123456', '123456');
 
 
---
--- TOC entry 2174 (class 0 OID 32977)
--- Dependencies: 188
--- Data for Name: vehicle; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
-INSERT INTO public.vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('D002', '005', '是', '006', 1, 0.00);
-INSERT INTO public.vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('C003', '002', '是', '002', 1, 300.00);
-INSERT INTO public.vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('A001', NULL, '否', NULL, 0, 400.00);
-INSERT INTO public.vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('A004', NULL, '否', NULL, 0, 600.00);
-INSERT INTO public.vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('A005', NULL, '否', NULL, 0, 200.00);
-INSERT INTO public.vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('A002', NULL, '否', NULL, 0, 500.00);
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('wjy', 'wjy', '男', 'wjy', '', '', '', '已注册', 'wjy');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('asdas', 'asdas', '女', 'asd', '', '', '', '已注册', 'asdas');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('666', '666', '男', '666', '002', 'C003', '002', '已分配', '666');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('abc', 'abc', '男', 'abc', '', '', '', '已注册', 'abc');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('9', '9', '男', '9', '', '', '', '已注册', '9');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('4654654', '46546456', '男', '4645645', '', '', '', '已注册', '464654');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('58', '58', '女', '58', '', '', '', '已注册', '58');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('222', '软件工程', '男', '17619566032', '002', NULL, NULL, '已注册', '222');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('55555', '55555', '男', '55555', '003', 'A002', '009', '已分配', '55555');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('42', '42', '男', '42', '002', 'C004', '', '待分配', '42');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('6103219980603', '玄安', '男', '17619566032', '005', 'D002', '006', '已分配', 'b208');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('as', 'a', '女', 'a', '004', 'A003', '009', '已分配', 'a');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('test', 'test', '男', '110', '004', 'A003', '4', '已分配', 'test');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('ffef', 'fwef', '男', 'f', '005', 'D002', '006', '已分配', 'f');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('q', 'q', '男', 'q', '001', 'B001', '009', '已分配', 'q');
+INSERT INTO passenger (pid, pname, pgender, iphone, rid, vid, id, state, username) VALUES ('333', '软件工程', '男', '17619566032', '003', 'A004', '006', '已分配', '333');
 
 
--- Completed on 2020-07-14 17:47:46
 
---
--- PostgreSQL database dump complete
---
+
+INSERT INTO route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('006', '上海之旅', '上海外滩', '上海夜景-迪士尼乐园', 5, 0);
+INSERT INTO route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('004', '敦煌之旅', '敦煌市', '莫高窟-鸣沙山月牙泉-沙洲夜市-敦煌市', 4, 0);
+INSERT INTO route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('003', '环游青海湖', '青海湖', '西宁-塔尔寺-青海湖', 3, 1);
+INSERT INTO route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('002', '泸沽湖之旅', '沪沽湖', '昆明-大理-丽江-香格里拉-泸沽湖', 5, 1);
+INSERT INTO route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('005', '古城西安', '大雁塔', '大明宫-未央宫-钟楼-大雁塔', 4, 1);
+INSERT INTO route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('001', '拉萨朝圣之旅', '布达拉宫广场', '大昭寺-八廓街-色拉寺-布达拉宫广场', 4, 1);
+INSERT INTO route (rid, name, endpoint, sight, number, "vehicleNumber") VALUES ('007', '华山之行', '华山', '华山', 1, 0);
+
+
+
+
+INSERT INTO sight (sname, location) VALUES ('黄鹤楼', '湖北武汉');
+INSERT INTO sight (sname, location) VALUES ('岳阳楼', '湖南岳阳');
+INSERT INTO sight (sname, location) VALUES ('大雁塔', '陕西西安');
+INSERT INTO sight (sname, location) VALUES ('河南', '少林寺');
+INSERT INTO sight (sname, location) VALUES ('青铜器博物馆', '陕西宝鸡');
+INSERT INTO sight (sname, location) VALUES ('都江堰', '四川成都');
+INSERT INTO sight (sname, location) VALUES ('华山', '陕西渭南');
+
+
+
+
+INSERT INTO vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('D002', '005', '是', '006', 1, 0.00);
+INSERT INTO vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('C003', '002', '是', '002', 1, 300.00);
+INSERT INTO vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('A001', NULL, '否', NULL, 0, 400.00);
+INSERT INTO vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('A004', NULL, '否', NULL, 0, 600.00);
+INSERT INTO vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('A005', NULL, '否', NULL, 0, 200.00);
+INSERT INTO vehicle (vid, rid, state, id, pnumber, vehiclecost) VALUES ('A002', NULL, '否', NULL, 0, 500.00);
+
 

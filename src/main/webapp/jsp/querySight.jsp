@@ -108,7 +108,7 @@
                     </h4>
                 </div>
                 <div class="center-block offset1" style="width:300px;">
-                    <form class="form-search" action="/hello/addSightServlet" method="post" name="form">
+                    <form class="form-search" action="/hello/addSightServlet" method="post" id="addSightForm">
                         <div class="row-fluid" style="text-align: left;">
                             <div class="pull-left span4 unstyled">
                                 <p> 景点名称：<input class="input-large" id="sname" name="sname" type="text"></p>
@@ -207,6 +207,41 @@
     alert("操作失败");
     </c:if>
 
+</script>
+
+<script>
+
+    window.onload = function () {
+
+        document.getElementById("addSightForm").onsubmit = function () {
+            return checkSname() && checkLocation();
+        }
+
+        function checkSname() {
+            //获取用户名对象
+            var rid = document.getElementById("sname").value;
+            // 获取spanname
+            // 定义正则表达式
+            var reg = /^[\u4e00-\u9fa5]{1,30}$/;
+            var flag = reg.test(rid);
+            if (flag == false) {
+                alert("景点名称（汉字）非法！！！");
+            }
+            return flag;
+        }
+
+        //检验总价：个位~十万位
+        function checkLocation() {
+            var name = document.getElementById("location").value;
+            var reg = /^[\u4e00-\u9fa5]{1,30}$/;
+            var flag = reg.test(name);
+            if (flag == false) {
+                alert("景点坐标（汉字）非法！！！");
+            }
+            return flag;
+        }
+
+    }
 </script>
 
 </html>
